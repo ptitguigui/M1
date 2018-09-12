@@ -8,21 +8,21 @@ Un client vient manger au restaurant et commande un menu (toute la commande est 
 Script
 ------
 
-Le serveur installe le client sur une table libre.  
-Le serveur laisse du temps au client pour faire son choix.  
-Le serveur prend commande du menu : la boisson, du plat et du dessert.  
+Le serveur installe une famille sur une table libre.  
+Le serveur laisse du temps à la famille pour faire leurs choix.  
+`Le serveur prend commande des menus : boissons, plats et desserts.`   
 Le barman est notifié d'une commande.  
-Le barman prépare la commande.  
+Le barman prépare la commande.   
 Le barman notifie le serveur que la commande est prête.  
-Le serveur vient chercher la commande du barman et l'amène au client.
-La boisson finie, le cuisinier est notifié de la commande du plat.  
+Le serveur vient chercher la commande du barman et l'amène à la famille.  
+`Les boissons finies, le cuisinier est notifié de la commande.`  
 Le cuisinier prépare la commande.  
 Le serveur est notifié que la commande est prête.  
-Le serveur sert le plat.  
-Le plat fini, le glacier est notifié d'une commande.  
+Le serveur sert les plats.  
+`Les plats finis, le glacier est notifié d'une commande.`  
 Le glacier prépare la commande.  
-Le glacier notifie le serveur que le dessert est prêt.  
-Le serveur sert le dessert.  
-Le dessert fini, le serveur donne l'addition.  
-Le client paie.  
+Le glacier notifie le serveur que les desserts sont prêts.  
+Le serveur sert les desserts.  
+Les desserts finis, le serveur donne l'addition.  
+Les clients paient.  
 Le serveur nettoie la table et la libère.

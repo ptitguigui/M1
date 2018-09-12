@@ -6,7 +6,8 @@ API REST'O
 - Dieu Emeline
 - Lepretre Guillaume
 - Moreau Thomas
-- Pourry Florian
+- Pourry Florian  
+
 ---
 ## Bienvenue sur le repo Git du projet de GL de l'equipe API REST'O
 

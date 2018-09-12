@@ -1,7 +1,8 @@
 Glossaire proffessionel
 ============
 
-Ce glossaire définis les termes par des personnes qui ont peu de connaissances en informatique et qui connaissances le monde de la restauration.
+Ce glossaire définis les termes par des personnes qui ont peu de connaissances en informatique et qui connaissances le monde de la restauration.  
+
 |  Terme | Définition  |
 |---|---|
 |  Addition | C'est l'ensemble des dépenses d'une table |

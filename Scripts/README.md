@@ -11,7 +11,7 @@
 | [Elaboration Carte](Scripts/) | TODO |  
 | [Retard Plat](Scripts/2018_09_12_Script_Retard_Plat.md) | TODO |  
 | [Restaurant Complet](Scripts/2018_09_12_Script_Restaurant_complet.md) | TODO |  
-| [](Scripts/) | TODO |  
+| [Rupture Stock](Scripts/2018_09_12_Script_Rupture_stock.md) | Fabien |  
 | [](Scripts/) | TODO |  
 | [](Scripts/) | TODO |  
 | [](Scripts/) | TODO |  

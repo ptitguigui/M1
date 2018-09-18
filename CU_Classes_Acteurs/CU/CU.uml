@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TBqfMLskEeiyn6htDmg2VA" name="CU">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_TUk0ILskEeiyn6htDmg2VA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_j4ItELskEeiyn6htDmg2VA" name="Serveur"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_ysAKALskEeiyn6htDmg2VA" name="Client"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_lMYGsLslEeiyn6htDmg2VA" name="Barman">
+    <generalization xmi:type="uml:Generalization" xmi:id="_Y0DpsLsmEeiyn6htDmg2VA" general="_SPmeMLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_l9k6ILslEeiyn6htDmg2VA" name="Cuisinier">
+    <generalization xmi:type="uml:Generalization" xmi:id="_T-JDoLsmEeiyn6htDmg2VA" general="_SPmeMLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_mw3_ULslEeiyn6htDmg2VA" name="Glacier">
+    <generalization xmi:type="uml:Generalization" xmi:id="_bI6BMLsmEeiyn6htDmg2VA" general="_SPmeMLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4aJjILslEeiyn6htDmg2VA" memberEnd="_4aKxQLslEeiyn6htDmg2VA _4aKxQbslEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4aKKMLslEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4aKKMbslEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4aKxQLslEeiyn6htDmg2VA" name="installer" type="_G_6IELslEeiyn6htDmg2VA" association="_4aJjILslEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4aKxQbslEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_4aJjILslEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_CSeTILsmEeiyn6htDmg2VA" memberEnd="_CSe6MrsmEeiyn6htDmg2VA _CSe6M7smEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CSe6MLsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CSe6MbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_CSe6MrsmEeiyn6htDmg2VA" name="prendre commande" type="_YAkzwLslEeiyn6htDmg2VA" association="_CSeTILsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_CSe6M7smEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_CSeTILsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ElW7wLsmEeiyn6htDmg2VA" memberEnd="_ElXi0LsmEeiyn6htDmg2VA _ElXi0bsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ElW7wbsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ElW7wrsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ElXi0LsmEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_ElW7wLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ElXi0bsmEeiyn6htDmg2VA" name="servir les plats" type="_rslEULslEeiyn6htDmg2VA" association="_ElW7wLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FatPYLsmEeiyn6htDmg2VA" memberEnd="_Fat2crsmEeiyn6htDmg2VA _FaudgLsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fat2cLsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fat2cbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Fat2crsmEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_FatPYLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FaudgLsmEeiyn6htDmg2VA" name="donner l'addition" type="_vtG6gLslEeiyn6htDmg2VA" association="_FatPYLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_KFSvMLsmEeiyn6htDmg2VA" memberEnd="_KFTWQrsmEeiyn6htDmg2VA _KFTWQ7smEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KFTWQLsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KFTWQbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_KFTWQrsmEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_KFSvMLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_KFTWQ7smEeiyn6htDmg2VA" name="encaisser" type="_xS1iMLslEeiyn6htDmg2VA" association="_KFSvMLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_LdVgMLsmEeiyn6htDmg2VA" memberEnd="_LdWHQrsmEeiyn6htDmg2VA _LdWHQ7smEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_LdWHQLsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LdWHQbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_LdWHQrsmEeiyn6htDmg2VA" name="serveur" type="_j4ItELskEeiyn6htDmg2VA" association="_LdVgMLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_LdWHQ7smEeiyn6htDmg2VA" name="libérer une table" type="_1HSrQLslEeiyn6htDmg2VA" association="_LdVgMLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_PIZcsLsmEeiyn6htDmg2VA" memberEnd="_PIaDwbsmEeiyn6htDmg2VA _PIaDwrsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PIZcsbsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PIaDwLsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_PIaDwbsmEeiyn6htDmg2VA" name="cuisinier" type="_l9k6ILslEeiyn6htDmg2VA" association="_PIZcsLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_PIaDwrsmEeiyn6htDmg2VA" name="préparer la commande" type="_hbf2ELslEeiyn6htDmg2VA" association="_PIZcsLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_PtiKELsmEeiyn6htDmg2VA" memberEnd="_PtiKE7smEeiyn6htDmg2VA _PtixILsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PtiKEbsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PtiKErsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_PtiKE7smEeiyn6htDmg2VA" name="barman" type="_lMYGsLslEeiyn6htDmg2VA" association="_PtiKELsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_PtixILsmEeiyn6htDmg2VA" name="préparer la commande" type="_hbf2ELslEeiyn6htDmg2VA" association="_PtiKELsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_QcrIALsmEeiyn6htDmg2VA" memberEnd="_QcrvErsmEeiyn6htDmg2VA _QcrvE7smEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QcrvELsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QcrvEbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_QcrvErsmEeiyn6htDmg2VA" name="glacier" type="_mw3_ULslEeiyn6htDmg2VA" association="_QcrIALsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_QcrvE7smEeiyn6htDmg2VA" name="préparer la commande" type="_hbf2ELslEeiyn6htDmg2VA" association="_QcrIALsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_SPmeMLsmEeiyn6htDmg2VA" name="Préparateur"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_jzMQwLsmEeiyn6htDmg2VA" memberEnd="_jzM30bsmEeiyn6htDmg2VA _jzM30rsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jzMQwbsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jzM30LsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_jzM30bsmEeiyn6htDmg2VA" name="prendre commande" type="_YAkzwLslEeiyn6htDmg2VA" association="_jzMQwLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_jzM30rsmEeiyn6htDmg2VA" type="_ysAKALskEeiyn6htDmg2VA" association="_jzMQwLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_t6ZKQLsmEeiyn6htDmg2VA" memberEnd="_t6ZxUrsmEeiyn6htDmg2VA _t6aYYLsmEeiyn6htDmg2VA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_t6ZxULsmEeiyn6htDmg2VA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t6ZxUbsmEeiyn6htDmg2VA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_t6ZxUrsmEeiyn6htDmg2VA" name="client" type="_ysAKALskEeiyn6htDmg2VA" association="_t6ZKQLsmEeiyn6htDmg2VA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_t6aYYLsmEeiyn6htDmg2VA" name="payer" type="_qLf2oLsmEeiyn6htDmg2VA" association="_t6ZKQLsmEeiyn6htDmg2VA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_aWNHALsoEeiiYdSxQVFRMA" name="API Resto">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_vtG6gLslEeiyn6htDmg2VA" name="Donner l'addition"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_rslEULslEeiyn6htDmg2VA" name="Servir les plats"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_xS1iMLslEeiyn6htDmg2VA" name="Encaisser"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_qLf2oLsmEeiyn6htDmg2VA" name="Payer"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_YAkzwLslEeiyn6htDmg2VA" name="Prendre commande"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_1HSrQLslEeiyn6htDmg2VA" name="Libérer une table"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_G_6IELslEeiyn6htDmg2VA" name="Installer"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_hbf2ELslEeiyn6htDmg2VA" name="Préparer la commande"/>
+  </packagedElement>
+</uml:Model>

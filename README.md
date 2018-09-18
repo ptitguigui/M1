@@ -21,7 +21,7 @@ Au sein de ce repo, veuillez trouver les documents suivants :
  - [le journal de bord](/journal) repertoriant notre activité
 
  ---
- ## Synthése
+## Synthèse
 
  Semaine 1:  
 

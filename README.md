@@ -25,15 +25,15 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 
  Semaine 1:  
 
-   - Nous n'avons pas eu accès aux ordinateurs lors de la première séance.  
-   - Gestion par petits groupes:  
-      +  Echange du travail réalisé  
-      +  Critiques et remarques
-      +  Mise en commun  
+- Nous n'avons pas eu accès aux ordinateurs lors de la première séance.  
+- Gestion par petits groupes:  
+    +  Echange du travail réalisé  
+    +  Critiques et remarques
+    +  Mise en commun  
 
 - Brainstorming des scénarios:
-    + Pistes d'amélioration
-    + Ajoutes de fonctionnalités
+  + Pistes d'amélioration
+  + Ajoutes de fonctionnalités
 
 Semaine 2:
 

@@ -1,5 +1,17 @@
 #include <stdio.h>
 
+/*
+Chaque fonction est associé à un registre tel que esp et ebp
+Les adresses reste identique pour une même fonction
+
+Main :
+x= 0xff94e4f8, y= 0xff94e4e0
+Function F :
+x= 0xff94e4d8 y= 0xff94e4c0
+Main :
+x= 0xff94e4f8 y= 0xff94e4e0
+
+*/
 int f() {
 
 

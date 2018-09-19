@@ -21,11 +21,6 @@ public class Algorithms {
 		
 	}
 	
-	/**
-	 * Retourne l'aire du plus grand rectangle possible selon une liste de points triées par les ordonnées selon l'exercice 1
-	 * @param list
-	 * @return
-	 */
 	static int grandRectangle(List<Point> list){
 		int airMax = 0;
 		int minOrdonne;
@@ -58,7 +53,7 @@ public class Algorithms {
 	 * @param point1 l'un des deux points
 	 * @param point2 l'un des deux points
 	 * @param list la liste de tous les points
-	 * @return la plus petite ordonnée
+	 * @return
 	 */
 	static int minOrdonne(Point point1, Point point2,List<Point> list){
 		boolean premier = true;
@@ -76,13 +71,6 @@ public class Algorithms {
 		return ordonne;
 	}
 	
-	/**
-	 * Permet de calculer l'aire du rectangle avec la position des abscisses et de l'ordonnée unique
-	 * @param x1 la premiere abscisse
-	 * @param x2 la deuxieme abscisse
-	 * @param ordonne
-	 * @return l'air du rectangle
-	 */
 	static int airRectangle(int x1, int x2, int ordonne){
 		return (x2-x1)*ordonne;
 	}

@@ -21,11 +21,6 @@ public class Algorithms {
 		
 	}
 	
-	/**
-	 * Retourne l'aire du plus grand rectangle possible selon une liste de points triées par les ordonnées selon l'exercice 1
-	 * @param list
-	 * @return
-	 */
 	static int grandRectangle(List<Point> list){
 		int airMax = 0;
 		int minOrdonne;

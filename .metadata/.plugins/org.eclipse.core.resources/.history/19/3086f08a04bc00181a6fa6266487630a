@@ -1,0 +1,21 @@
+import sun.applet.Main;
+
+public class Point {
+
+	public int x;
+	public int y;
+	
+	constructor(int x, int y){
+		this.x = x;
+		this.y = y; 
+	}
+	
+	int calculerLongueur(Point p1, Point p2){
+		return (p2.x - p1.x) + (p2.y - p1.y);
+	}
+	public static void main(String[] args) {
+		Point p1 = new Point
+	}
+	
+	
+}

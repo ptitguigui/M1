@@ -1,0 +1,10 @@
+
+public class Algorithms {
+	
+	int [][] points = {{0,0},{0,5},{2,2},{5,5},{9,0},{9,5}};
+	
+	public static void main(String[] args) {
+		
+	}
+	
+}

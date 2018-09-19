@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Points&apos; to &apos;Point&apos;&#x0A;- Original project: &apos;TP1&apos;&#x0A;- Original element: &apos;Points&apos;&#x0A;- Renamed element: &apos;Point&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Points&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{Points.java[Points" matchStrategy="1" name="Point" qualified="false" references="true" similarDeclarations="false" stamp="1537358718565" textual="false" version="1.0"/>
+</session>

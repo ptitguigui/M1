@@ -1,16 +1,19 @@
+CC = gcc
 
-CC      = gcc -m32
+CFLAGS 	= -Wall -Werror -pedantic
+CFLAGS += -D_XOPEN_SOURCE=500
+CFLAGS += -g
+CFLAGS += -m32
 
-all = display, try
+OBJ = try.o try_mul.o
 
-display: display_stack.o
-	$(CC) -o $@ $^
+all: try_mul
 
-try: try.o
-		$(CC) -o $@ $^
-
-%.o: %.c
-	$(CC) -c $<
-
+try_mul: $(OBJ) try.h
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
+	
+.PHONY: clean realclean
 clean:
-	rm *.o
+	$(RM) $(OBJ)
+realclean : clean
+	$(RM) try_mu

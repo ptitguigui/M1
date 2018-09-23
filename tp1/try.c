@@ -3,8 +3,9 @@
 /*struct ctx_s ctx;
 static int i = 1;
 */
+static int copie_v;
 
-int try(struct ctx_s *pctx, funct_t *f, int arg){
+int try(struct ctx_s *pctx, func_t *f, int arg){
   pctx-> ctx_magic = CTXMAGIC;
   asm ("movl %%esp, %0" "\n\t" "movl %%ebp, %1 "
              : "=r"(pctx->ctx_esp), "=r"(pctx->ctx_ebp));
@@ -12,7 +13,6 @@ int try(struct ctx_s *pctx, funct_t *f, int arg){
 }
 
 int throw(struct ctx_s *pctx, int n){
-  static int copie_v;
   assert(pctx->ctx_magic == CTXMAGIC);
   copie_v = n;
 

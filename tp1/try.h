@@ -1,16 +1,15 @@
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 
-typedef int (funct_t)(int);
+#define CTXMAGIC 0xCAFEBEBE
 
-#define static unsigned int CTXMAGIC = 0xCAFEBEBE;
+typedef int (func_t) (int);
 
 struct ctx_s{
   void *ctx_esp;
   void *ctx_ebp;
-  unsigned int ctx_magic;
+  int ctx_magic;
 };
 
 int try(struct ctx_s *p_ctx, func_t *f, int arg);

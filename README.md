@@ -26,7 +26,6 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 
 ### Semaine 1:  
 
-### Semaine 2:
 - Nous n'avons pas eu accès aux ordinateurs lors de la première séance.  
 - Gestion par petits groupes:  
     +  Echange du travail réalisé  

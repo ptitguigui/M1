@@ -45,4 +45,6 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 
 ### Semaine 3:
 
-    - (à définir) 
+- Modification du diagramme de CU
+- Ajout d'une description du diagramme
+- Ajout de l'UML

@@ -30,3 +30,31 @@ La facturation est constituée de deux étapes.
 La première consiste en l'établissement d'une addition, répertoriant l'ensemble des consommations, leurs prix respectifs, ainsi que la somme de ces prix.  
 Ensuite, l'encaissement consiste a collecter la somme requise par l'addition, que ce soit par carte bancaire, espèce ou encore ticket restaurant, etc ...
 </p>
+
+
+## Reflexion de notre CU :
+
+<p>
+Avant de réaliser notre CU, nous avons réaliser un premier tableau grâce à nos [scénarios](../Scripts/)
+</p>
+
+|SUJET |TYPE |CONCEPT |
+|--------|------|-------------|  
+|Serveur |Acteur |Serveur |
+|Installer |Action |CU |
+|Famille |Acteur |Utlisateur / Client |
+|Table |Concept -> Classe | / |
+|Libre |Donnée de la Table | / |
+|Prendre commande |Action |CU |
+|Commande |Concept -> Classe | / |
+|Boissons |Concept & donnée de la Commande | / |
+|Barman |Acteur |Barman |
+|Notification |Objet | / |
+|Préparer commande |Action |CU |
+|Cuisinier |Acteur |Cuisinier |
+|Servir les plats |Action |CU |
+|Glacier |Acteur |Glacier |
+|Donner l'addition |Action |CU |
+|Encaisser |Action |CU |
+|Libérer une table |Action |CU |
+|Addition |Objet | / |

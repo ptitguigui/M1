@@ -13,3 +13,6 @@
 |1|Cas d'utilisation | 18/09/18| 0:45 | 0:30 | Guillaume et Emeline | 18/09/18|
 |1|Diagramme de classes sur papier | 18/09/18| 0:45 | 0:50 | Thomas et Florian | 18/09/18|
 |1|Réalisation synthèse | 18/09/18| 0:05 | 0:05 | Fabien | 18/09/18|
+|1|Diagramme des classes sur papyrus | 18/09/18| 1:00 | 2:00 | Thomas | 18/09/18|
+|1|Diagramme d'utilisation sur papyrus | 25/09/18| 0:30 | 0:45 | Guillaume, Fabien et Florian  | 25/09/18|
+|1|Amelioration du diagramme de classe | 25/09/18| 0:45 | 1:00 | Thomas et Emeline  | 25/09/18|

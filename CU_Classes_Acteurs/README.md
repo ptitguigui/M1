@@ -5,23 +5,28 @@ Diagrammes des cas d'utilisation
 
 ![](./Diagrammes/CU_V1.png)
 
-## Description :
+Description :
+=============
 
-<p>Dans ce diagramme de cas d'utilisation, nous pouvons voir le cheminement complet de l'installation des clients jusqu'a la libération de la table</p>
+<p>Dans ce diagramme de cas d'utilisation, nous pouvons voir le déroulement complet d'une commande, depuis l'installation des clients jusqu'à la libération de la table</p>
 
 ### Commander :
 <p>
-Une commande peut être prise soit par le serveur, soit par le client. Lorsque le serveur prends la commande, il l'a saisit, puis il l'envoie. Lorsque le client prends la commande, c'est le même principe sauf qu'il peux voir le menu sur l'application avant de la saisir.
+Le client est capable de consulter le menu sur une tablette à sa disposition.  
+Ensuite, soit il commande seul, à l'aide de cette même tablette, soit le serveur la prends pour lui (i.e. : saisir la commande puis la valider.).  
 </p>
 
 ### Suivi commande :
 <p>
-Le suivie des commandes représente le cheminement de celle-ci par les préparateurs. Tout d'abord, le préparateur reçoit la commande, puis, il l'a passe en préparation, puis une fois prête, il l'envoie.  
-Un préparateur peut être un barman, un cuisinier ou un glacier.
-Il y a des dépendances à travers le suivie des commandes. En effet, une fois les plats commander, une notification est envoyer aux préparateur, représentant la réception des commandes. Une fois la commande envoyer, un autre dépendance se trouve lorsque le serveur sert les plats.
+Une fois la commande envoyée, celle est réceptionnée par un préparateur qui peut être un barman, un cuisinier ou un glacier.
+Celui-ci en commence la préparation, puis lorsque celle-ci est
+terminée, en informe le serveur qui peut alors la récupérer.
+La réception d'une commande mène a une notification envoyée au préparateur concerné. De même que le fait de terminer la préparation envoie une notification au serveur afin que celui ci vienne la récupérer.
 </p>
 
 ### Facturation :
 <p>
-Lors de la facturation, il y a deux actions. Tout d'abord, l'addition qui est donnée aux clients en fonction de leurs choix. Ensuite, l'encaissement qui peut être définis sois par carte bancaire, espece, ticket restaurant... etc
+La facturation est constituée de deux étapes.
+La première consiste en l'établissement d'une addition, répertoriant l'ensemble des consommations, leurs prix respectifs, ainsi que la somme de ces prix.  
+Ensuite, l'encaissement consiste a collecter la somme requise par l'addition, que ce soit par carte bancaire, espèce ou encore ticket restaurant, etc ...
 </p>

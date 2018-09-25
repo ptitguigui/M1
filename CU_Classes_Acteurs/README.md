@@ -3,7 +3,7 @@ Diagrammes des cas d'utilisation
 ---
 ## Cas d'utilisation :
 
-![](/Diagrammes/CU_V1.png)
+![](./Diagrammes/CU_V1.png)
 
 ## Description :
 
@@ -18,7 +18,7 @@ Une commande peut être prise soit par le serveur, soit par le client. Lorsque l
 <p>
 Le suivie des commandes représente le cheminement de celle-ci par les préparateurs. Tout d'abord, le préparateur reçoit la commande, puis, il l'a passe en préparation, puis une fois prête, il l'envoie.  
 Un préparateur peut être un barman, un cuisinier ou un glacier.
-Il y a des dépendances à travers le suivie des commandes. En effet, une fois les plats commander, une notification est envoyer aux préparateur, représentant la réception des commandes. Une fois la commande envoyer, un autre dépendance se trouve lorsque le serveur sert les plats. 
+Il y a des dépendances à travers le suivie des commandes. En effet, une fois les plats commander, une notification est envoyer aux préparateur, représentant la réception des commandes. Une fois la commande envoyer, un autre dépendance se trouve lorsque le serveur sert les plats.
 </p>
 
 ### Facturation :

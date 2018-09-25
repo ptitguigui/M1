@@ -1,7 +1,7 @@
 API REST'O
 ==========
 ---
-## Membres de l'equipe :
+## Membres de l'équipe :
 - Delbecque Fabien
 - Dieu Emeline
 - Lepretre Guillaume
@@ -18,13 +18,15 @@ La principale problématique est de faire collaborer efficacement différentes �
 Au sein de ce repo, veuillez trouver les documents suivants :        
  - [le dossier Scripts](/Scripts) contenant l'ensemble des scenarios que nous avons ecrit.  
  - [le dossier Glossaires](/Glossaires) contenant deux glossaires : [le glossaire technique](/Glossaires/technique) et [le glossaire pro](/Glossaires/pro)
- - [le journal de bord](/journal) repertoriant notre activité
+ - [le journal de bord](/Journal) repertoriant notre activité
+ - [les cas d'utilisation](/CU_Classes_Acteurs) permettant de lister l'ensemble des cas sur notre système
 
  ---
 ## Synthèse
 
- Semaine 1:  
+### Semaine 1:  
 
+### Semaine 2:
 - Nous n'avons pas eu accès aux ordinateurs lors de la première séance.  
 - Gestion par petits groupes:  
     +  Echange du travail réalisé  
@@ -35,9 +37,13 @@ Au sein de ce repo, veuillez trouver les documents suivants :
   + Pistes d'amélioration
   + Ajoutes de fonctionnalités
 
-Semaine 2:
+### Semaine 2:
 
 - Brainstorming pour le tableau CU classes/acteurs.  
 - Mis à jour des scénarios.  
 - Création CU.  
-- Réflexion UML.  
+- Réflexion UML.
+
+### Semaine 3:
+
+    - (à définir) 

@@ -16,8 +16,12 @@ public class Algorithms {
 		list.add(new Point(25, 0));
 		list.add(new Point(25, 20));
 
-		System.out.println("Avec n3 : \n" + grandRectangle_n3(list));
-		System.out.println("Avec n2 : \n" + grandRectangle_n2(list));
+		System.out.println("Exercice 1 : ");
+		System.out.println("Avec n3 : " + grandRectangle_n3(list));
+		System.out.println("Avec n2 : " + grandRectangle_n2(list));
+		
+
+		System.out.println("\nExercice 2 : ");
 
 	}
 
@@ -41,7 +45,7 @@ public class Algorithms {
 			for (Point point2 : list) {
 				if (!point1.equals(point2)) {
 					minOrdonne = minOrdonne(point1, point2, list);
-					air = airRectangle(point1.x, point2.x, minOrdonne);
+					air = calculerAirRectangle(point1.x, point2.x, minOrdonne);
 					if (airMax < air) {
 						airMax = air;
 						p1 = point1;
@@ -50,34 +54,40 @@ public class Algorithms {
 				}
 			}
 		}
-		System.out.println("Point 1 : " + p1.x + "," + p1.y);
-		System.out.println("Point 2 : " + p2.x + "," + p2.y);
-
 		return airMax;
 	}
 
+	/**
+	 * Retourne l'aire du plus grand rectangle possible selon une liste de
+	 * points triées par les ordonnées selon l'exercice 1 avec une complexite de
+	 * O(n2)
+	 * 
+	 * @param list
+	 * @return
+	 */
 	static int grandRectangle_n2(List<Point> list) {
 		int airMax = 0;
-		int minOrdonne;
-		boolean premier;
+		int minOrdonne = 0;
 		int air;
 
 		for (Point point1 : list) {
+			minOrdonne = 20;
 			for (Point point2 : list) {
-				if(list.indexOf(point1) < list.indexOf(point2)){
-					
-				}
-				if (point2.y < minOrdonne) {
-					minOrdonne = point2.y;
-					air = airRectangle(point1.x, point2.x, minOrdonne);
-					if (airMax < air) {
-						airMax = air;
+				if (list.indexOf(point1) < list.indexOf(point2)) {
+					if (point2.y < minOrdonne) {
+						air = calculerAirRectangle(point1.x, point2.x, minOrdonne);
+						minOrdonne = point2.y;
+
+						if (airMax < air) {
+							airMax = air;
+						}
 					}
 				}
 			}
 		}
 
 		return airMax;
+
 	}
 
 	/**
@@ -119,7 +129,7 @@ public class Algorithms {
 	 * @param ordonne
 	 * @return l'air du rectangle
 	 */
-	static int airRectangle(int x1, int x2, int ordonne) {
+	static int calculerAirRectangle(int x1, int x2, int ordonne) {
 		return (x2 - x1) * ordonne;
 	}
 

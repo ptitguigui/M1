@@ -11,7 +11,7 @@ all: try_mul
 
 try_mul: $(OBJ) try.h
 	$(CC) $(CFLAGS) -o $@ $(OBJ)
-	
+
 .PHONY: clean realclean
 clean:
 	$(RM) $(OBJ)

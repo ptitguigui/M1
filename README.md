@@ -20,6 +20,7 @@ Au sein de ce repo, veuillez trouver les documents suivants :
  - [le dossier Glossaires](/Glossaires) contenant deux glossaires : [le glossaire technique](/Glossaires/technique) et [le glossaire pro](/Glossaires/pro)
  - [le journal de bord](/Journal) repertoriant notre activité
  - [les cas d'utilisation](/CU_Classes_Acteurs) permettant de lister l'ensemble des cas sur notre système
+ - [l'UML](/uml) de notre application
 
  ---
 ## Synthèse

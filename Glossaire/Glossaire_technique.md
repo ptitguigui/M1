@@ -16,3 +16,7 @@ Ce glossaire définis les termes par des personnes qui ont des connaissances en 
 |  Préparateur | Personne qui réalise des préparations pour les clients |
 |  Table libre | C'est lorsqu'une table à le status vide |
 |  Serveur | Personne qui s'occupe de servir les clients et transmet les informations aux préparateurs |
+| Préparateur | Membre du Personnel réalisant l'ensemble des commandes |
+| Membre du Personnel | Objet permettant d'étendre les Préparateurs et les Serveurs |
+| Commande | Objet composé de Produit, ayant un Etat d'avancement, assigné à une Table, réalisé par un Preparateur et servis aux Clients par le Serveur |
+| Produit | Objet permettant d'étendre les différents plats et boissons|

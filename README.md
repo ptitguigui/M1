@@ -17,7 +17,7 @@ La principale problématique est de faire collaborer efficacement différentes �
 
 Au sein de ce repo, veuillez trouver les documents suivants :        
  - [le dossier Scripts](/Scripts) contenant l'ensemble des scenarios que nous avons ecrit.  
- - [le dossier Glossaires](/Glossaires) contenant deux glossaires : [le glossaire technique](/Glossaires/technique) et [le glossaire pro](/Glossaires/pro)
+ - [le dossier Glossaires](/Glossaires) contenant deux glossaires : le glossaire technique et le glossaire pro
  - [le journal de bord](/Journal) repertoriant notre activité
  - [les cas d'utilisation](/CU_Classes_Acteurs) permettant de lister l'ensemble des cas sur notre système
  - [l'UML](/uml) de notre application

@@ -29,18 +29,8 @@ public class Point {
         list.add(new Point(longueur, 0));
         list.add(new Point(longueur, hauteur));
         reader.close();
-		/*list.add(new Point(0, 20));
-		list.add(new Point(2, 5));
-		list.add(new Point(5, 17));
-		list.add(new Point(11, 4));
-		list.add(new Point(16, 6));
-		list.add(new Point(20, 1));
-		list.add(new Point(25, 0));
-		list.add(new Point(25, 20));*/
 
-        /*	System.out.println( grandRectangle_n3(list));*/
-        System.out.println(grandRectangle_n2(list, hauteur));
-
+        System.out.println(grandRectangle_n(list, hauteur));
     }
 
     /**
@@ -136,6 +126,45 @@ public class Point {
             }
         }
         return ordonne;
+    }
+
+    static int grandRectangle_n(List<Point> list, int hauteur) {
+        int min = hauteur;
+        int maxOrdonnee = 0;
+        int maxAire = 0;
+        int x1 = list.get(0).x;
+        int nbPoints = 1;
+        int yOld = hauteur;
+
+        for (int i = 0; i < list.size(); i++) {
+            int y = list.get(i).y;
+
+            if (y > maxOrdonnee) {
+                maxOrdonnee = y;
+            }
+
+            if ((y < min && y > 0)) {
+                int x2 = list.get(i).x;
+                maxAire = Math.max(maxAire, calculerAirRectangle(x1, x2, maxOrdonnee));
+
+                min = y;
+                maxOrdonnee = y;
+                x1 = x2;
+                nbPoints = 1;
+            } else if (nbPoints >= 2 && y > min) {
+                int x2 = list.get(i).x;
+                maxAire = Math.max(maxAire, calculerAirRectangle(x1, x2, yOld));
+
+                min = y;
+                maxOrdonnee = y;
+                x1 = x2;
+                nbPoints = 1;
+            } else {
+                nbPoints++;
+            }
+            yOld = maxOrdonnee;
+        }
+        return maxAire;
     }
 
     /**

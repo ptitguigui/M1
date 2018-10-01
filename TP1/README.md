@@ -31,5 +31,5 @@ La plus grande aire est stocké et retournée par la méthode.
 ### Réalisation avec le paradigme "diviser pour régner"
 
 Pour pouvoir réaliser ce problème avec le paradigme "diviser pour régner", il faut deviner a quel moment nous pouvons diviser la liste.
-Lorsque nous stockons les différents points dans une liste, nous devons nous arrêter lorsque nous trouvons une ordonnée plus petite que celle du premier point ajouté.  
+En parcourant la liste, nous stockons l'ensemble des points
 

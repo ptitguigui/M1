@@ -20,3 +20,4 @@
 |2| Review de l'ensemble du projet | 02/10/18 | 1:00 | 1:00 | Toute l'equipe | 02/10/18 |
 |2| Correction du glossaire | 02/10/18 | 0:30 | 0:15 | Thomas et Emeline | 02/10/18 |
 |2| Mis a jour des scripts  | 02/10/18 | 0:15 | 0:15 | Guillaume | 02/10/18 |
+|1| Début de la création du pdf à rendre  | 02/10/18 | 1:00 | 0:45 | Thomas et Emeline | 02/10/18 |

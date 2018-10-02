@@ -1,7 +1,13 @@
 Rupture de stock
 ================
 
-## Résumé : Une famille vient au restaurant et commande le dernier plat réalisable.
+Résumé :
+-------
+
+Une famille vient au restaurant et commande le dernier plat réalisable.
+
+Script :
+------
 
 Le serveur installe la famille sur une table libre.  
 Le serveur laisse du temps à la famille pour choisir leur commande.  
@@ -12,7 +18,7 @@ Le barman termine la commande.
 Le serveur est notifié que la commande est prête.   
 Le serveur prends commande des plats.  
 `Le stock des ingrédients est mis à jour.`  
-`Les plats ne pouvant plus etre préparés sont retirés de la carte.`  
+`Les plats ne pouvant plus etre préparés sont retirés de la carte.`    
 Le cuisinier est notifié de la commande.  
 Le cuisinier prépare la commande.  
 Le cuisinier termine la commande.  

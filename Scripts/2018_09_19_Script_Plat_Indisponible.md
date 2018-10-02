@@ -16,8 +16,8 @@ Le barman termine la commande.
 Le serveur est notifié que la commande est prête.  
 Le serveur vient chercher la commande du barman et l'amène à la famille.  
 Le serveur prend commande des plats.  
-`Le serveur voit que l'un des plats n'est plus disponible.  
-Le serveur en informe directement la famille qui change de plat.`   
+`Le serveur voit que l'un des plats n'est plus disponible.`    
+`Le serveur en informe directement la famille qui change de plat.`   
 Le cuisinier est notifié de la commande.   
 `Le patron est notifié qu'un plat indisponible a été demandé.`   
 Le cuisinier prépare la commande.  

@@ -49,3 +49,11 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Modification du diagramme de CU
 - Ajout d'une description du diagramme
 - Ajout de l'UML
+ 
+
+### Semaine 4:
+
+- Mis à jour des scripts
+- Mis à jour du glossaire
+- Mis à jour de l'UML
+- Génération d'un fichier PDF

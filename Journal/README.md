@@ -17,3 +17,4 @@
 |1|Diagramme d'utilisation sur papyrus | 25/09/18| 0:30 | 0:45 | Guillaume, Fabien et Florian  | 25/09/18|
 |1|Amelioration du diagramme de classe | 25/09/18| 1:00 | 1:00 | Thomas et Emeline  | 25/09/18|
 |2| Amelioration du glossaire | 12/09/18 | 0:15 | 0:15 | Guillaume | 30/09/18 |
+|2| Review de l'ensemble du projet | 02/10/18 | 1:00 | 1:00 | Toute l'equipe | 02/10/18 |

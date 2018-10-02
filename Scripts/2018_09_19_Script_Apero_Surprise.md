@@ -20,16 +20,16 @@ Le serveur vient chercher la commande du barman et l'amène à la famille.
 Le serveur prend commande des plats.  
 Le cuisinier est notifié de la commande.  
 Le cuisinier prépare la commande.  
-Les clients decident de reprendre un apero.  
-Le cuisinier est notifié qu'il ne doit pas terminer de preparer les plats.  
-Le barman est notifié d'une commande.  
-Le barman prépare la commande.  
-Le barman termine la commande.  
-Le serveur est notifié que la commande est prête.  
-Le serveur vient chercher la commande du barman et l'amène à la famille.  
-Les clients boivent l'apero.  
-Le serveur récupere les verres et s'assurent qu'il n' a pas de nouvelles commande.  
-Le serveur notifie le cuisinier qu'il peut terminer les plats.  
+`Les clients decident de reprendre un apero.`  
+`Le cuisinier est notifié qu'il ne doit pas terminer de preparer les plats.`  
+`Le barman est notifié d'une commande.`  
+`Le barman prépare la commande.`  
+`Le barman termine la commande.`  
+`Le serveur est notifié que la commande est prête.`  
+`Le serveur vient chercher la commande du barman et l'amène à la famille.`  
+`Les clients boivent l'apero.`  
+`Le serveur récupere les verres et s'assurent qu'il n' a pas de nouvelles commande.`  
+`Le serveur notifie le cuisinier qu'il peut terminer les plats.`  
 Le cuisinier termine les plats.  
 Le serveur est notifié que la commande est prête.  
 Le serveur sert les plats.  

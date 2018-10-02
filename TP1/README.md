@@ -31,5 +31,26 @@ La plus grande aire est stocké et retournée par la méthode.
 ### Réalisation avec le paradigme "diviser pour régner"
 
 Pour pouvoir réaliser ce problème avec le paradigme "diviser pour régner", il faut deviner a quel moment nous pouvons diviser la liste.
-En parcourant la liste, nous stockons l'ensemble des points
+Le bon moment est de diviser sur la plus petite ordonnée des points afin de ne pas trouver un plus grand rectangle entre les deux listes.  
+Puis sur ces deux listes, nous pouvons trouver l'aire maximum par le biais de notre algorithme précédent.  
+Grâce à ce procédé, le temps d'execution est diviser par 2.
+
+### Réalisation de façon linéaire 
+
+Le but est de trouver le plus grand rectangle en parcourant une seule fois la liste. Pour ce faire, il faut les moments ou l'on peux construire notre rectangle sans qu'un autre point soit à l'intérieur.  
+Nous avons une expérimentation qui fonctionne avec les données du TP que vous pouvez voir sur la méthode `grandRectangle_n`.
+
+Cette méthode fonctionne de la façon suivante : 
+
+- Parcourt la liste et stocke le premier point p1
+- Si un point p2 possède une ordonnée plus petit que le premier
+    + Une ordonnée maximum maxOrdonnée dans l'intervalle p1 et p2 est stocké
+    + Alors calculer l'air du rectangle `(p2.x-p1.x) * maxOrdonnée` 
+    + stocker p2 dans p1
+- Si un point p2 possède une ordonnée plus grande et qu'on à déja passé un points
+    + Récupérer le point p3 juste avant p2
+    + Une ordonnée maximum maxOrdonnée dans l'intervalle p1 et p3 est stocké
+    + Alors calculer l'air du rectangle `(p3.x-p1.x) * maxOrdonnée` 
+    + stocker p3 dans p1
+- Sinon ne rien faire et stocker la maximum ordonnée
 

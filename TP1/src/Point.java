@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Point {
 
-    public int x;
-    public int y;
+    int x;
+    int y;
 
     Point(int x, int y) {
         this.x = x;
@@ -17,11 +17,10 @@ public class Point {
         int longueur = reader.nextInt();
         int hauteur = reader.nextInt();
         int nb_point = reader.nextInt();
-        int i;
         List<Point> list = new ArrayList<>();
         list.add(new Point(0, 0));
         list.add(new Point(0, hauteur));
-        for (i = 0; i < nb_point; i++) {
+        for (int i = 0; i < nb_point; i++) {
             int x = reader.nextInt();
             int y = reader.nextInt();
             list.add(new Point(x, y));
@@ -30,12 +29,14 @@ public class Point {
         list.add(new Point(longueur, hauteur));
         reader.close();
 
+        //System.out.println(grandRectangle_n3(list));
+        //System.out.println(grandRectangle_n2(list, hauteur));
         System.out.println(grandRectangle_n(list, hauteur));
     }
 
     /**
      * Retourne l'aire du plus grand rectangle possible selon une liste de
-     * points triées par les ordonnées selon l'exercice 1 avec une complexite de
+     * points triées par les ordonnées selon l'exercice du TP avec une complexite de
      * O(n3)
      *
      * @param list
@@ -46,8 +47,6 @@ public class Point {
         int minOrdonne;
         int air;
 
-        Point p1, p2;
-
         for (Point point1 : list) {
             for (Point point2 : list) {
                 if (!point1.equals(point2)) {
@@ -55,8 +54,6 @@ public class Point {
                     air = calculerAirRectangle(point1.x, point2.x, minOrdonne);
                     if (airMax < air) {
                         airMax = air;
-                        p1 = point1;
-                        p2 = point2;
                     }
                 }
             }
@@ -66,11 +63,12 @@ public class Point {
 
     /**
      * Retourne l'aire du plus grand rectangle possible selon une liste de
-     * points triées par les ordonnées selon l'exercice 1 avec une complexite de
+     * points triées par les ordonnées selon l'exercice du TP avec une complexite de
      * O(n2)
      *
-     * @param list
-     * @return
+     * @param list    la liste de points
+     * @param hauteur la hauteur maximum des ordonnées
+     * @return l'aire du plus grand rectangle
      */
     static int grandRectangle_n2(List<Point> list, int hauteur) {
         int airMax = 0;
@@ -128,6 +126,15 @@ public class Point {
         return ordonne;
     }
 
+    /**
+     * Retourne l'aire du plus grand rectangle possible selon une liste de
+     * points triées par les ordonnées selon l'exercice du TP avec une complexite de
+     * O(n)
+     *
+     * @param list    la liste de points
+     * @param hauteur la hauteur maximum des ordonnées
+     * @return l'aire du plus grand rectangle
+     */
     static int grandRectangle_n(List<Point> list, int hauteur) {
         int min = hauteur;
         int maxOrdonnee = 0;

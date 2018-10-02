@@ -5,15 +5,15 @@ Résumé :
 ------
 Une famille vient manger dans le restaurant mais il n'y a plus de place disponible.
 
-Script : 
+Script :
 ------
 
-`Une famille arrive dans le restaurant.`    
-`Le serveur voit qu'il n'y a plus de place disponible.`    
-`Le serveur en informe la famille.`    
-`Le serveur vérifié l'avancement des repas des clients.`    
-`Le serveur informe qu'une famille a bientôt fini de manger.`    
-`La famille patiente sur le côté.`    
+`Une famille arrive dans le restaurant.`      
+`Le serveur voit qu'il n'y a plus de place disponible.`      
+`Le serveur en informe la famille.`      
+`Le serveur vérifié l'avancement des repas des clients.`      
+`Le serveur informe qu'une famille a bientôt fini de manger.`      
+`La famille patiente sur le côté.`      
 Le serveur installe la famille sur une table libre.  
 Le serveur laisse du temps à la famille pour faire leurs choix.  
 Le serveur prend commande des boissons.  

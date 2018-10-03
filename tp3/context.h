@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include "hwconfig.h"
+#include "hardware.h"
 
 #define CTXMAGIC 0xCAFEBEBE
 
@@ -23,3 +25,6 @@ void switch_to_ctx (struct ctx_s *ctx);
 void start_current_ctx();
 int create_ctx(int stack_size, func_t f, void *args);
 void yield();
+void start_schedule();
+void irq_disable();
+void irq_enable();

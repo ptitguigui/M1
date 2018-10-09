@@ -24,3 +24,7 @@
 |1| Mise à jour du diagramme uml | 02/10/18 | 1:00 | 1:30 | Florian et Fabien | 03/10/18 |
 |2| Ajout Scripts version 2 Préparation Commande| 09/10/18 | 0:15 | 0:20 | Emeline et Thomas | 09/10/18 |
 |2| Ajout Scripts version 2 Encaissement Client| 09/10/18 | 0:20 | 0:20 | Emeline et Thomas | 09/10/18 |
+|2| Ajout Scripts version 2 Servir Client| 09/10/18 | 0:20 | 0:20 | Guillaume | 09/10/18 |
+|2| Ajout Scripts version 2 Installation Client| 09/10/18 | 0:20 | 0:20 | Florian et Fabien| 09/10/18 |
+|2| Ajout Scripts version 2 Prise de commande par le Client| 09/10/18 | 0:20 | 0:20 | Guillaume | 09/10/18 |
+|2| Ajout Scripts version 2 Prise de commande par le Serveur| 09/10/18 | 0:20 | 0:20 | Guillaume | 09/10/18 |

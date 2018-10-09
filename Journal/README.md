@@ -22,3 +22,4 @@
 |2| Mis a jour des scripts  | 02/10/18 | 0:15 | 0:15 | Guillaume | 02/10/18 |
 |1| Début de la création du pdf à rendre  | 02/10/18 | 1:00 | 0:45 | Thomas et Emeline | 02/10/18 |
 |1| Mise à jour du diagramme uml | 02/10/18 | 1:00 | 1:30 | Florian et Fabien | 03/10/18 |
+|2| Ajout Scripts version 2 | 09/10/18 | 0:15 | 0:20 | Emeline et Thomas | 09/10/18 |

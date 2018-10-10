@@ -42,7 +42,7 @@ int create_ctx (int stack_size, func_t f, void *args){
 void switch_to_ctx (struct ctx_s *ctx){
 
   assert(ctx->ctx_magic == CTXMAGIC);
-  
+  int cpt = 0;
   irq_disable();
   while( ctx -> ctx_state == CTX_END || ctx -> ctx_state == CTX_BLCK){
     if (ctx -> ctx_state == CTX_END){
@@ -56,7 +56,14 @@ void switch_to_ctx (struct ctx_s *ctx){
     }
     if (ctx -> ctx_state == CTX_BLCK){
       ctx = ctx -> ctx_next;
+      cpt ++;
     }
+    if (cpt > 1000000){
+      printf("Tous les contextes sont bloques\n");
+      switch_to_ctx(&main_ctx);
+    }
+
+    
   }
  
   if (current_ctx){
@@ -74,6 +81,7 @@ void switch_to_ctx (struct ctx_s *ctx){
   asm ("movl %0, %%esp" "\n\t" "movl %1, %%ebp"
              :
              : "r"(current_ctx->ctx_esp), "r"(current_ctx->ctx_ebp));
+  
   irq_enable();           
 
   if (current_ctx->ctx_state == CTX_INIT){

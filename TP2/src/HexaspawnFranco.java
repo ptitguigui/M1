@@ -45,9 +45,9 @@ public class HexaspawnFranco {
         String res = "";
         for (int j = 0; j < pionBlanc[0].length; j++) {
             for (int i = 0; i < pionBlanc.length; i++) {
-                if (pionBlanc[i][j] == true) {
+                if (pionBlanc[i][j]) {
                     res += "P";
-                } else if (pionNoir[i][j] == true) {
+                } else if (pionNoir[i][j]) {
                     res += "p";
                 } else {
                     res += "_";
@@ -60,10 +60,6 @@ public class HexaspawnFranco {
 
     private static int getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour) {
         fini = play(pionBlanc, pionNoir, tour);
-
-        //int meilleurConfig = 0;
-        //meilleurConfig = Math.min(meilleurConfig, fonctionRecusive);
-
         return config;
     }
 
@@ -73,14 +69,13 @@ public class HexaspawnFranco {
             for (int i = 0; i < pionBlanc.length; i++) {
                 for (int j = 0; j < pionBlanc[0].length; j++) {
                     if (tourBlanc) {
-                        if (pionBlanc[i][j] == true) {
+                        if (pionBlanc[i][j]) {
                             choixPionBlanc(i, j, pionBlanc, pionNoir);
                         }
                     } else {
-                        if (pionNoir[i][j] == true) {
+                        if (pionNoir[i][j]) {
                             choixPionNoir(i, j, pionBlanc, pionNoir);
                         }
-
                     }
                 }
             }
@@ -99,11 +94,9 @@ public class HexaspawnFranco {
                 play(pionBlanc, pionNoir, false);
                 pionBlanc[i][j] = true;
                 pionBlanc[i][j - 1] = false;
-
-
             }
             //Peux manger en diagonale droite
-            else if (i < pionNoir.length && pionNoir[i + 1][j - 1]) {
+            else if (i < pionNoir.length-1 && pionNoir[i + 1][j - 1]) {
                 pionNoir[i + 1][j - 1] = false;
                 pionBlanc[i + 1][j - 1] = true;
                 pionBlanc[i][j] = false;
@@ -112,7 +105,6 @@ public class HexaspawnFranco {
                 pionNoir[i + 1][j - 1] = true;
                 pionBlanc[i + 1][j - 1] = false;
                 pionBlanc[i][j] = true;
-
             }
             //Peux manger en diagonale gauche
             else if (i != 0 && pionNoir[i - 1][j - 1]) {
@@ -124,13 +116,11 @@ public class HexaspawnFranco {
                 pionNoir[i - 1][j - 1] = true;
                 pionBlanc[i - 1][j - 1] = false;
                 pionBlanc[i][j] = true;
-
             } else {
                 //On fait rien
                 //System.out.println("fait rien");
                 cpt_blanc++;
                 play(pionBlanc, pionNoir, false);
-
             }
         } else {
             config = cpt_noir + 1;
@@ -151,10 +141,9 @@ public class HexaspawnFranco {
                 play(pionBlanc, pionNoir, true);
                 pionNoir[i][j] = true;
                 pionNoir[i][j + 1] = false;
-
             }
             //Peux manger en diagonale gauche
-            else if (i < pionBlanc.length && pionBlanc[i + 1][j + 1]) {
+            else if (i < pionBlanc.length-1 && pionBlanc[i + 1][j + 1]) {
                 pionBlanc[i + 1][j + 1] = false;
                 pionNoir[i + 1][j + 1] = true;
                 pionNoir[i][j] = false;
@@ -179,7 +168,6 @@ public class HexaspawnFranco {
                 //System.out.println("fait rien");
                 cpt_noir++;
                 play(pionBlanc, pionNoir, true);
-
             }
             //System.out.println(displayTab(pionBlanc, pionNoir));
         } else {
@@ -188,6 +176,4 @@ public class HexaspawnFranco {
             victoireBlanc = false;
         }
     }
-
-
 }

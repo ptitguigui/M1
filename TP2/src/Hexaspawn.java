@@ -1,18 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Hexaspawn {
-    public static boolean fini;
     public static boolean victoireBlanc;
+    public static List<Integer> config = new ArrayList<>();
 
     public static void main(String[] args) {
-        fini = false;
         Scanner sc = new Scanner(System.in);
         int y = sc.nextInt();
         int x = sc.nextInt();
         boolean[][] pionBlanc = new boolean[x][y];
         boolean[][] pionNoir = new boolean[x][y];
         initPlateau(sc, y, x, pionBlanc, pionNoir);
-        System.out.println(getConfigNaive(pionBlanc, pionNoir, true, 0));
+        getConfigNaive(pionBlanc, pionNoir, true, false);
         //System.out.println(displayTab(pionBlanc, pionNoir));
         sc.close();
     }
@@ -53,25 +54,25 @@ public class Hexaspawn {
         return res;
     }
 
-    private static int getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, int cpt) {
-        play(pionBlanc, pionNoir, tour, cpt);
-
-        System.out.println("Victoire blanc ? "+victoireBlanc+" Nombre de coup(s)"+ cpt);
-        return victoireBlanc ? ++cpt : ++cpt * -1;
+    private static void getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, boolean finis) {
+        play(pionBlanc, pionNoir, tour, -1, finis);
+        for (int conf : config) {
+            System.out.println(conf);
+        }
     }
 
-    private static void play(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, int cpt) {
+    private static void play(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, int cpt, boolean finis) {
         boolean tourBlanc = tour;
-        if (!fini) {
+        if (!finis) {
             for (int i = 0; i < pionBlanc.length; i++) {
                 for (int j = 0; j < pionBlanc[0].length; j++) {
                     if (tourBlanc) {
                         if (pionBlanc[i][j]) {
-                            choixPionBlanc(i, j, pionBlanc, pionNoir, ++cpt);
+                            choixPionBlanc(i, j, pionBlanc, pionNoir, cpt);
                         }
                     } else {
                         if (pionNoir[i][j]) {
-                            choixPionNoir(i, j, pionBlanc, pionNoir, ++cpt);
+                            choixPionNoir(i, j, pionBlanc, pionNoir, cpt);
                         }
                     }
                 }
@@ -86,7 +87,7 @@ public class Hexaspawn {
             if (!pionNoir[i][j - 1] && !pionBlanc[i][j - 1]) {
                 pionBlanc[i][j] = false;
                 pionBlanc[i][j - 1] = true;
-                play(pionBlanc, pionNoir, false, ++cpt);
+                play(pionBlanc, pionNoir, false, ++cpt, false);
                 pionBlanc[i][j] = true;
                 pionBlanc[i][j - 1] = false;
             }
@@ -95,7 +96,7 @@ public class Hexaspawn {
                 pionNoir[i + 1][j - 1] = false;
                 pionBlanc[i + 1][j - 1] = true;
                 pionBlanc[i][j] = false;
-                play(pionBlanc, pionNoir, false, ++cpt);
+                play(pionBlanc, pionNoir, false, ++cpt, false);
                 pionNoir[i + 1][j - 1] = true;
                 pionBlanc[i + 1][j - 1] = false;
                 pionBlanc[i][j] = true;
@@ -105,19 +106,19 @@ public class Hexaspawn {
                 pionNoir[i - 1][j - 1] = false;
                 pionBlanc[i - 1][j - 1] = true;
                 pionBlanc[i][j] = false;
-                play(pionBlanc, pionNoir, false, ++cpt);
+                play(pionBlanc, pionNoir, false, ++cpt, false);
                 pionNoir[i - 1][j - 1] = true;
                 pionBlanc[i - 1][j - 1] = false;
                 pionBlanc[i][j] = true;
 
             } else {
                 //On fait rien
-                play(pionBlanc, pionNoir, false, ++cpt);
+                //play(pionBlanc, pionNoir, false, ++cpt, false);
             }
         } else {
-            fini = true;
             victoireBlanc = true;
-            play(pionBlanc, pionNoir, true, ++cpt);
+            config.add(cpt);
+            play(pionBlanc, pionNoir, true, cpt, true);
         }
         //System.out.println(displayTab(pionBlanc, pionNoir));
     }
@@ -129,7 +130,7 @@ public class Hexaspawn {
             if (!pionBlanc[i][j + 1] && !pionNoir[i][j + 1]) {
                 pionNoir[i][j] = false;
                 pionNoir[i][j + 1] = true;
-                play(pionBlanc, pionNoir, true, ++cpt);
+                play(pionBlanc, pionNoir, true, ++cpt, false);
                 pionNoir[i][j] = true;
                 pionNoir[i][j + 1] = false;
             }
@@ -138,7 +139,7 @@ public class Hexaspawn {
                 pionBlanc[i + 1][j + 1] = false;
                 pionNoir[i + 1][j + 1] = true;
                 pionNoir[i][j] = false;
-                play(pionBlanc, pionNoir, true, ++cpt);
+                play(pionBlanc, pionNoir, true, ++cpt, false);
                 pionBlanc[i + 1][j + 1] = true;
                 pionNoir[i + 1][j + 1] = false;
                 pionNoir[i][j] = true;
@@ -148,18 +149,18 @@ public class Hexaspawn {
                 pionBlanc[i - 1][j + 1] = false;
                 pionNoir[i - 1][j + 1] = true;
                 pionNoir[i][j] = false;
-                play(pionBlanc, pionNoir, true, ++cpt);
+                play(pionBlanc, pionNoir, true, ++cpt, false);
                 pionBlanc[i - 1][j + 1] = true;
                 pionNoir[i - 1][j + 1] = false;
                 pionNoir[i][j] = true;
             } else {
                 //On fait rien
-                play(pionBlanc, pionNoir, true, ++cpt);
+                play(pionBlanc, pionNoir, true, cpt, false);
             }
         } else {
-            fini = true;
+            config.add(-1 * cpt);
             victoireBlanc = false;
-            play(pionBlanc, pionNoir, true, ++cpt);
+            //play(pionBlanc, pionNoir, true, ++cpt, true);
         }
     }
 }

@@ -55,10 +55,11 @@ public class Hexaspawn {
     }
 
     private static void getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, boolean finis) {
-        play(pionBlanc, pionNoir, tour, -1, finis);
-        for (int conf : config) {
-            System.out.println(conf);
-        }
+        play(pionBlanc, pionNoir, tour, 0, finis);
+//        for (int conf : config) {
+//            System.out.println(conf);
+//        }
+        System.out.println(config.get(0));
     }
 
     private static void play(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour, int cpt, boolean finis) {
@@ -92,7 +93,7 @@ public class Hexaspawn {
                 pionBlanc[i][j - 1] = false;
             }
             //Peux manger en diagonale droite
-            else if (i < pionNoir.length - 1 && pionNoir[i + 1][j - 1]) {
+            if (i < pionNoir.length - 1 && pionNoir[i + 1][j - 1]) {
                 pionNoir[i + 1][j - 1] = false;
                 pionBlanc[i + 1][j - 1] = true;
                 pionBlanc[i][j] = false;
@@ -102,7 +103,7 @@ public class Hexaspawn {
                 pionBlanc[i][j] = true;
             }
             //Peux manger en diagonale gauche
-            else if (i > 0 && pionNoir[i - 1][j - 1]) {
+            if (i > 0 && pionNoir[i - 1][j - 1]) {
                 pionNoir[i - 1][j - 1] = false;
                 pionBlanc[i - 1][j - 1] = true;
                 pionBlanc[i][j] = false;
@@ -135,7 +136,7 @@ public class Hexaspawn {
                 pionNoir[i][j + 1] = false;
             }
             //Peux manger en diagonale gauche
-            else if (i < pionBlanc.length - 1 && pionBlanc[i + 1][j + 1]) {
+            if (i < pionBlanc.length - 1 && pionBlanc[i + 1][j + 1]) {
                 pionBlanc[i + 1][j + 1] = false;
                 pionNoir[i + 1][j + 1] = true;
                 pionNoir[i][j] = false;
@@ -145,7 +146,7 @@ public class Hexaspawn {
                 pionNoir[i][j] = true;
             }
             //Peux manger en diagonale droite
-            else if (i != 0 && pionBlanc[i - 1][j + 1]) {
+            if (i != 0 && pionBlanc[i - 1][j + 1]) {
                 pionBlanc[i - 1][j + 1] = false;
                 pionNoir[i - 1][j + 1] = true;
                 pionNoir[i][j] = false;
@@ -158,7 +159,7 @@ public class Hexaspawn {
                 play(pionBlanc, pionNoir, true, cpt, false);
             }
         } else {
-            config.add(-1 * cpt);
+            config.add(-1 * --cpt);
             victoireBlanc = false;
             //play(pionBlanc, pionNoir, true, ++cpt, true);
         }

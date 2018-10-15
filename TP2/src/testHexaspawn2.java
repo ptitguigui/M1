@@ -91,6 +91,7 @@ public class testHexaspawn2 {
         }
         List<Integer> negatifs = new ArrayList<>();
 		for (int i : config) {
+		    System.out.println(i);
         	if( i <= 0) {
         		negatifs.add(i);
         	}
@@ -117,7 +118,7 @@ public class testHexaspawn2 {
     	boolean continu = true;
     	for(int k=0 ; k<pionBlanc.length; k++) {
     		if(pionNoir[k][pionBlanc[0].length - 1]) {
-    			config.add(1);
+    			config.add(-1);
     			play(pionBlanc, pionNoir, false, true, config);
     			continu = false;
     			break;
@@ -177,7 +178,7 @@ public class testHexaspawn2 {
     	boolean continu = true;
     	for(int k=0 ; k<pionBlanc.length; k++) {
     		if(pionNoir[k][0]) {
-    			config.add(-1);
+    			config.add(1);
     			play(pionBlanc, pionNoir, true, true, config);
     			continu = false;
     			break;

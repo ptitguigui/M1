@@ -10,7 +10,7 @@ import com.sun.xml.internal.messaging.saaj.util.ParseUtil;
 
 import sun.util.resources.cldr.pt.CalendarData_pt_ST;
 
-public class testHexaspawn {
+public class testHexaspawn2 {
     //public static boolean fini;
     //public static boolean victoireBlanc;
     //public static int cpt;

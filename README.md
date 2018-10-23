@@ -68,3 +68,9 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Présentation du jalon de notre travail
 - Prise en compte des retours du proffesseur/client
 - Modification des retours
+
+### Semaine 6:
+
+- Brainstorming pour l'affichage visuel
+- Commencement des premiers écrans
+- Diagrammes de Séquences

@@ -28,3 +28,4 @@
 |2| Ajout Scripts version 2 Installation Client| 09/10/18 | 0:20 | 0:20 | Florian et Fabien| 09/10/18 |
 |2| Ajout Scripts version 2 Prise de commande par le Client| 09/10/18 | 0:20 | 0:20 | Guillaume | 09/10/18 |
 |2| Ajout Scripts version 2 Prise de commande par le Serveur| 09/10/18 | 0:20 | 0:20 | Guillaume | 09/10/18 |
+|1| Reflexion sur la maquette| 23/10/18 | 0:40 | 1:00 | Groupe | 23/10/18 |

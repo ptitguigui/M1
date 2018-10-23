@@ -1,4 +1,4 @@
-**Nom du cas** : Commande servis par le serveur.  
+**Nom du cas** : ***Commande servis par le serveur.***  
 **But** : Prendre la commande du client.  
 **Acteur Principal** : Le Serveur.  
 **Date de creation** : 09/10/2018.  

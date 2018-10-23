@@ -1,4 +1,4 @@
-**Nom du cas** : Installation du Client.  
+**Nom du cas** : ***Installation du Client.***  
 **But** : Trouver une table et y installer le client.  
 **Acteur Principal** : Le serveur.  
 **Date de creation** : 09/10/2018.  

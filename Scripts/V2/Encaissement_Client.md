@@ -1,4 +1,4 @@
-**Nom du cas** : Encaissement des clients.  
+**Nom du cas** : ***Encaissement des clients.***  
 **But** : Faire payer les clients pour les services demandés.  
 **Acteur Principal** : Le serveur.  
 **Date de creation** : 09/10/2018.  

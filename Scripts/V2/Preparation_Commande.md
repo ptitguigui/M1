@@ -1,4 +1,4 @@
-**Nom du cas** : Préparation de la commande.  
+**Nom du cas** : ***Préparation de la commande.***  
 **But** : Réaliser toutes les préparations d'une commande.  
 **Acteur Principal** : Les préparateurs.  
 **Date de creation** : 09/10/2018.  

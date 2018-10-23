@@ -16,6 +16,15 @@ public class Hexaspawn {
         sc.close();
     }
 
+    /**
+     * Permet d'initialiser le plateau selon les entrees données
+     *
+     * @param sc        l'entree
+     * @param y         le nombre de colonnes
+     * @param x         le nombre de lignes
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
     private static void initPlateau(Scanner sc, int y, int x, boolean[][] pionBlanc, boolean[][] pionNoir) {
         sc.nextLine();
         String line;
@@ -35,6 +44,13 @@ public class Hexaspawn {
         }
     }
 
+    /**
+     * Methode qui affiche le plateau de jeu avec les pions disposés
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @return le plateau de jeu sous forme d'une chaine de caractere
+     */
     private static String displayTab(boolean[][] pionBlanc, boolean[][] pionNoir) {
         String res = "";
         for (int j = 0; j < pionBlanc[0].length; j++) {
@@ -52,6 +68,14 @@ public class Hexaspawn {
         return res;
     }
 
+    /**
+     * Methode qui va déterminer la meilleur configuration selon toutes les configurations possible
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @param tourBlanc determine le tour des noir ou blanc
+     * @param finis     determine si le jeu est termine ou non
+     */
     private static void getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tourBlanc, boolean finis) {
         int min = 10000;
         int res = 0;
@@ -66,6 +90,15 @@ public class Hexaspawn {
         System.out.println(res);
     }
 
+    /**
+     * Methode qui fait jouer tous les pions d'une couleur selon sont tour
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @param tourBlanc determine le tour des noir ou blanc
+     * @param cpt       le nombre de coups
+     * @param finis     determine si le jeu est termine ou non
+     */
     private static void play(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tourBlanc, int cpt, boolean finis) {
         if (!finis) {
             for (int i = 0; i < pionBlanc.length; i++) {
@@ -84,12 +117,21 @@ public class Hexaspawn {
         }
     }
 
+    /**
+     * Cette methpde permets de faire toutes les actions possible d'un pion blanc
+     *
+     * @param i         Position du pion sur l'axe des abscisses
+     * @param j         Position du pion sur l'axe des ordonées
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @param cpt       le nombre de coups
+     */
     private static void choixPionBlanc(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir, int cpt) {
 
         if (j > 0) {
             // Peux avancer
             if (!pionNoir[i][j - 1] && !pionBlanc[i][j - 1]) {
-                // Si il gagne en avançant
+                // Si il gagne en avancant
                 if (j == 1) {
                     addConfigBlanc(cpt);
                     play(pionBlanc, pionNoir, true, cpt, true);
@@ -149,12 +191,21 @@ public class Hexaspawn {
         }
     }
 
+    /**
+     * Cette methpde permets de faire toutes les actions possible d'un pion noir
+     *
+     * @param i         Position du pion sur l'axe des abscisses
+     * @param j         Position du pion sur l'axe des ordonées
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @param cpt       le nombre de coups
+     */
     private static void choixPionNoir(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir, int cpt) {
 
         if (j < pionBlanc[0].length - 1) {
             // Peux avancer
             if (!pionBlanc[i][j + 1] && !pionNoir[i][j + 1]) {
-                // Si il gagne en avançant
+                // Si il gagne en avancant
                 if (j == pionNoir[0].length - 2) {
                     addConfigNoir(cpt);
                     play(pionBlanc, pionNoir, true, cpt, true);
@@ -213,6 +264,13 @@ public class Hexaspawn {
         }
     }
 
+    /**
+     * Détermine si le jeu est bloque ou non
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @return booleen
+     */
     private static boolean jeuBloque(boolean[][] pionBlanc, boolean[][] pionNoir) {
         /*
          * for (int i = 0; i < pionBlanc.length; i++) { for (int j = 0; j <
@@ -223,16 +281,25 @@ public class Hexaspawn {
         return false;
     }
 
+    /**
+     * Permet d'ajouter une configuration lorsque le blanc gagne
+     *
+     * @param cpt
+     */
     private static void addConfigBlanc(int cpt) {
         if (!config.contains(cpt)) {
             config.add(cpt);
         }
     }
 
+    /**
+     * Permet d'ajouter une configuration lorsque le noir gagne
+     *
+     * @param cpt
+     */
     private static void addConfigNoir(int cpt) {
         if (!config.contains(-1 * cpt)) {
             config.add(-1 * cpt);
         }
-
     }
 }

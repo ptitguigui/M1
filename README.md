@@ -57,3 +57,10 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Mis à jour du glossaire
 - Mis à jour de l'UML
 - Génération d'un fichier PDF
+
+
+### Semaine 5:
+
+- Présentation du jalon de notre travail
+- Prise en compte des retours du proffesseur/client
+- Modification des retours

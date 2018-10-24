@@ -10,7 +10,8 @@ static void empty_it()
 int main(int argc, char **argv)
 {
     unsigned int i, sectorsize, sector, cylinder;
-    unsigned char* buff;
+    unsigned char* buffRead;
+    unsigned char* buffWrite;
     
     /* init hardware */
     if(init_hardware("hwconfig.ini") == 0) {
@@ -31,11 +32,15 @@ int main(int argc, char **argv)
     _out(HDA_CMDREG,CMD_DSKINFO);
     sectorsize=_in(HDA_DATAREGS+4)<<8;
     sectorsize+=_in(HDA_DATAREGS+5);
-    buff=malloc(sectorsize);
-    read_sector(cylinder,sector,buff);
-    dump(buff,sectorsize,0,1);
-    printf("\nDonnées du cylindre %d et de secteur %d\n", cylinder, sector);
+    buffRead=malloc(sectorsize);
+    buffWrite=malloc(sectorsize);
+    buffWrite = "test";
+    write_sector(cylinder, sector,10,buffWrite);
+    read_sector(cylinder,sector,buffRead);
+    dump(buffRead,sectorsize,1,1);
+    /*printf("\nDonnées du cylindre %d et de secteur %d\n", cylinder, sector);
+    printf("Entree : %s \n", buffWrite);
+    printf("Sortie : %s\n", buffRead);*/
 
-    /* and exit! */
     exit(EXIT_SUCCESS);
 }

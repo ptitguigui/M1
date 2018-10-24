@@ -27,7 +27,7 @@ dmps: dmps.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBDIR) $(LIBS)
 #frmt: frmt.o
 #	$(CC) $(CFLAGS) -o $@ $^ $(LIBDIR) $(LIBS)
-vm: vm.o mbr.o drive.o vol.o
+vm: vm.o mbr.o drive.o 
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBDIR) $(LIBS)
 
 ###------------------------------
@@ -41,7 +41,6 @@ vm.o: vm.c
 
 drive.o: drive.c drive.h
 mbr.o: mbr.c drive.h mbr.h
-vol.o: vol.c drive.h vol.h
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< $(INCDIR)

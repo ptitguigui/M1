@@ -13,8 +13,8 @@ LIBS    = -L$(LIBDIR) -lhardware
 ###------------------------------
 ### Main targets 
 ###------------------------------------------------------------
-BINARIES= mkhd dmps 
-OBJECTS	= mkhd.o dmps.o drive.o 
+BINARIES= mkhd dmps dvol mkvol 
+OBJECTS	= mkhd.o dmps.o drive.o dvol.o mkvol.o 
 
 all: $(BINARIES) $(OBJECTS)
 
@@ -28,7 +28,13 @@ mkhd: mkhd.o
 dmps: dmps.o drive.o
 	$(CC) $(CFLAGS) -o dmps $^ $(LIBS)
 
-%.o: %.c
+mkvol: mkvol.o drive.o mbr.o
+	$(CC) $(CFLAGS) -o mkvol $^ $(LIBS)
+
+dvol: dvol.o drive.o mbr.o
+	$(CC) $(CFLAGS) -o dvol $^ $(LIBS)
+
+%.o: %.c %.h
 	$(CC) $(CFLAGS) -c $^ $(INCDIR)
 
 ###------------------------------

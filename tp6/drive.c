@@ -27,7 +27,7 @@ void read_sector(unsigned int cylinder, unsigned int sector, unsigned char *buff
 	memcpy(buffer, MASTERBUFFER, sizeSector);
 }
 
-void write_sector(unsigned int cylinder, unsigned int sector, unsigned int size, unsigned char *buffer){
+void write_sector(unsigned int cylinder, unsigned int sector, unsigned char *buffer){
     int sizeSector;
 	
     _out(HDA_CMDREG, CMD_DSKINFO);

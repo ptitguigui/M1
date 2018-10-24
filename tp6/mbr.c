@@ -2,7 +2,6 @@
 
 /*
 TODO : 
-    - Verifier si on peux creer la partition --> write bloc
     - Verifier si on écrit dans une partition --> isCorrect
     - MAIN
 */
@@ -46,10 +45,12 @@ int cylinder_of_bloc(int numVol, int numBloc){
     return vol.vol_first_cylinder + (int)((numBloc+vol.vol_first_sector) / HDA_MAXSECTOR);   
 }
 void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
+    assert(mbr.mbr_vols[numVol].vol_type != VNONE);
     read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc), buffer);
 }
 void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
-    
+    assert(mbr.mbr_vols[numVol].vol_type == VNONE);
+    assert(isCorrect(mbr.mbr_vols[numVol].vol_first_cylinder, mbr.mbr_vols[numVol].vol_first_sector, mbr.mbr_vols[numVol].vol_n_sectors));
     write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc), buffer);
 }
 
@@ -93,16 +94,16 @@ int isCorrect(unsigned int first_sector, unsigned int first_cylinder,unsigned in
 
 void make_vol(unsigned int first_sector, unsigned int first_cylinder,unsigned int n_sectors, enum vol_type_e type){
     int i;
-    if(isCorrect(first_sector, first_cylinder, n_sectors)){
-        for(i=0; i<MAXVOL; i++){
-            if(mbr.mbr_vols[i].vol_type == VNONE){
-                mbr.mbr_vols[i].vol_first_cylinder = first_cylinder;
-                mbr.mbr_vols[i].vol_first_sector = first_sector;
-                mbr.mbr_vols[i].vol_type = type;
-                mbr.mbr_vols[i].vol_n_sectors = n_sectors;
-                break;
-            }
+    assert(isCorrect(first_sector, first_cylinder, n_sectors));
+    for(i=0; i<MAXVOL; i++){
+        if(mbr.mbr_vols[i].vol_type == VNONE){
+            mbr.mbr_vols[i].vol_first_cylinder = first_cylinder;
+            mbr.mbr_vols[i].vol_first_sector = first_sector;
+            mbr.mbr_vols[i].vol_type = type;
+            mbr.mbr_vols[i].vol_n_sectors = n_sectors;
+            break;
         }
     }
+    
 }
 

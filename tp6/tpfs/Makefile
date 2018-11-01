@@ -1,7 +1,7 @@
 # $Id: Makefile,v 1.2 2004/10/12 09:06:17 marquet Exp $
 ##############################################################################
 
-ROOTDIR=./
+ROOTDIR=../
 
 CC	= gcc
 CFLAGS	= -Wall -ansi -pedantic 
@@ -13,8 +13,8 @@ LIBS    = -L$(LIBDIR) -lhardware
 ###------------------------------
 ### Main targets 
 ###------------------------------------------------------------
-BINARIES= mkhd dmps 
-OBJECTS	= mkhd.o dmps.o drive.o 
+BINARIES= mkhd dmps dvol mkvol 
+OBJECTS	= mkhd.o dmps.o drive.o dvol.o mkvol.o 
 
 all: $(BINARIES) $(OBJECTS)
 
@@ -27,6 +27,12 @@ mkhd: mkhd.o
 
 dmps: dmps.o drive.o
 	$(CC) $(CFLAGS) -o dmps $^ $(LIBS)
+
+mkvol: mkvol.o drive.o mbr.o
+	$(CC) $(CFLAGS) -o mkvol $^ $(LIBS)
+
+dvol: dvol.o drive.o mbr.o
+	$(CC) $(CFLAGS) -o dvol $^ $(LIBS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ $(INCDIR)

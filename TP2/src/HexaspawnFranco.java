@@ -115,10 +115,7 @@ public class HexaspawnFranco{
         	int min = 100000000;
             boolean valeur_pos = false;
         	for(int c : conf){
-        		if(c==0){
-        			return 0;
-        		}
-        		else if (c > 0){
+        		if (c > 0){
         			valeur_pos = true;
         			if(c < min){
                         min = c;
@@ -129,7 +126,7 @@ public class HexaspawnFranco{
         	if(!valeur_pos){
         		int min_ = Math.abs(conf.get(0));
         		for(int c : conf){
-        			if (min_> Math.abs(c)){
+        			if (min_< Math.abs(c)){
         				min_ = Math.abs(c);
         			}
         		}
@@ -167,10 +164,7 @@ public class HexaspawnFranco{
         	int min = 100000000;
             boolean valeur_pos = false;
         	for(int c : conf){
-        		if(c==0){
-        			return 0;
-        		}
-        		else if (c > 0){
+        		if (c > 0){
         			valeur_pos = true;
         			if(c < min){
                         min = c;
@@ -181,7 +175,7 @@ public class HexaspawnFranco{
         	if(!valeur_pos){
         		int min_ = Math.abs(conf.get(0));
         		for(int c : conf){
-        			if (min_> Math.abs(c)){
+        			if (min_< Math.abs(c)){
         				min_ = Math.abs(c);
         			}
         		}

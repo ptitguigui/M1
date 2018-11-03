@@ -22,14 +22,17 @@ Il y a deux cas possible pour la valeur de la configuration :
 	
 ### Description de notre algorithme
 
-Lors de ce TP, nous avons choisis d'utiliser deux tableaux de booleen : 
+Dans de ce TP, nous avons choisi d'utiliser deux tableaux de booleen : 
 - Un pour les pions blancs
 - L'autre pour les pions noirs
 
-Puis, nous réalisons toutes les actions possible jusqu'a ce qu'elle se terminent.  
-Lorsque qu'une partie est terminé, nous stockons dans une liste le nombre de coups.  
-Lorsque  le blanc gagne, nous stokons un nombre positif et lorsque le noir gagne, nous stockons un nombre negatif.   
-Enfin, nous choisissons le nombre le plus proche de zero qu'il soit négatif ou positif.  
-Celui-ci représentera notre configuration.  
-La plupart des jeux de données fonctionnent mais des cas particulier ne sont pas gérés...
+Nous avons implémenté deux fonctions play une pour le joueur noir et l'autre pour le joueur blanc.
 
+Pour lancer le jeu nous appelons la fonction playblanc vu que c'est le joueur blanc qui doit commencer le jeu.
+
+Les fonctions play (playblanc et playnoir) auront la même fonctionnalité  c'est à dire pour des pions de même couleur, elles vont faire jouer chaque pion et calculer le nombre de coups optimal jusqu'à la fin du jeu pour chaque pion; tout en choisissant le nombre de coup optimal. La fonction retourne le nombre de coup minimal parmi tous les cas gagnants initiés par les différents pions, si non elle retourne le nombre de coup du pion ayant résisté le plus.
+
+
+Pour faire jouer un pion , nous avons implémentés deux fonctions l'une pour le pion blanc et l'autre pour le pion noir. Encore une fois ces fonctions ont le même comportement c'est à dire qu'elles vont faire jouer le pion en testant les trois choix qui lui sont donnés(attaque à gauche, avancer, attaque à droite) et en calculant à chaque fois le nombre de coup optimale.
+
+ 

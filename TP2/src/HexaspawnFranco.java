@@ -1,36 +1,46 @@
+import java.awt.image.RescaleOp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class HexaspawnFranco {
-    public static boolean fini;
-    public static boolean victoireBlanc;
-    public static int cpt_blanc;
-    public static int cpt_noir;
-    public static int config;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+
+
+public class HexaspawnFranco{
+    static List<Integer> config = new ArrayList<>();
 
     public static void main(String[] args) {
-        fini = false;
-        cpt_blanc = 0;
-        cpt_noir = 0;
-        config = 0;
+    	ArrayList<Integer> conf = new ArrayList<Integer>();
+    	conf.add(null);
         Scanner sc = new Scanner(System.in);
         int y = sc.nextInt();
         int x = sc.nextInt();
         boolean[][] pionBlanc = new boolean[x][y];
         boolean[][] pionNoir = new boolean[x][y];
         initPlateau(sc, y, x, pionBlanc, pionNoir);
-        System.out.println(getConfigNaive(pionBlanc, pionNoir, true));
-        //System.out.println(displayTab(pionBlanc, pionNoir));
+        getConfigNaive(pionBlanc, pionNoir);
         sc.close();
     }
 
+    /**
+     * Permet d'initialiser le plateau selon les entrees donnees
+     *
+     * @param sc        l'entree
+     * @param y         le nombre de colonnes
+     * @param x         le nombre de lignes
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
     private static void initPlateau(Scanner sc, int y, int x, boolean[][] pionBlanc, boolean[][] pionNoir) {
-        String ligne = sc.nextLine();
+        sc.nextLine();
+        String line;
         for (int j = 0; j < y; j++) {
-            ligne = sc.nextLine();
+            line = sc.nextLine();
             for (int i = 0; i < x; i++) {
-                if (ligne.charAt(i) == 'P') {
+                if (line.charAt(i) == 'P') {
                     pionBlanc[i][j] = true;
-                } else if (ligne.charAt(i) == 'p') {
+                } else if (line.charAt(i) == 'p') {
                     pionNoir[i][j] = true;
                 } else {
                     pionBlanc[i][j] = false;
@@ -41,6 +51,13 @@ public class HexaspawnFranco {
         }
     }
 
+    /**
+     * Methode qui affiche le plateau de jeu avec les pions disposes
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     * @return le plateau de jeu sous forme d'une chaine de caractere
+     */
     private static String displayTab(boolean[][] pionBlanc, boolean[][] pionNoir) {
         String res = "";
         for (int j = 0; j < pionBlanc[0].length; j++) {
@@ -58,122 +75,311 @@ public class HexaspawnFranco {
         return res;
     }
 
-    private static int getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour) {
-        fini = play(pionBlanc, pionNoir, tour);
-        return config;
+    /**
+     * Methode qui va determiner la meilleur configuration selon toutes les configurations possible
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
+    private static void getConfigNaive(boolean[][] pionBlanc, boolean[][] pionNoir) {
+        int res = play_blanc(pionBlanc, pionNoir);
+        System.out.println(res);
     }
 
-    private static boolean play(boolean[][] pionBlanc, boolean[][] pionNoir, boolean tour) {
-        boolean tourBlanc = tour;
-        if (!fini) {
-            for (int i = 0; i < pionBlanc.length; i++) {
-                for (int j = 0; j < pionBlanc[0].length; j++) {
-                    if (tourBlanc) {
-                        if (pionBlanc[i][j]) {
-                            choixPionBlanc(i, j, pionBlanc, pionNoir);
-                        }
-                    } else {
-                        if (pionNoir[i][j]) {
-                            choixPionNoir(i, j, pionBlanc, pionNoir);
-                        }
+    /**
+     * Methode qui fait jouer tous les pions d'une couleur blanc selon leurtour
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
+    private static int play_blanc(boolean[][] pionBlanc, boolean[][] pionNoir) {
+        ArrayList<Integer> conf = new ArrayList<Integer>();
+        for (int i = 0; i < pionBlanc.length; i++) {
+            for (int j = 0; j < pionBlanc[0].length; j++) {
+                    if (pionBlanc[i][j]) {
+                    	Object res = choixPionBlanc(i, j, pionBlanc, pionNoir);
+                    	if(res != null) {
+                    		conf.add((Integer) res);
+                    	}
                     }
                 }
-            }
+            
         }
-        return fini;
+        if(conf.isEmpty()) {
+        	return 0;
+        	
+        }
+        else {
+        	int min = 100000000;
+            boolean valeur_pos = false;
+        	for(int c : conf){
+        		if(c==0){
+        			return 0;
+        		}
+        		else if (c > 0){
+        			valeur_pos = true;
+        			if(c < min){
+                        min = c;
+                    }
+        		}
+
+        	}
+        	if(!valeur_pos){
+        		int min_ = Math.abs(conf.get(0));
+        		for(int c : conf){
+        			if (min_> Math.abs(c)){
+        				min_ = Math.abs(c);
+        			}
+        		}
+        		return -1 * min_;
+        	}
+        	return min;
+        }
+    }
+    
+    /**
+     * Methode qui fait jouer tous les pions d'une couleur noir selon leurtour
+     *
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
+    private static int play_noir(boolean[][] pionBlanc, boolean[][] pionNoir) {
+        ArrayList<Integer> conf = new ArrayList<Integer>();
+        for (int i = 0; i < pionBlanc.length; i++) {
+            for (int j = 0; j < pionBlanc[0].length; j++) {
+                	if(pionNoir[i][j]) {
+	                	Object res = choixPionNoir(i, j, pionBlanc, pionNoir);
+	                	if(res != null) {
+	                		conf.add((Integer)res);
+	                	}
+                
+                }
+            }
+            
+        }
+        if(conf.isEmpty()) {
+        	return 0;
+        	
+        }
+        else {
+        	int min = 100000000;
+            boolean valeur_pos = false;
+        	for(int c : conf){
+        		System.out.println(c);
+        		if(c==0){
+        			return 0;
+        		}
+        		else if (c > 0){
+        			valeur_pos = true;
+        			if(c < min){
+                        min = c;
+                    }
+        		}
+
+        	}
+        	if(!valeur_pos){
+        		int min_ = Math.abs(conf.get(0));
+        		for(int c : conf){
+        			if (min_> Math.abs(c)){
+        				min_ = Math.abs(c);
+        			}
+        		}
+        		return -1 * min_;
+        	}
+        	return min;
+        }
     }
 
-    private static void choixPionBlanc(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir) {
-
-        //Peux avancer
+    /**
+     * Cette methpde permets de faire toutes les actions possible d'un pion blanc
+     *
+     * @param i         Position du pion sur l'axe des abscisses
+     * @param j         Position du pion sur l'axe des ordonees
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
+    private static Object choixPionBlanc(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir) {
+    	
         if (j > 0) {
-            if (!pionNoir[i][j - 1] && !pionBlanc[i][j - 1]) {
-                pionBlanc[i][j] = false;
-                pionBlanc[i][j - 1] = true;
-                cpt_blanc++;
-                play(pionBlanc, pionNoir, false);
-                pionBlanc[i][j] = true;
-                pionBlanc[i][j - 1] = false;
+        	ArrayList<Integer> choix = new ArrayList<Integer>();
+            // Peux avancer
+            if (!pionNoir[i][j - 1] && !pionBlanc[i][j - 1]){
+                // Si il gagne en avancant
+                if (j == 1) {
+                	return 1;
+
+                } else {
+                    // Sinon il avance
+                    pionBlanc[i][j] = false;
+                    pionBlanc[i][j - 1] = true;
+                    int res = play_noir(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionBlanc[i][j] = true;
+                    pionBlanc[i][j - 1] = false;
+                }
             }
-            //Peux manger en diagonale droite
-            else if (i < pionNoir.length-1 && pionNoir[i + 1][j - 1]) {
-                pionNoir[i + 1][j - 1] = false;
-                pionBlanc[i + 1][j - 1] = true;
-                pionBlanc[i][j] = false;
-                cpt_blanc++;
-                play(pionBlanc, pionNoir, false);
-                pionNoir[i + 1][j - 1] = true;
-                pionBlanc[i + 1][j - 1] = false;
-                pionBlanc[i][j] = true;
+            
+            // Si peux manger en diagonale droite
+            if (i < pionNoir.length - 1 && pionNoir[i + 1][j - 1]) {
+                // Si il gagne en mangeant
+                if (j == 1) {
+                	return 1;
+                } else {
+                    pionNoir[i + 1][j - 1] = false;
+                    pionBlanc[i + 1][j - 1] = true;
+                    pionBlanc[i][j] = false;
+                    int res = play_noir(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionNoir[i + 1][j - 1] = true;
+                    pionBlanc[i + 1][j - 1] = false;
+                    pionBlanc[i][j] = true;
+                }
             }
-            //Peux manger en diagonale gauche
-            else if (i != 0 && pionNoir[i - 1][j - 1]) {
-                pionNoir[i - 1][j - 1] = false;
-                pionBlanc[i - 1][j - 1] = true;
-                pionBlanc[i][j] = false;
-                cpt_blanc++;
-                play(pionBlanc, pionNoir, false);
-                pionNoir[i - 1][j - 1] = true;
-                pionBlanc[i - 1][j - 1] = false;
-                pionBlanc[i][j] = true;
-            } else {
-                //On fait rien
-                //System.out.println("fait rien");
-                cpt_blanc++;
-                play(pionBlanc, pionNoir, false);
+            
+            // Si peux manger en diagonale gauche
+            if (i > 0 && pionNoir[i - 1][j - 1]) {
+                // Si il gagne en mangeant
+                if (j == 1) {
+                	return 1;
+                } else {
+                    pionNoir[i - 1][j - 1] = false;
+                    pionBlanc[i - 1][j - 1] = true;
+                    pionBlanc[i][j] = false;
+                    int res = play_noir(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionNoir[i - 1][j - 1] = true;
+                    pionBlanc[i - 1][j - 1] = false;
+                    pionBlanc[i][j] = true;
+                }
             }
-        } else {
-            config = cpt_noir + 1;
-            fini = true;
-            victoireBlanc = true;
+            
+            // Si pion bloque
+            if (choix.isEmpty()) {
+            	return null;
+            	
+            }
+            else if(!choix.isEmpty()) {
+            	int min = 100000000;
+                int res = 0;
+            	for(int c : choix) {
+            		if (c <= 0) {
+            			if (min > Math.abs(c)) {
+                            res = Math.abs(c) + 1;
+                            min = Math.abs(c);
+                        }
+            		}
+
+            	}
+            	if(res == 0) {
+            		int max = choix.get(0);
+            		for(int c : choix) {
+            			if (max < c) {
+            				max = c;
+            			}
+            		}
+            		return -1 * (max + 1);
+            	}
+            	return res;
+            }
+            
         }
-        //System.out.println(displayTab(pionBlanc, pionNoir));
+        return 0;
     }
 
-    private static void choixPionNoir(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir) {
-
-        //Peux avancer
+    /**
+     * Cette methode permets de faire toutes les actions possible d'un pion noir
+     *
+     * @param i         Position du pion sur l'axe des abscisses
+     * @param j         Position du pion sur l'axe des ordonees
+     * @param pionBlanc le tableau de pion blanc
+     * @param pionNoir  le tableau de pion noir
+     */
+    private static Object choixPionNoir(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir) {
+    	
         if (j < pionBlanc[0].length - 1) {
+        	ArrayList<Integer> choix = new ArrayList<Integer>();
+            // Peux avancer
             if (!pionBlanc[i][j + 1] && !pionNoir[i][j + 1]) {
-                pionNoir[i][j] = false;
-                pionNoir[i][j + 1] = true;
-                cpt_noir++;
-                play(pionBlanc, pionNoir, true);
-                pionNoir[i][j] = true;
-                pionNoir[i][j + 1] = false;
+                // Si il gagne en avancant
+                if (j == pionNoir[0].length - 2) {
+                    return 1;
+                } else {
+                    // Sinon il avance
+                    pionNoir[i][j] = false;
+                    pionNoir[i][j + 1] = true;
+                    int res = play_blanc(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionNoir[i][j] = true;
+                    pionNoir[i][j + 1] = false;
+                }
             }
-            //Peux manger en diagonale gauche
-            else if (i < pionBlanc.length-1 && pionBlanc[i + 1][j + 1]) {
-                pionBlanc[i + 1][j + 1] = false;
-                pionNoir[i + 1][j + 1] = true;
-                pionNoir[i][j] = false;
-                cpt_noir++;
-                play(pionBlanc, pionNoir, true);
-                pionBlanc[i + 1][j + 1] = true;
-                pionNoir[i + 1][j + 1] = false;
-                pionNoir[i][j] = true;
+            
+            // Si peux manger en diagonale gauche
+            if (i < pionBlanc.length - 1 && pionBlanc[i + 1][j + 1]) {
+                // Si il gagne en mangeant
+                if (j == pionNoir[0].length - 2) {
+                   return 1;
+                } else {
+                    pionBlanc[i + 1][j + 1] = false;
+                    pionNoir[i + 1][j + 1] = true;
+                    pionNoir[i][j] = false;
+                    int res = play_blanc(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionBlanc[i + 1][j + 1] = true;
+                    pionNoir[i + 1][j + 1] = false;
+                    pionNoir[i][j] = true;
+                }
             }
-            //Peux manger en diagonale droite
-            else if (i != 0 && pionBlanc[i - 1][j + 1]) {
-                pionBlanc[i - 1][j + 1] = false;
-                pionNoir[i - 1][j + 1] = true;
-                pionNoir[i][j] = false;
-                cpt_noir++;
-                play(pionBlanc, pionNoir, true);
-                pionBlanc[i - 1][j + 1] = true;
-                pionNoir[i - 1][j + 1] = false;
-                pionNoir[i][j] = true;
-            } else {
-                //On fait rien
-                //System.out.println("fait rien");
-                cpt_noir++;
-                play(pionBlanc, pionNoir, true);
+            
+            //Si peux manger en diagonale droite
+            if (i != 0 && pionBlanc[i - 1][j + 1]) {
+                // Si il gagne en mangeant
+                if (j == pionNoir[0].length - 2) {
+                    return 1;
+                } else {
+                    pionBlanc[i - 1][j + 1] = false;
+                    pionNoir[i - 1][j + 1] = true;
+                    pionNoir[i][j] = false;
+                    int res = play_blanc(pionBlanc, pionNoir);
+                    choix.add(res);
+                    pionBlanc[i - 1][j + 1] = true;
+                    pionNoir[i - 1][j + 1] = false;
+                    pionNoir[i][j] = true;
+                }
+
             }
-            //System.out.println(displayTab(pionBlanc, pionNoir));
-        } else {
-            config = -1 * cpt_blanc;
-            fini = true;
-            victoireBlanc = false;
+            // Pion bloque
+         // Si pion bloque
+            if (choix.isEmpty()) {
+            	return null;
+            	
+            }
+            else if(!choix.isEmpty()) {
+            	int min = 100000000;
+                int res = 0;
+            	for(int c : choix) {
+            		if (c <= 0) {
+            			if (min > Math.abs(c)) {
+                            res = Math.abs(c) + 1;
+                            min = Math.abs(c);
+                        }
+            		}
+
+            	}
+            	if(res == 0) {
+            		int max = choix.get(0);
+            		for(int c : choix) {
+            			if (max < c) {
+            				max = c;
+            			}
+            		}
+            		return -1 * (max + 1);
+            	}
+            	return res;
+            }
+            
         }
+		return 0;
     }
+
 }

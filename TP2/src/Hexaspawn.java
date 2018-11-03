@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class Hexaspawn {
     static List<Integer> config = new ArrayList<>();
 
@@ -17,7 +19,7 @@ public class Hexaspawn {
     }
 
     /**
-     * Permet d'initialiser le plateau selon les entrees données
+     * Permet d'initialiser le plateau selon les entrees donnees
      *
      * @param sc        l'entree
      * @param y         le nombre de colonnes
@@ -45,7 +47,7 @@ public class Hexaspawn {
     }
 
     /**
-     * Methode qui affiche le plateau de jeu avec les pions disposés
+     * Methode qui affiche le plateau de jeu avec les pions disposes
      *
      * @param pionBlanc le tableau de pion blanc
      * @param pionNoir  le tableau de pion noir
@@ -69,7 +71,7 @@ public class Hexaspawn {
     }
 
     /**
-     * Methode qui va déterminer la meilleur configuration selon toutes les configurations possible
+     * Methode qui va determiner la meilleur configuration selon toutes les configurations possible
      *
      * @param pionBlanc le tableau de pion blanc
      * @param pionNoir  le tableau de pion noir
@@ -81,7 +83,7 @@ public class Hexaspawn {
         int res = 0;
         play(pionBlanc, pionNoir, tourBlanc, 0, finis);
         for (int conf : config) {
-            //System.out.println(conf);
+            System.out.println(conf);
             if (min > Math.abs(conf)) {
                 res = conf;
                 min = Math.abs(conf);
@@ -114,6 +116,15 @@ public class Hexaspawn {
                     }
                 }
             }
+            if(jeuBloque(pionBlanc, pionNoir)) {
+            	if(tourBlanc) {
+            		addConfigNoir(cpt);
+            	}
+            	else {
+            		addConfigBlanc(cpt);
+            	}
+            	
+            }
         }
     }
 
@@ -121,19 +132,22 @@ public class Hexaspawn {
      * Cette methpde permets de faire toutes les actions possible d'un pion blanc
      *
      * @param i         Position du pion sur l'axe des abscisses
-     * @param j         Position du pion sur l'axe des ordonées
+     * @param j         Position du pion sur l'axe des ordonees
      * @param pionBlanc le tableau de pion blanc
      * @param pionNoir  le tableau de pion noir
      * @param cpt       le nombre de coups
      */
     private static void choixPionBlanc(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir, int cpt) {
-
+    	int safe = cpt;
         if (j > 0) {
             // Peux avancer
             if (!pionNoir[i][j - 1] && !pionBlanc[i][j - 1]) {
                 // Si il gagne en avancant
                 if (j == 1) {
                     addConfigBlanc(cpt);
+                    if(cpt == 3) {
+                    	System.out.println(displayTab(pionBlanc, pionNoir));
+                    }
                     play(pionBlanc, pionNoir, true, cpt, true);
                 } else {
                     // Sinon il avance
@@ -144,11 +158,15 @@ public class Hexaspawn {
                     pionBlanc[i][j - 1] = false;
                 }
             }
+            cpt = safe;
             // Si peux manger en diagonale droite
             if (i < pionNoir.length - 1 && pionNoir[i + 1][j - 1]) {
                 // Si il gagne en mangeant
                 if (j == 1) {
                     addConfigBlanc(cpt);
+                    if(cpt == 3) {
+                    	System.out.println(displayTab(pionBlanc, pionNoir));
+                    }
                     play(pionBlanc, pionNoir, true, cpt, true);
                 } else {
                     pionNoir[i + 1][j - 1] = false;
@@ -160,11 +178,15 @@ public class Hexaspawn {
                     pionBlanc[i][j] = true;
                 }
             }
+            cpt = safe;
             // Si peux manger en diagonale gauche
             if (i > 0 && pionNoir[i - 1][j - 1]) {
                 // Si il gagne en mangeant
                 if (j == 1) {
                     addConfigBlanc(cpt);
+                    if(cpt == 3) {
+                    	System.out.println(displayTab(pionBlanc, pionNoir));
+                    }
                     play(pionBlanc, pionNoir, true, cpt, true);
                 } else {
                     pionNoir[i - 1][j - 1] = false;
@@ -176,32 +198,34 @@ public class Hexaspawn {
                     pionBlanc[i][j] = true;
                 }
             }
+            cpt = safe;
             // Si pion bloque
             if (pionNoir[i][j - 1] || pionBlanc[i][j - 1]) {
-                if (jeuBloque(pionBlanc, pionNoir)) {
+            	//play(pionBlanc, pionNoir, false, safe, false);
+                /*if (jeuBloque(pionBlanc, pionNoir)) {
                     addConfigNoir(cpt);
-                    play(pionBlanc, pionNoir, false, cpt, true);
-                } /*
+                    
+                } 
                  * else { play(pionBlanc, pionNoir, false, ++cpt, true); }
                  */
             }
         } else {
-            addConfigBlanc(cpt);
+            //addConfigBlanc(cpt);
             play(pionBlanc, pionNoir, true, cpt, true);
         }
     }
 
     /**
-     * Cette methpde permets de faire toutes les actions possible d'un pion noir
+     * Cette methode permets de faire toutes les actions possible d'un pion noir
      *
      * @param i         Position du pion sur l'axe des abscisses
-     * @param j         Position du pion sur l'axe des ordonées
+     * @param j         Position du pion sur l'axe des ordonees
      * @param pionBlanc le tableau de pion blanc
      * @param pionNoir  le tableau de pion noir
      * @param cpt       le nombre de coups
      */
     private static void choixPionNoir(int i, int j, boolean[][] pionBlanc, boolean[][] pionNoir, int cpt) {
-
+    	int safe = cpt;
         if (j < pionBlanc[0].length - 1) {
             // Peux avancer
             if (!pionBlanc[i][j + 1] && !pionNoir[i][j + 1]) {
@@ -218,6 +242,7 @@ public class Hexaspawn {
                     pionNoir[i][j + 1] = false;
                 }
             }
+            cpt = safe;
             // Si peux manger en diagonale gauche
             if (i < pionBlanc.length - 1 && pionBlanc[i + 1][j + 1]) {
                 // Si il gagne en mangeant
@@ -234,6 +259,7 @@ public class Hexaspawn {
                     pionNoir[i][j] = true;
                 }
             }
+            cpt = safe;
             //Si peux manger en diagonale droite
             if (i != 0 && pionBlanc[i - 1][j + 1]) {
                 // Si il gagne en mangeant
@@ -253,19 +279,20 @@ public class Hexaspawn {
             }
             // Pion bloque
             if (pionNoir[i][j + 1] || pionBlanc[i][j + 1]) {
-                if (jeuBloque(pionBlanc, pionNoir)) {
+            	//play(pionBlanc, pionNoir, true, safe, false);
+                /*if (jeuBloque(pionBlanc, pionNoir)) {
                     addConfigBlanc(cpt);
-                    play(pionBlanc, pionNoir, false, cpt, true);
-                }
+                    
+                }*/
             }
         } else {
-            addConfigNoir(cpt);
+            //addConfigNoir(cpt);
             play(pionBlanc, pionNoir, true, cpt, true);
         }
     }
 
     /**
-     * Détermine si le jeu est bloque ou non
+     * Determine si le jeu est bloque ou non
      *
      * @param pionBlanc le tableau de pion blanc
      * @param pionNoir  le tableau de pion noir
@@ -278,7 +305,8 @@ public class Hexaspawn {
          * !pionBlanc[i][j - 1]) { return false; } } if (pionNoir[i][j]) { if
          * (!pionBlanc[i][j + 1] && !pionNoir[i][j + 1]) { return false; } } } }
          */
-        return false;
+    	boolean res = config.size() == 0;
+        return res;
     }
 
     /**

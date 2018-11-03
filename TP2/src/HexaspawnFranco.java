@@ -1,6 +1,8 @@
 import java.awt.image.RescaleOp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -8,8 +10,8 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 
 
 public class HexaspawnFranco{
-    static List<Integer> config = new ArrayList<>();
-
+	private static Map<String,Integer> conf_map_n= new HashMap<String, Integer>();
+	private static Map<String,Integer> conf_map_b= new HashMap<String, Integer>();
     public static void main(String[] args) {
     	ArrayList<Integer> conf = new ArrayList<Integer>();
     	conf.add(null);
@@ -165,7 +167,6 @@ public class HexaspawnFranco{
         	int min = 100000000;
             boolean valeur_pos = false;
         	for(int c : conf){
-        		System.out.println(c);
         		if(c==0){
         			return 0;
         		}
@@ -212,8 +213,11 @@ public class HexaspawnFranco{
                     // Sinon il avance
                     pionBlanc[i][j] = false;
                     pionBlanc[i][j - 1] = true;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_b.containsKey(tab)) {
                     int res = play_noir(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_b.put(tab, res);}
+                    choix.add(conf_map_b.get(tab));
                     pionBlanc[i][j] = true;
                     pionBlanc[i][j - 1] = false;
                 }
@@ -228,8 +232,11 @@ public class HexaspawnFranco{
                     pionNoir[i + 1][j - 1] = false;
                     pionBlanc[i + 1][j - 1] = true;
                     pionBlanc[i][j] = false;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_b.containsKey(tab)) {
                     int res = play_noir(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_b.put(tab, res);}
+                    choix.add(conf_map_b.get(tab));
                     pionNoir[i + 1][j - 1] = true;
                     pionBlanc[i + 1][j - 1] = false;
                     pionBlanc[i][j] = true;
@@ -245,8 +252,11 @@ public class HexaspawnFranco{
                     pionNoir[i - 1][j - 1] = false;
                     pionBlanc[i - 1][j - 1] = true;
                     pionBlanc[i][j] = false;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_b.containsKey(tab)) {
                     int res = play_noir(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_b.put(tab, res);}
+                    choix.add(conf_map_b.get(tab));
                     pionNoir[i - 1][j - 1] = true;
                     pionBlanc[i - 1][j - 1] = false;
                     pionBlanc[i][j] = true;
@@ -307,8 +317,11 @@ public class HexaspawnFranco{
                     // Sinon il avance
                     pionNoir[i][j] = false;
                     pionNoir[i][j + 1] = true;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_n.containsKey(tab)) {
                     int res = play_blanc(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_n.put(tab, res);}
+                    choix.add(conf_map_n.get(tab));
                     pionNoir[i][j] = true;
                     pionNoir[i][j + 1] = false;
                 }
@@ -323,8 +336,11 @@ public class HexaspawnFranco{
                     pionBlanc[i + 1][j + 1] = false;
                     pionNoir[i + 1][j + 1] = true;
                     pionNoir[i][j] = false;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_n.containsKey(tab)) {
                     int res = play_blanc(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_n.put(tab, res);}
+                    choix.add(conf_map_n.get(tab));
                     pionBlanc[i + 1][j + 1] = true;
                     pionNoir[i + 1][j + 1] = false;
                     pionNoir[i][j] = true;
@@ -340,8 +356,11 @@ public class HexaspawnFranco{
                     pionBlanc[i - 1][j + 1] = false;
                     pionNoir[i - 1][j + 1] = true;
                     pionNoir[i][j] = false;
+                    String tab = displayTab(pionBlanc, pionNoir);
+                    if(!conf_map_n.containsKey(tab)) {
                     int res = play_blanc(pionBlanc, pionNoir);
-                    choix.add(res);
+                    conf_map_n.put(tab, res);}
+                    choix.add(conf_map_n.get(tab));
                     pionBlanc[i - 1][j + 1] = true;
                     pionNoir[i - 1][j + 1] = false;
                     pionNoir[i][j] = true;

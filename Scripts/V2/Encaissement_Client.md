@@ -5,7 +5,7 @@
 **Nom des responsables** : Emeline et Thomas.  
 **Version** : 1  
 **Pre-condition** : Les clients ont fini de consommer et s'apprêtent à partir.  
-**Declenchement** : Le serveur donne l'addition.  
+**Declenchement** : Le serveur récupère l'addition par le biais de l'Application.  
 **Post-condition** : Les clients partent du restaurant.   
 **Scenario nominal** :   
  1. Le serveur donne l'addition aux clients.  

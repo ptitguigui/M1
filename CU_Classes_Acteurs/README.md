@@ -31,6 +31,20 @@ La première consiste en l'établissement d'une addition, répertoriant l'ensemb
 Ensuite, l'encaissement consiste a collecter la somme requise par l'addition, que ce soit par carte bancaire, espèce ou encore ticket restaurant, etc ...
 </p>
 
+## Priorisation des CU
+|          CU       | Importance (MOA)| Complexité (MOE)| Argumentation |
+|-------------------|-----------------|-----------------|---------------|  
+| Installer         | 3  | 1 | Concret pour le client|               
+| Afficher Menu | 5 | 2 | Demande de la MOA, sert de base a l'application|               
+| Saisir commande | 4 | 3 | Operation principale |            
+| Valider commande | 3 | 4 | Suite directe de la saisie, interactions fortes |            
+| Reception commande| 2 | 2 | / |            
+| Preparation | 1 | 1 | Simple changement d'etat |            
+| Envoi | 2 | 1 | / |            
+| Servir commande | 2 | 1 | / |            
+| Donner l'addition | 3 | 2 | / |            
+| Encaisser | 1 | 5 | Risque technologique, securité |            
+| Liberer table | 2 | 1 | / |  
 
 ## Reflexion de notre CU :
 

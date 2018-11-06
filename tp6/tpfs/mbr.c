@@ -106,4 +106,24 @@ void make_vol(unsigned int first_sector, unsigned int first_cylinder,unsigned in
     }
     
 }
+static void empty_it()
+{
+    return;
+}
 
+void init_mbr()
+{
+	int i;
+    /* init hardware */
+    if(init_hardware("hardware.ini") == 0) 
+    {
+		fprintf(stderr, "Error in hardware initialization\n");
+		exit(EXIT_FAILURE);
+    }
+
+    /* Interreupt handlers */
+    for(i=0; i<16; i++)
+		IRQVECTOR[i] = empty_it;
+
+	load_mbr();
+}

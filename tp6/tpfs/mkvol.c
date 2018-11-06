@@ -9,39 +9,24 @@ static void empty_it()
 
 int main(int argc, char **argv)
 {
-    unsigned int i, sectorsize, sector, cylinder;
-    unsigned char* buffRead;
-    unsigned char* buffWrite;
-    
-    /* init hardware */
-    if(init_hardware("hwconfig.ini") == 0) {
-	fprintf(stderr, "Error in hardware initialization\n");
-	exit(EXIT_FAILURE);
-    }
+    int cylinder;
+    int sector;
+    int nbsector;
+    int type;
 
-    /* Interreupt handlers */
-    for(i=0; i<16; i++)
-	IRQVECTOR[i] = empty_it;
+    init_mbr();
 
-    /* Allows all IT */
-    _mask(1);
-    
-    cylinder = 5;
-    sector = 5;
-    
-    _out(HDA_CMDREG,CMD_DSKINFO);
-    sectorsize=_in(HDA_DATAREGS+4)<<8;
-    sectorsize+=_in(HDA_DATAREGS+5);
-    buffRead=malloc(sectorsize);
-    buffWrite=malloc(sectorsize);
-    buffWrite = "test";
-    write_sector(cylinder, sector,buffWrite);
-    read_sector(cylinder,sector,buffRead);
-    dump(buffRead,sectorsize,1,1);
-    /*printf("\nDonnées du cylindre %d et de secteur %d\n", cylinder, sector);
-    printf("Entree : %s \n", buffWrite);
-    printf("Sortie : %s\n", buffRead);*/
-
-    /* and exit! */
+    printf("Saisir le 1er cylindre:\n");
+    scanf("%i", &cylinder);
+    printf("Saisir le 1er secteur:\n");
+    scanf("%i", &sector);
+    printf("Saisir le nombre de secteurs:\n");
+    scanf("%i", &nbsector);
+    printf("Choisir le type de volume (0- Principal\n1- Etendu\n2- Autre:\n");
+    scanf("%i", &type);
+          
+    make_vol(sector, cylinder, nbsector, type);
+	display_vol();
+    save_mbr();
     exit(EXIT_SUCCESS);
 }

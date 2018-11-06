@@ -25,3 +25,4 @@ void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer);
 void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer);
 void display_vol();
 void make_vol(unsigned int first_sector, unsigned int first_cylinder,unsigned int n_sectors, enum vol_type_e type);
+void init_mbr();

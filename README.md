@@ -13,6 +13,10 @@ API REST'O
 
 La principale problématique est de faire collaborer efficacement différentes équipes aux rôles bien distincts autour d'un mêmes objectifs : servir les clients le plus rapidement possible dans un restaurant.
 
+---
+## Architecture choisie
+
+---
 ## Organisation du repo
 
 Au sein de ce repo, veuillez trouver les documents suivants :        
@@ -49,7 +53,7 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Modification du diagramme de CU
 - Ajout d'une description du diagramme
 - Ajout de l'UML
- 
+
 
 ### Semaine 4:
 

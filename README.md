@@ -74,3 +74,10 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Brainstorming pour l'affichage visuel
 - Commencement des premiers écrans
 - Diagrammes de Séquences
+
+### Semaine 7:
+
+- Travail sur les premiers écrans
+- Diagrammes de Séquences
+- Correction UML
+- Travil sur le dossier final

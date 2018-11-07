@@ -31,3 +31,5 @@
 |1| Reflexion sur la maquette| 23/10/18 | 0:40 | 1:00 | Groupe | 23/10/18 |
 |2| MAJ UML| 23/10/18 | 1:00 | 2:00 | Florian et Fabien | 06/11/18 |
 |1| Priorisation CU| 06/11/18 | 0:30 | 0:30 | Florian et Fabien | 06/11/18 |
+|1| Diagramme de Séquence| 06/11/18 | 2:00 | 1:30 | Guillaume | 06/11/18 |
+|1| Travail sur le dossier| 07/11/18 | 1:00 | 1:00 | Guillaume | 07/11/18 |

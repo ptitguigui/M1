@@ -18,6 +18,6 @@
  2 .a.2 : Le serveur donne la nouvelle addition.  
  2 .a.3 : Retour au 2
 
- 2. a Le client ne peut pas payer  
- 2 .a.1 : Le serveur fait signer au client une reconnaissance de dettes.  
- 2 .a.2 : Retour en 3
+ 2. b Le client ne peut pas payer  
+ 2 .b.1 : Le serveur fait signer au client une reconnaissance de dettes.  
+ 2 .b.2 : Retour en 3

@@ -10,19 +10,25 @@ static struct mbr_s mbr;
 
 int load_mbr(){
     assert(sizeof(struct mbr_s) <= SECTORSIZE);
-    read_sector(0,0,&mbr);
+    read_sector(0,0,sizeof(struct mbr_s), &mbr);
 
     if(mbr.mbr_magic != MBR_MAGIC){
         /*initialisation de mbr*/
-        mbr.mbr_magic = MBR_MAGIC;
-        mbr.mbr_vols->vol_type = VNONE;
         
+        mbr.mbr_magic = MBR_MAGIC;
+        int i;
+        for(i=0; i<MAXVOL; i++){
+        mbr.mbr_vols[i].vol_type = VNONE;
+        mbr.mbr_vols[i].vol_first_sector = 0;
+        mbr.mbr_vols[i].vol_first_cylinder = 0;
+        mbr.mbr_vols[i].vol_n_sectors = 0;}
+
         return 0;
     }
     return 1;
 }
 void save_mbr(){
-    write_sector(0,0, &mbr);
+    write_sector(0,0, sizeof(struct mbr_s), &mbr);
 }
 int sector_of_bloc(int numVol, int numBloc){
 
@@ -46,12 +52,12 @@ int cylinder_of_bloc(int numVol, int numBloc){
 }
 void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
     assert(mbr.mbr_vols[numVol].vol_type != VNONE);
-    read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc), buffer);
+    read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),5, buffer);
 }
 void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
     assert(mbr.mbr_vols[numVol].vol_type == VNONE);
     assert(isCorrect(mbr.mbr_vols[numVol].vol_first_cylinder, mbr.mbr_vols[numVol].vol_first_sector, mbr.mbr_vols[numVol].vol_n_sectors));
-    write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc), buffer);
+    write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),5, buffer);
 }
 
 char * printType(enum vol_type_e type){
@@ -113,17 +119,20 @@ static void empty_it()
 
 void init_mbr()
 {
-	int i;
+	 unsigned int i;
+    
     /* init hardware */
-    if(init_hardware("hardware.ini") == 0) 
-    {
-		fprintf(stderr, "Error in hardware initialization\n");
-		exit(EXIT_FAILURE);
+    if(init_hardware("hwconfig.ini") == 0) {
+	fprintf(stderr, "Error in hardware initialization\n");
+	exit(EXIT_FAILURE);
     }
 
     /* Interreupt handlers */
     for(i=0; i<16; i++)
-		IRQVECTOR[i] = empty_it;
+	IRQVECTOR[i] = empty_it;
+
+    /* Allows all IT */
+    _mask(1);
 
 	load_mbr();
 }

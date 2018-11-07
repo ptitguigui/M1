@@ -35,8 +35,9 @@ int main(int argc, char **argv)
     buffRead=malloc(sectorsize);
     buffWrite=malloc(sectorsize);
     buffWrite = "test";
-    write_sector(cylinder, sector,buffWrite);
-    read_sector(cylinder,sector,buffRead);
+
+    write_sector(cylinder, sector,sizeof(buffWrite),buffWrite);
+    read_sector(cylinder,sector,sizeof(buffRead),buffRead);
     dump(buffRead,sectorsize,1,1);
     /*printf("\nDonnées du cylindre %d et de secteur %d\n", cylinder, sector);
     printf("Entree : %s \n", buffWrite);

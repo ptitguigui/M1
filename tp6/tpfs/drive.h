@@ -13,6 +13,6 @@
 #define HDA_MAXSECTOR 16
 
 void go_to_sector(unsigned int cylinder, unsigned int sector);
-void read_sector(unsigned int cylinder, unsigned int sector, unsigned char *buffer);
-void write_sector(unsigned int cylinder, unsigned int sector, unsigned char *buffer);
+void read_sector(unsigned int cylinder, unsigned int sector,unsigned int size, unsigned char *buffer);
+void write_sector(unsigned int cylinder, unsigned int sector,unsigned int size, unsigned char *buffer);
 void format_sector(unsigned int cylinder, unsigned int sector, unsigned int nsector,unsigned int value);

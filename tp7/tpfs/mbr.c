@@ -7,6 +7,16 @@ TODO :
 */
 
 static struct mbr_s mbr;
+static struct super_s super;
+static int current_volume;
+
+
+
+/**
+*
+*   Fonctions du TP6 : gestion de volumes
+*
+**/
 
 int load_mbr(){
     assert(sizeof(struct mbr_s) <= SECTORSIZE);
@@ -50,14 +60,14 @@ int cylinder_of_bloc(int numVol, int numBloc){
     
     return vol.vol_first_cylinder + (int)((numBloc+vol.vol_first_sector) / HDA_MAXSECTOR);   
 }
-void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
+void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned int size, unsigned char *buffer){
     assert(mbr.mbr_vols[numVol].vol_type != VNONE);
-    read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),SECTORSIZE, buffer);
+    read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),size, buffer);
 }
-void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned char *buffer){
+void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned int size, unsigned char *buffer){
     assert(mbr.mbr_vols[numVol].vol_type == VNONE);
     assert(isCorrect(mbr.mbr_vols[numVol].vol_first_cylinder, mbr.mbr_vols[numVol].vol_first_sector, mbr.mbr_vols[numVol].vol_n_sectors));
-    write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),SECTORSIZE, buffer);
+    write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),size, buffer);
 }
 
 char * printType(enum vol_type_e type){
@@ -135,4 +145,49 @@ void init_mbr()
     _mask(1);
 
 	load_mbr();
+}
+
+
+/**
+*
+*   Fonctions du TP7 : allocation de bloc
+*
+**/
+
+void init_volume(unsigned int vol){
+    assert(vol < MAXVOL);
+    assert(mbr.mbr_vols[vol].vol_type == VBASE);
+
+    struct super_s mySuper;
+    mySuper.super_magic = SUPERMAGIC;
+    mySuper.super_first_free = 1;
+    write_bloc(vol, SUPER, sizeof(struct super_s), &mySuper);
+
+    struct freeb_s fb;
+    fb.fb_nbloc = mbr.mbr_vols[vol].vol_n_sectors -1;
+    fb.fb_next = NULL;
+    write_bloc(vol, 1, sizeof(struct freeb_s), &fb);
+
+}
+int load_super(unsigned int vol){
+
+    read_bloc(vol, 0, sizeof(struct freeb_s), &super);
+
+    assert(super.super_magic == SUPERMAGIC);
+
+    if ( current_volume == NULL){
+        //affecter
+    }
+
+
+    return current_volume;
+}
+void save_super(){
+
+}
+unsigned int new_bloc(){
+
+}
+void free_bloc(unsigned int bloc){
+
 }

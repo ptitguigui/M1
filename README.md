@@ -15,6 +15,15 @@ La principale problématique est de faire collaborer efficacement différentes �
 
 ---
 ## Architecture choisie
+### Couche serveur
+Au niveau du choix de la couche serveur de notre logicielle. Il paraît évident, en vue de notre nom “API:REST’O” de choisir un serveur faisant des requête HTTP via une API REST. Ainsi, nous aurons notre serveur qui communiquera avec une base de données et qui enverra les différentes informations sur notre client. 
+  
+Pour le choix des technologies.  Beaucoup de choix est possible.Nous avons pensé à un serveur node JS avec une base de donnée MongoDB ou bien de travailler avec le framework Spring boot. Ces technologies sont récentes et “à la mode” et fonctionne parfaitement pour une API REST.
+
+### Couche client
+L’idée est d’avoir une application multiplateforme. En effet, nous aurons les serveurs du restaurant qui utilisent des tablettes afin de créer les commandes et de savoir le montant de l’addition. Ensuite, nous avons des écrans interactifs pour les préparateurs afin de savoir ce qu’ils doivent préparer et de le notifier aux serveurs du restaurant. Enfin, les menus, produits sont configurable via une IHM par le directeur. 
+  
+Par conséquent, il faut que l’application puisse s’utiliser sur smartphone/tablette et sur ordinateur via une IHM. Le framework Ionic serait un choix intéressant. En effet, ce framework open source conviendrait pour une application multiplateforme. De plus, il communique très facilement avec une API REST.
 
 ---
 ## Organisation du repo
@@ -80,4 +89,4 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Travail sur les premiers écrans
 - Diagrammes de Séquences
 - Correction UML
-- Travil sur le dossier final
+- Travail sur le dossier final

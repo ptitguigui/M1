@@ -158,11 +158,14 @@ void init_volume(unsigned int vol){
     assert(vol < MAXVOL);
     assert(mbr.mbr_vols[vol].vol_type == VBASE);
 
+    /*Initialisation du superBloc*/
     struct super_s mySuper;
     mySuper.super_magic = SUPERMAGIC;
     mySuper.super_first_free = 1;
     write_bloc(vol, SUPER, sizeof(struct super_s), &mySuper);
 
+
+    /*Initialisation du 1er bloc libre*/
     struct freeb_s fb;
     fb.fb_nbloc = mbr.mbr_vols[vol].vol_n_sectors -1;
     fb.fb_next = NULL;
@@ -171,23 +174,64 @@ void init_volume(unsigned int vol){
 }
 int load_super(unsigned int vol){
 
-    read_bloc(vol, 0, sizeof(struct freeb_s), &super);
+    read_bloc(vol, SUPER, sizeof(struct freeb_s), &super);
 
-    assert(super.super_magic == SUPERMAGIC);
-
-    if ( current_volume == NULL){
-        //affecter
+    if(super.super_magic == SUPERMAGIC){
+        return -1;
     }
 
+    if ( current_volume == NULL){
+        current_volume = 1;
+    }
 
     return current_volume;
 }
 void save_super(){
-
+    write_bloc(current_volume, SUPER, sizeof(struct freeb_s), &super);
 }
 unsigned int new_bloc(){
+    struct freeb_s fb;
 
+    if (super.nb_bloc_free == 0){
+        return 0;
+    }
+    
+	assert(super.super_first_free);
+
+    int bloc = super.super_first_free;
+
+    read_bloc(current_volume, bloc, sizeof(struct freeb_s), &fb);
+
+    if (fb.fb_nbloc == 1){
+        super.super_first_free = fb.fb_next;
+    }else{
+        fb.fb_nbloc --;
+        write_bloc(current_volume, bloc+1, sizeof(struct freeb_s), &fb);
+        super.super_first_free ++;
+    }
+    super.nb_bloc_free --;
+    save_super();
+
+    return bloc;
 }
 void free_bloc(unsigned int bloc){
+    struct freeb_s fb;
 
+    assert(bloc != 0);
+
+    read_bloc(current_volume, bloc, sizeof(struct freeb_s), &fb);
+    fb.fb_next = super.super_first_free;
+
+    write_bloc(current_volume, super.super_first_free, sizeof(struct freeb_s), &fb);
+    super.super_first_free = bloc;
+    super.nb_bloc_free ++;
+    save_super();
+}
+void display_bloc()
+{
+	printf("Nombre de bloc : %d\nTaille\tUtilisé\tDispo.\n%d\t%d\t%d\n",
+			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
+			mbr.mbr_vols[current_volume].vol_n_sectors-1,
+			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
+			super.nb_bloc_free);
 }

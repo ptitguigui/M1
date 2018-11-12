@@ -2,11 +2,6 @@
 #include <ctype.h>
 #include "drive.h"
 
-static void empty_it()
-{
-    return;
-}
-
 int main(int argc, char **argv)
 {
     init_mbr();

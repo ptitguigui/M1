@@ -23,13 +23,13 @@ struct mbr_s{
 struct super_s{
     unsigned int super_magic;
     unsigned int super_first_free;
-    /*unsigned int nb_bloc_free;*/
-}
+    unsigned int nb_bloc_free;
+};
 
 struct freeb_s {
     unsigned int fb_nbloc;
     unsigned int fb_next;
-}
+};
 
 int load_mbr();
 void save_mbr();
@@ -46,3 +46,4 @@ int load_super(unsigned int vol);
 void save_super();
 unsigned int new_bloc();
 void free_bloc(unsigned int bloc);
+void display_bloc();

@@ -6,7 +6,7 @@ TODO :
     - MAIN
 */
 
-static struct mbr_s mbr;
+struct mbr_s mbr;
 static struct super_s super;
 static int current_volume;
 
@@ -65,7 +65,7 @@ void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned int size, unsi
     read_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),size, buffer);
 }
 void write_bloc(unsigned int numVol,unsigned int numBloc, unsigned int size, unsigned char *buffer){
-    assert(mbr.mbr_vols[numVol].vol_type == VNONE);
+    assert(mbr.mbr_vols[numVol].vol_type != VNONE);
     assert(isCorrect(mbr.mbr_vols[numVol].vol_first_cylinder, mbr.mbr_vols[numVol].vol_first_sector, mbr.mbr_vols[numVol].vol_n_sectors));
     write_sector(cylinder_of_bloc(numVol, numBloc), sector_of_bloc(numVol, numBloc),size, buffer);
 }

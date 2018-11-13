@@ -31,6 +31,8 @@ struct freeb_s {
     unsigned int fb_next;
 };
 
+extern struct mbr_s mbr;
+
 int load_mbr();
 void save_mbr();
 int sector_of_bloc(int numVol, int numBloc);

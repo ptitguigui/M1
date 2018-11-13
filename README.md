@@ -32,7 +32,7 @@ Au sein de ce repo, veuillez trouver les documents suivants :
  - [le dossier Scripts](/Scripts) contenant l'ensemble des scenarios que nous avons ecrit.  
  - [le dossier Glossaire](/Glossaire) contenant deux glossaires : le glossaire technique et le glossaire pro
  - [le journal de bord](/Journal) repertoriant notre activité
- - [les cas d'utilisation](/CU_Classes_Acteurs) permettant de lister l'ensemble des cas sur notre système
+ - [les cas d'utilisation](/CU_Classes_Acteurs) permettant de lister l'ensemble des cas sur notre système avec les [DSS](/CU_Classes_Acteurs/DSS) associés 
  - [l'UML](/uml) de notre application
 
  ---
@@ -90,3 +90,11 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 - Diagrammes de Séquences
 - Correction UML
 - Travail sur le dossier final
+
+
+### Semaine 8:
+
+- Travail sur le 3eme rendus
+- correction Diagrammes de Séquences
+- Prensation du rendus 2
+- Prise en compte des retours

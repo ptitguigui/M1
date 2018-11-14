@@ -181,7 +181,7 @@ int load_super(unsigned int vol){
     }
 
     if ( current_volume == NULL){
-        current_volume = 1;
+        current_volume = vol;
     }
 
     return current_volume;
@@ -235,3 +235,12 @@ void display_bloc()
 			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
 			super.nb_bloc_free);
 }
+
+
+/**
+*
+*   Fonctions du TP8 : inode
+*
+**/
+
+

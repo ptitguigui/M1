@@ -2,6 +2,7 @@
 
 #define MAXVOL 8
 #define MBR_MAGIC 0xBEBE
+/*TP7*/
 #define SUPERMAGIC 0xCAFE
 #define SUPER 0
 #define BLOCKEND 0
@@ -20,6 +21,9 @@ struct mbr_s{
     unsigned int mbr_magic;
 };
 
+extern struct mbr_s mbr;
+
+/*TP7*/
 struct super_s{
     unsigned int super_magic;
     unsigned int super_first_free;
@@ -31,8 +35,6 @@ struct freeb_s {
     unsigned int fb_next;
 };
 
-extern struct mbr_s mbr;
-
 int load_mbr();
 void save_mbr();
 int sector_of_bloc(int numVol, int numBloc);
@@ -43,9 +45,11 @@ void display_vol();
 void make_vol(unsigned int first_sector, unsigned int first_cylinder,unsigned int n_sectors, enum vol_type_e type);
 void init_mbr();
 
+/*TP7*/
 void init_volume(unsigned int vol);
 int load_super(unsigned int vol);
 void save_super();
 unsigned int new_bloc();
 void free_bloc(unsigned int bloc);
 void display_bloc();
+

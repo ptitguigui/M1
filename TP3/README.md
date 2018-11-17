@@ -8,6 +8,15 @@ Dans ce TP vous trouverez :
 
 - Le code source du TP dans le dossier `/src`
 - La synthese de ce TP à travers le fichier `README.md` 
+- Le dossier de jeux de `/donnees`
+
+## Utilisation du TP
+
+Lancer la classe NP, suivez les instructions afin d'iniatiliser le problème.  
+Cette classe vous permettra selon un fichier donnée, la résolution du problème selon trois modes : 
+- Version manuelle
+- Version aléatoire
+- Version exploration exhaustive
 
 ## Réponse aux question
 

@@ -20,6 +20,8 @@ Cette classe vous permettra selon un fichier donnée, la résolution du problèm
 
 ## Réponse aux question
 
+## Qu'est ce qu'une propriété NP?
+
 ### Question 1 :
 
 Le certificat de notre problème est de faire une permutation des villes où la distance est inférieur à l. Etant donnée que nous avons n villes, la taille des certificats sera : `n log(n)`. Le taille de tous les certificats sera `n!` et donc polynomiale.
@@ -44,9 +46,31 @@ L'algorithme de vérification correspondant à la fonction "verifierCertificat" 
 <p>Q.1 Pour une instance donnée le nombre de certficats est égal à n! </p>
 
 <p>Q.2 L'order d'énumération proposé est:
-Pour une liste contenant les éléments de 0 à n-1, l'ordre d'énumération corresponds à la position des différent élment dans la liste.
+Pour une liste contenant les numéros de villes de 0 à n-1, l'ordre d'énumération corresponds à la position des différentes villes dans la liste.
 L'algorithme nous procurrant toutes les configurations est "generatePerm" dans la classe NP</p>
 
 <p>Q.3 L'algorithme pour verifier que le problème a une solution consiste à calculer le distance totale pour chaque certificat généré et de le comparer avec k. La compléxité de cet algorithme sera au plus n*n!. 
 L'algorithme correspondant est "vericiationAllPossibilities" dans ma classe NP </p>
  
+ 
+## Réductions polynomiales
+
+
+### Question 1 :
+
+
+Q.1 HamiltonCycle -> Villes.Cycle hamiltonien ham: [0 .. n-1] -> [0 .. n-1] - Permutation de n villes tel que:
+- D(ham(v), ham(v+1))= True, pour tout 0 <= v <= n-2
+- D(ham(v-1), ham(0))= True
+- Non, si non
+				
+ham: [0 .. n-1] -> [0 .. n-1] où ville = ham(v)= un sommet tel que:
+- ham(v1), ham(v2) ne sont pas liées
+- ssi D(ham(v1), ham(v2)) = False
+
+
+#### Réduction correcte
+
+Un cycle hamiltonien qui donne une matrice d' entiers n*n tel que la distance(random(n)) entre deux villes quand elles sont liées soit <= n et la longueur obtenue suite à la résolution du problème TSP soit inférieur à n*n .
+
+

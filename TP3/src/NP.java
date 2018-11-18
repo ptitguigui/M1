@@ -263,7 +263,7 @@ public class NP {
     }
 
     /**
-     * Permet de passer des élements inutile présent dans le fichier
+     * Permet de parser des élements inutile présent dans le fichier
      * @param br le buffer qui lit le fichier
      * @throws IOException
      */

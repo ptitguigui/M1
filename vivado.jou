@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Nov 12 16:44:00 2018
+# Process ID: 13463
+# Current directory: /home/irakoze/Desktop/M1/ACT
+# Command line: vivado
+# Log file: /home/irakoze/Desktop/M1/ACT/vivado.log
+# Journal file: /home/irakoze/Desktop/M1/ACT/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/irakoze/Desktop/M1/AEO/TP5/TP5.xpr
+update_compile_order -fileset sources_1
+open_project /home/irakoze/Desktop/M1/AEO/TP4/TP4.xpr
+update_compile_order -fileset sources_1
+current_project TP5
+current_project TP4
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_hw
+connect_hw_server
+open_hw_target
+set_property PROGRAM.FILE {/home/irakoze/Desktop/M1/AEO/TP4/TP4.runs/impl_1/chenillard.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {/home/irakoze/Desktop/M1/AEO/TP4/TP4.runs/impl_1/chenillard.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {/home/irakoze/Desktop/M1/AEO/TP4/TP4.runs/impl_1/chenillard.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+current_project TP5
+import_files -norecurse /home/irakoze/Desktop/M1/AEO/TP4/TP4.srcs/sources_1/new/chenillard.vhd
+update_compile_order -fileset sources_1
+import_files -norecurse {/home/irakoze/Desktop/M1/AEO/TP4/TP4.srcs/sources_1/new/shift_vector.vhd /home/irakoze/Desktop/M1/AEO/TP4/TP4.srcs/sources_1/new/clk_div.vhd}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+current_project TP4
+close_project

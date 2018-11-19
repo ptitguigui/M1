@@ -63,14 +63,22 @@ Q.1 HamiltonCycle -> Villes.Cycle hamiltonien ham: [0 .. n-1] -> [0 .. n-1] - Pe
 - D(ham(v), ham(v+1))= True, pour tout 0 <= v <= n-2
 - D(ham(v-1), ham(0))= True
 - Non, si non
-				
-ham: [0 .. n-1] -> [0 .. n-1] où ville = ham(v)= un sommet tel que:
-- ham(v1), ham(v2) ne sont pas liées
-- ssi D(ham(v1), ham(v2)) = False
 
+#### Reduction
+Soit T la matrice TSP qui sera générée			
+ham: [0 .. n-1] -> [0 .. n-1] où ville v = ham(v) tel que:
+- v1, v2 ne sont pas liées donc T(v1,v2) = 9999
+- ssi D(ham(v1), ham(v2)) = False ,
+- si non v1 et V2 sont liées et T(v1,v2) = random(n),
+- k étant égal à n*n
+
+L'algorithme de réduction est polynomiale , on a une construction en theta(n²)
 
 #### Réduction correcte
 
-Un cycle hamiltonien qui donne une matrice d' entiers n*n tel que la distance(random(n)) entre deux villes quand elles sont liées soit <= n et la longueur obtenue suite à la résolution du problème TSP soit inférieur à n*n .
+Un cycle hamiltonien donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit <= n et la longueur obtenue suite à la résolution du problème TSP sera inférieur à n*n, la valeur fixée pour la longueur totale.
+
+
+
 
 

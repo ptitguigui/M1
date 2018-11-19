@@ -1,4 +1,5 @@
 import java.io.*;
+import java.security.KeyStore.PrivateKeyEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +9,7 @@ public class NP {
 
     static int dimension;
     static int[][] matrice;
+    static boolean[][] matrice_ham;
     static int k = 36;
 
     public static void main(String[] args) {
@@ -232,8 +234,11 @@ public class NP {
         DisplayFilesFromDirectoryDonnees();
         System.out.print("Votre choix : ");
         String filename = sc.nextLine();
-
-        initValues(filename);
+        if(filename.endsWith("p")) {
+        	initValues(filename);}
+        else {
+        	initValHAM(filename);
+        }
         System.out.println("Voici la matrice récupéré : ");
         displayMatrice();
 
@@ -271,5 +276,63 @@ public class NP {
         for (int i = 0; i < 3; i++) {
             br.readLine();
         }
+        
     }
+    
+    /**
+     * Methode qui initilise l'ensemble des variables tel que la matrice en lisant un fichier hamiltonien
+     * @param filename le nom du fichier à rechercher
+     */
+    private static void initValHAM(String filename) {
+    	File file = new File("src/../donnees/" + filename);
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader(file));
+            skip(br);
+            String line = br.readLine();
+
+            String[] tab = line.split(" ");
+            String nb = tab[tab.length - 1];
+
+            dimension = Integer.parseInt(nb);
+            matrice = new int[dimension][dimension];
+
+            skip(br);
+            getDataFromFileHam(br);
+
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Permet de récupérer les données présent dans un fichier hamiltonien
+     * @param br le buffer qui lit le fichier
+     * @throws IOException
+     */
+	private static void getDataFromFileHam(BufferedReader br) throws IOException {
+        String line;
+        int cpt = 0;
+        for (int i = 0; i < dimension; i++) {
+            line = br.readLine();
+            String[] data = line.split(" ");
+            for (String aData : data) {
+                if (!aData.trim().equals("")) {
+                	int val;
+                	if(aData.trim().equals("False")) {val = 9999;}
+                	else {
+                		Random random = new Random();
+                        val = random.nextInt(dimension);}
+                    matrice[i][cpt] = val;
+                    cpt++;
+                }
+            }
+            cpt = 0;
+        }
+		
+		
+	}
+    
 }

@@ -94,7 +94,14 @@ l'algorithme de réduction est polynomiale , En effet la réduction sera faite p
 
 Un cycle hamiltonien donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit = 0 et la longueur obtenue suite à la résolution du problème TSP sera égal à 0, la valeur fixée pour la longueur totale.
 
+Q2. (Voir code : initValHAM)
+
+Q3. Etant donnée que Halmitone-Cycle est NP-Complet et, en considérant le faite que Halmitone-Cycle se réduis en TSP, TSP est donc au pire NP-Complet. 
+
+Q4. Oui il se réduit. En effet, tous les deux sont NP-Complet. Par conséquent ils se réduisent polynomialement l'un,l'autre .  
 
 
+### Question 2 :
 
+Q1. 
 

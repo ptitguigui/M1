@@ -37,6 +37,7 @@ create_ifile(enum file_type_e type)
     unsigned int inumber; 
 
     inumber = create_inode(type);
+    printf("%d",inumber);
     ffatal(inumber, "unable to create inode"); 
 
     return inumber; 

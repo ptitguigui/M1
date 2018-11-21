@@ -22,7 +22,8 @@ int main(int argc, char **argv)
     }
 
 	init_volume(vol);
-    printf("Saisir le nombre de blocs:\n");
+    
+	/*printf("Saisir le nombre de blocs:\n");
     scanf("%i", &nb_blocs);
 
 	for (i=0; i<nb_blocs; i++)
@@ -36,6 +37,7 @@ int main(int argc, char **argv)
 		nb_blocs = mbr.mbr_vols[vol].vol_n_sectors-1;
 	}
 	printf("Superbloc rempli de %d blocs !\n", nb_blocs);
-		
+	*/
+	
 	exit(EXIT_SUCCESS);
 }

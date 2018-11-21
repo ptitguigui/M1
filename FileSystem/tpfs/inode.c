@@ -24,6 +24,7 @@ unsigned int create_inode(enum file_type_e type){
     inode.inode_2indirect = BLOC_NULL;
 
     inumber = new_bloc();
+    printf("%d", inumber);
     write_inode(inumber, &inode);
 
     return inumber;

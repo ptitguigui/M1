@@ -81,6 +81,5 @@ tools.o: tools.c tools.h
 clean:
 	$(RM) *.o $(BINARIES)
 realclean: clean 
-depend : 
-	$(CC) $(CFLAGS) -MM $(INCDIR) *.c 
+	$(RM) vdiskA.bin vdiskB.bin
 

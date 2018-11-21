@@ -159,10 +159,12 @@ void init_volume(unsigned int vol){
     assert(mbr.mbr_vols[vol].vol_type == VBASE);
 
     /*Initialisation du superBloc*/
-    struct super_s mySuper;
-    mySuper.super_magic = SUPERMAGIC;
-    mySuper.super_first_free = 1;
-    write_bloc(vol, SUPER, sizeof(struct super_s), &mySuper);
+    //struct super_s mySuper;
+    super.super_magic = SUPERMAGIC;
+    super.super_first_free = 1;
+    //printf("nb bloc free = %d\n", mbr.mbr_vols[vol].vol_n_sectors -1);
+    super.nb_bloc_free = mbr.mbr_vols[vol].vol_n_sectors -1;
+    write_bloc(vol, SUPER, sizeof(struct super_s), &super);
 
 
     /*Initialisation du 1er bloc libre*/
@@ -174,10 +176,10 @@ void init_volume(unsigned int vol){
 }
 int load_super(unsigned int vol){
 
-    read_bloc(vol, SUPER, sizeof(struct freeb_s), &super);
+    read_bloc(vol, SUPER, sizeof(struct super_s), &super);
 
     if(super.super_magic == SUPERMAGIC){
-        return -1;
+        return EXIT_FAILURE;
     }
 
     if (current_volume == NULL){
@@ -193,21 +195,22 @@ unsigned int new_bloc(){
     struct freeb_s fb;
 
     if (super.nb_bloc_free == 0){
+        printf("etst');");
         return 0;
     }
     
 	assert(super.super_first_free);
 
-    int bloc = super.super_first_free;
+    unsigned int bloc = super.super_first_free;
 
     read_bloc(current_volume, bloc, sizeof(struct freeb_s), &fb);
 
-    if (fb.fb_nbloc == 1){
-        super.super_first_free = fb.fb_next;
-    }else{
+    if (fb.fb_nbloc > 1){
         fb.fb_nbloc --;
         write_bloc(current_volume, bloc+1, sizeof(struct freeb_s), &fb);
         super.super_first_free ++;
+    }else{
+       super.super_first_free = fb.fb_next; 
     }
     super.nb_bloc_free --;
     save_super();

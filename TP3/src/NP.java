@@ -43,7 +43,7 @@ public class NP {
      *
      * @param filename le nom du fichier à rechercher
      */
-    static void initValues(String filename) {
+    static void initValAtsp(String filename) {
         File file = new File("src/../donnees/" + filename);
         BufferedReader br;
         try {
@@ -58,7 +58,7 @@ public class NP {
             matrice = new int[dimension][dimension];
 
             skip(br);
-            getDataFromFile(br);
+            initMatriceFromFileAtsp(br);
 
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -256,7 +256,7 @@ public class NP {
         System.out.print("Votre choix : ");
         String filename = sc.nextLine();
         if (filename.endsWith("p")) {
-            initValues(filename);
+            initValAtsp(filename);
             System.out.println("Veuillez choisir la longueur maximale possible : ");
             k = Integer.parseInt(sc.nextLine());
         } else {
@@ -280,7 +280,7 @@ public class NP {
      * @param br le buffer qui lit le fichier
      * @throws IOException
      */
-    private static void getDataFromFile(BufferedReader br) throws IOException {
+    private static void initMatriceFromFileAtsp(BufferedReader br) throws IOException {
         String line;
         int cpt = 0;
         for (int i = 0; i < dimension; i++) {
@@ -335,10 +335,8 @@ public class NP {
             }
 
             skip(br);
-            getDataFromFileHam(br);
+            initMatriceFromFileHam(br);
 
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -350,7 +348,7 @@ public class NP {
      * @param br le buffer qui lit le fichier
      * @throws IOException
      */
-    private static void getDataFromFileHam(BufferedReader br) throws IOException {
+    private static void initMatriceFromFileHam(BufferedReader br) throws IOException {
         String line;
         int cpt = 0;
         for (int i = 0; i < dimension; i++) {

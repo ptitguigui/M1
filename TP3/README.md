@@ -65,18 +65,34 @@ Q.1 HamiltonCycle -> Villes.Cycle hamiltonien ham: [0 .. n-1] -> [0 .. n-1] - Pe
 - Non, si non
 
 #### Reduction
-Soit T la matrice TSP qui sera générée			
-ham: [0 .. n-1] -> [0 .. n-1] où ville v = ham(v) tel que:
-- v1, v2 ne sont pas liées donc T(v1,v2) = 9999
-- ssi D(ham(v1), ham(v2)) = False ,
-- si non v1 et V2 sont liées et T(v1,v2) = random(n),
-- k étant égal à n*n
 
-L'algorithme de réduction est polynomiale , on a une construction en theta(n²)
+L'objectif est de réduire un problème cycle Hamiltonien vers un problème TSP
+
+Dans la suite nous aurons:
+
+- T la matrice TSP qui sera générée
+- n le nombre de villes dans TSP
+- G le graphe du cycle d'hamilton
+- N le nombre de sommets sur le graphe G
+- D la matrice correspondant au cycle hamiltonien
+- l la longueur en entrée dans un problème TSP
+
+La réduction sera faite de la manière suivante:
+
+- n sera à égal à N : une ville correspondra à un sommet
+- Construction de la matrcie T de TSP se fera de la manière suivante:
+- Pour toutes villes v1 et v2 compris dans [0 .. n-1]
+- si D(v1, v2) = True -> T(v1 , v2) = 0
+- sinon T(v1, v2) = 1 
+- l prendra la valeur 0
+
+Ensuite le résolution du problème TSP sera faite, toutes les données ayant été générées. La fonction éffectuant la réduction est initValHAM
+
+l'algorithme de réduction est polynomiale , En effet la réduction sera faite par une lecture de la matrice correspondant au cycle d'hamilton, ce qui revient à lire un tableau à deux entrées.Donc on aura une construction en theta(n²)).
 
 #### Réduction correcte
 
-Un cycle hamiltonien donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit <= n et la longueur obtenue suite à la résolution du problème TSP sera inférieur à n*n, la valeur fixée pour la longueur totale.
+Un cycle hamiltonien donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit = 0 et la longueur obtenue suite à la résolution du problème TSP sera égal à 0, la valeur fixée pour la longueur totale.
 
 
 

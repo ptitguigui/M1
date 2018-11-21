@@ -241,9 +241,14 @@ public class NP {
         }
         System.out.println("Voici la matrice récupéré : ");
         displayMatrice();
-
+        if(filename.endsWith("m")) {
+                k = 0;
+        }
+        else {
         System.out.println("Veuillez choisir la longueur maximale possible : ");
-        k = Integer.parseInt(sc.nextLine());
+        
+        k = Integer.parseInt(sc.nextLine());}
+        
     }
 
     /**
@@ -321,10 +326,9 @@ public class NP {
             for (String aData : data) {
                 if (!aData.trim().equals("")) {
                 	int val;
-                	if(aData.trim().equals("False")) {val = 9999;}
+                	if(aData.trim().equals("False")) {val = 1;}
                 	else {
-                		Random random = new Random();
-                        val = random.nextInt(dimension);}
+                        val = 0;}
                     matrice[i][cpt] = val;
                     cpt++;
                 }

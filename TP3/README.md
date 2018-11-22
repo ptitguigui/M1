@@ -56,17 +56,20 @@ L'algorithme correspondant est "vericiationAllPossibilities" dans ma classe NP <
 ## Réductions polynomiales
 
 
-### Question 1 :
+### Question 1 : Réduction Hamilton Cycle vers TSP
 
 
-Q.1 HamiltonCycle -> Villes.Cycle hamiltonien ham: [0 .. n-1] -> [0 .. n-1] - Permutation de n villes tel que:
+Hamilton Cycle.
+
+Cycle hamiltonien ham: [0 .. n-1] -> [0 .. n-1]
 - D(ham(v), ham(v+1))= True, pour tout 0 <= v <= n-2
 - D(ham(v-1), ham(0))= True
 - Non, si non
 
+
 #### Reduction
 
-L'objectif est de réduire un problème cycle Hamiltonien vers un problème TSP
+Q1. L'objectif est de réduire un problème cycle Hamiltonien vers un problème TSP
 
 Dans la suite nous aurons:
 
@@ -92,7 +95,7 @@ l'algorithme de réduction est polynomiale , En effet la réduction sera faite p
 
 #### Réduction correcte
 
-Un cycle hamiltonien donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit = 0 et la longueur obtenue suite à la résolution du problème TSP sera égal à 0, la valeur fixée pour la longueur totale.
+La réduction du cycle hamiltonien vers TSP donne une matrice d' entiers n*n tel que la distance entre deux villes quand elles sont liées soit = 0 et la longueur obtenue suite à la résolution du problème TSP sera égal à 0, la valeur fixée pour la longueur totale.
 
 Q2. (Voir code : initValHAM)
 
@@ -101,7 +104,56 @@ Q3. Etant donnée que Halmitone-Cycle est NP-Complet et, en considérant le fait
 Q4. Oui il se réduit. En effet, tous les deux sont NP-Complet. Par conséquent ils se réduisent polynomialement l'un,l'autre .  
 
 
-### Question 2 :
+### Question 2 : Reduction Hamilton Path vers Hamilton Cycle
 
-Q1. 
+Hamiton Path.
+
+Path hamiltonien ham: [0 .. n-1] -> [0 .. n-1]
+- D(ham(v), ham(v+1))= True, pour tout 0 <= v <= n-1
+- Non, si non
+
+
+#### Reduction
+
+Q1. L'objectif est de réduire un problème path Hamiltonien vers un problème cycle hamiltonien.
+
+Dans la suite nous aurons:
+
+- P la matrice TSP qui sera générée
+- G le graphe de Hamilton Cycle
+- E le graphe de Hamilton Path
+- N le nombre de sommets sur le graphe G
+- n le nombre de sommets sur E
+- D la matrice correspondant au cycle hamiltonien
+
+
+La réduction sera faite de la manière suivante:
+
+- N le nombre de sommets sur G sera: N = n+1
+- La construction de la matrice E se fera de la manière suivante:
+Pour tout sommets s1, s2 ayant un numéro compris entre 0 et n-1
+- si E(s1, s2) = True -> D(s1, s2) = True
+- si E(s1, s2) = False -> D(s1, s2) = False
+
+On ajoutera un sommet z dans Hamilton Cycle tel que:
+
+pour tout i compris entre 0 et n-1, on ait:
+
+E(z,si) = true;
+
+
+Ensuite le résolution du problème Hamilton cycle sera faite par une réduction au probème TSP que l'on sait déjà faire.
+
+
+L'algorithme de réduction est polynomiale, le passage de la matrice E à D, necessite un parcours d'un tableau à deux entrées et un ajout d'un sommet.Ce qui nous conduits à une construction en theta(n²)
+
+#### Réduction correcte
+
+La réduction de Hamilton Path donne une matrice de taille (n+1)* (n+1) avec un nouveau sommet qui est rélié avec tous les autres sommets. Nous aurons bien un cycle vu que ce nouveau sommet sera lié au premier sommet et au dernier sommet du path provenant de Hamilton Path, nous aurons donc une solution de Hamilton cycle.
+
+### Question 3 : Réduction Hamilton Path vers TSP
+  
+Etant donné que Hamilton Path se réduit polynomialement en Hamilton Cycle(déjà prouvé) et que Hamilton Cycle se réduit polynomialement en TSP (déjà prouvé), on en déduit qu'une réduction polynomialement de Hamilton path se réduit en TSP.
+
+
 

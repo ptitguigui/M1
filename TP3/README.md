@@ -170,7 +170,6 @@ L = une longueur quelconque suffisamment grande.
 
 TSPOpt1 aura comme solution la longueur minimale parmis les longueurs des certificats valides. Si TSP n'a pas de solution TSPOpt1 n'en aura pas aussi.
 
-La solution pour TSPOpt1 est aussi valable pour TSPpt2
 
 
 #### Question 6
@@ -179,15 +178,19 @@ La solution pour TSPOpt1 est aussi valable pour TSPpt2
 
 TSPOpt1 sera P si TSP est P. En effet TSP se réduit polyniomalement en TSPOpt1 correspondant à l'affectation TS = T, 
 Avec TS la matrice de TSPOpt1 qui sera générée et T la matrice TSP. 
-Donc si TSP est P, alors TSPOpt1 sera aussi P (le but de la réduction étant de passer à un problème plus facile à résoudre).
+Donc si TSP est P, alors TSPOpt1 sera (au pire) P (le but de la réduction étant de passer à un problème plus facile à résoudre).
 
-Si TSPOpt1 a  comme solution une distance l, il faudra prendra cette distance comme L la longueur en entré dans TSP. Et TSP aura une solution. Si TSPOpt1 n'a pas de solution alors TSP avec une longueur L = l n'aura pas de solution car il n'existera pas une tournée tel que la longueur minimale soit <= l.
+Si TSPOpt1 a  comme solution une distance l, il faudra prendra cette distance comme L la longueur en entré dans TSP. Et TSP aura une solution. Si TSPOpt1 n'a pas de solution alors TSP avec une longueur L = l n'aura pas de solution car il n'existera pas une tournée tel que la longueur soit <= l.
 
 
 #### Question 7
 
 
+TSPOpt2 sera P si TSP est P. En effet TSP se réduit polyniomalement en TSPOpt2 correspondant à l'affectation TS = T, 
+Avec TS la matrice de TSPOpt2 qui sera générée et T la matrice TSP. 
+Donc si TSP est P, alors TSPOpt2 sera (au pire) P (le but de la réduction étant de passer à un problème plus facile à résoudre).
 
+Si TSPOpt2 a  comme solution une tournée avec une distance l minimale, il faudra prendra cette distance comme L la longueur en entré dans TSP. Et TSP aura une solution. Si TSPOpt2 n'a pas de solution alors TSP avec une longueur L = l n'aura pas de solution car il n'existera pas une tournée tel que la longueur soit <= l.
 
 
 

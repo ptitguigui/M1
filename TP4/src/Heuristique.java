@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Heuristique {
@@ -9,16 +11,84 @@ public class Heuristique {
 
     public static void main(String[] args) {
         init();
-        heuristiqueGlobaleIterative();
+        List<Integer> sommets = heuristiqueGlobaleIterative();
+        System.out.println("Résultat de l'heuristique globales de façon itérative : " + calculDistance(sommets) + " pour la permutation : " + sommets);
     }
 
-
-    private static void heuristiqueGlobaleIterative() {
+    /**
+     * Methode qui permet de calculer la solution optimale de la façon suivante :
+     * - Choisir un sommet (soit par l'utilisateur, soit la meilleur)
+     * - Trouver la ville la plus proche du dernier sommet visité avec une ville non encore sélectionnée
+     * et l’ajouter au tour.
+     * - S’arrêter lorsque l’on a sélectionné toutes les villes
+     *
+     * @return La liste des sommets réprésentant une permutation
+     */
+    private static List<Integer> heuristiqueGlobaleIterative() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez choisir le premier sommet entre 0 et "+dimension+" :");
+        List<Integer> sommetsIn = new ArrayList<>();
+        List<Integer> sommetsOut = new ArrayList<>();
+        int taille = dimension - 1;
+
+        //Ajoute tous les cas possible
+        for (int i = 0; i < dimension; i++)
+            sommetsIn.add(i);
+
+        System.out.println("Veuillez choisir le premier sommet entre 0 et " + taille + " :");
         int sommet = Integer.parseInt(sc.nextLine());
 
-        System.out.println(sommet);
+        //int sommet = getDepartSommet();
+
+
+        sommetsIn.remove(new Integer(sommet));
+        sommetsOut.add(sommet);
+
+        int addSommet = 0;
+        while (!sommetsIn.isEmpty()) {
+            int min = 9999;
+            for (int i : sommetsIn) {
+                if (matrice[sommet][i] != 0 && matrice[sommet][i] < min) {
+                    min = matrice[sommet][i];
+                    addSommet = i;
+                }
+            }
+            sommet = addSommet;
+            sommetsIn.remove(new Integer(addSommet));
+            sommetsOut.add(addSommet);
+        }
+        return sommetsOut;
+    }
+
+    /**
+     * Methode qui retourne le sommet qui à la distance la plus courte
+     *
+     * @return l'entier représentant le sommet
+     */
+    private static int getDepartSommet() {
+        int min = matrice[0][0];
+        int sommet = 0;
+
+        for (int i = 0; i < dimension; i++)
+            for (int j = 0; j < dimension; j++)
+                if (matrice[i][j] != 0 && matrice[i][j] < min) {
+                    sommet = i;
+                    min = matrice[i][j];
+                }
+        return sommet;
+    }
+
+    /**
+     * Calcule la distance totale d'un certificat en cycle (retour vers le premier)
+     *
+     * @param list le certificat
+     * @return la distance totale
+     */
+    static int calculDistance(List<Integer> list) {
+        int res = 0;
+        for (int i = 0; i < list.size(); i++) {
+            res += matrice[list.get(i)][list.get((i + 1) % (dimension))];
+        }
+        return res;
     }
 
     /**

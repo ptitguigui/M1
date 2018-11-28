@@ -255,9 +255,10 @@ void free_blocs(unsigned int blocs[], unsigned int size){
 
 void display_bloc()
 {
-	printf("Nombre de bloc : %d\nTaille\tUtilisé\tDispo.\n%d\t%d\t%d\n",
-			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
-			mbr.mbr_vols[current_volume].vol_n_sectors-1,
-			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
+
+  load_super(current_volume);
+	printf("Nombre de bloc : %d\nUtilisé\tDispo.\n %d\t %d\n",
+			mbr.mbr_vols[current_volume].vol_n_sectors,
+			mbr.mbr_vols[current_volume].vol_n_sectors-super.nb_bloc_free,
 			super.nb_bloc_free);
 }

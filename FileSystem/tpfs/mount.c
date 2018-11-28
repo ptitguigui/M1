@@ -4,7 +4,7 @@
 
    Initialization and finalization
    Philippe Marquet, Nov 2009
-   
+
 */
 
 #include <stdlib.h>
@@ -23,16 +23,15 @@ load_current_volume ()
 {
     char* current_volume_str;
     int status;
-    
+
     current_volume_str = getenv("CURRENT_VOLUME");
-    ffatal(current_volume_str != NULL, "no definition of $CURRENT_VOLUME"); 
+    ffatal(current_volume_str != NULL, "no definition of $CURRENT_VOLUME");
 
     errno = 0;
     current_volume = strtol(current_volume_str, NULL, 10);
     ffatal(!errno, "bad value of $CURRENT_VOLUME %s", current_volume_str);
-    
-    status = load_super(current_volume);
 
+    status = load_super(current_volume);
     ffatal(!status, "unable to load super of vol %d", current_volume);
 }
 
@@ -59,7 +58,7 @@ void
 mount()
 {
     char *hw_config;
-    int status, i; 
+    int status, i;
 
     /* Hardware initialization */
     hw_config = get_hw_config();
@@ -69,7 +68,7 @@ mount()
     /* Interrupt handlers */
     for(i=0; i<16; i++)
 	IRQVECTOR[i] = emptyIT;
-    
+
     /* Allows all IT */
     _mask(1);
 
@@ -86,5 +85,3 @@ umount()
 
     /* bye */
 }
- 
-

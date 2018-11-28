@@ -15,20 +15,19 @@ unsigned int create_inode(enum file_type_e type){
 
     inode.inode_ft = type;
     inode.ind_size = 0;
-    
+
     for (i=0; i < NDIRECT; i++){
         inode.inode_direct[i] = BLOC_NULL;
     }
-    
+
     inode.inode_indirect = BLOC_NULL;
     inode.inode_2indirect = BLOC_NULL;
 
     inumber = new_bloc();
-    printf("%d", inumber);
     write_inode(inumber, &inode);
 
     return inumber;
-} 
+}
 int delete_inode(unsigned int inumber){
     struct inode_s inode;
 
@@ -59,7 +58,7 @@ unsigned int vbloc_of_fbloc(unsigned int inumber, unsigned int fbloc,bool_t do_a
             inode.inode_direct[fbloc] = new_bloc();
             write_inode(inode.inode_direct[fbloc], &inode);
         }
-    
+
         return inode.inode_direct[fbloc];
     }
 
@@ -75,7 +74,7 @@ unsigned int vbloc_of_fbloc(unsigned int inumber, unsigned int fbloc,bool_t do_a
 
         unsigned blocs[NNBPB];
         read_bloc(current_volume, inode.inode_indirect, blocs, NNBPB*sizeof(unsigned int));
-        
+
         return blocs[fbloc];
     }
 

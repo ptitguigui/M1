@@ -2,9 +2,9 @@
    $Id: if_nfile.c,v 1.1 2009/11/16 05:38:07 marquet Exp $
    ------------------------------------------------------------
 
-   Create a new file, read from stdin, return the inumber 
+   Create a new file, read from stdin, return the inumber
    Philippe Marquet, Nov 2009
-   
+
 */
 
 #include <stdio.h>
@@ -20,14 +20,13 @@ nfile()
     unsigned int inumber;
     int status;
     int c;
-    
+
     inumber = create_ifile(FILE_FILE);
     ffatal(inumber, "erreur creation fichier");
-    printf("%u\n", inumber);
 
     status = open_ifile(&fd, inumber);
     ffatal(!status, "erreur ouverture fichier %d", inumber);
-    
+
     while((c=getchar()) != EOF)
         writec_ifile(&fd, c);
 
@@ -51,6 +50,6 @@ main (int argc, char *argv[])
     mount();
     nfile();
     umount();
-    
-    exit(EXIT_SUCCESS);         
+
+    exit(EXIT_SUCCESS);
 }

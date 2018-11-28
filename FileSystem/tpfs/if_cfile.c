@@ -5,7 +5,7 @@
    Copy a file given by its inumber to another file.
    Return the new file inumber.
    Philippe Marquet, Nov 2009
-   
+
 */
 
 #include <stdio.h>
@@ -21,14 +21,13 @@ cfile(unsigned int sinumber)
     unsigned int dinumber;
     int status;
     int c;
-    
+
     dinumber = create_ifile(FILE_FILE);
     ffatal(dinumber, "erreur creation fichier");
-    printf("%d\n", dinumber);
-
+    
     status = open_ifile(&dfd, dinumber);
     ffatal(!status, "erreur ouverture fichier %d", dinumber);
-    
+
     status = open_ifile(&sfd, sinumber);
     ffatal(!status, "erreur ouverture fichier %d", sinumber);
 
@@ -51,7 +50,7 @@ int
 main (int argc, char *argv[])
 {
     unsigned inumber;
-    
+
     if (argc != 2)
         usage(argv[0]);
 
@@ -63,6 +62,6 @@ main (int argc, char *argv[])
     mount();
     cfile(inumber);
     umount();
-    
-    exit(EXIT_SUCCESS);         
+
+    exit(EXIT_SUCCESS);
 }

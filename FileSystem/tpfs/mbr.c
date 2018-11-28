@@ -1,7 +1,7 @@
 #include "mbr.h"
 
 /*
-TODO : 
+TODO :
     - Verifier si on écrit dans une partition --> isCorrect
     - MAIN
 */
@@ -24,7 +24,7 @@ int load_mbr(){
 
     if(mbr.mbr_magic != MBR_MAGIC){
         /*initialisation de mbr*/
-        
+
         mbr.mbr_magic = MBR_MAGIC;
         int i;
         for(i=0; i<MAXVOL; i++){
@@ -32,7 +32,6 @@ int load_mbr(){
         mbr.mbr_vols[i].vol_first_sector = 0;
         mbr.mbr_vols[i].vol_first_cylinder = 0;
         mbr.mbr_vols[i].vol_n_sectors = 0;}
-
         return 0;
     }
     return 1;
@@ -47,18 +46,18 @@ int sector_of_bloc(int numVol, int numBloc){
     assert(numVol < MAXVOL);
     assert(numBloc < vol.vol_n_sectors);
     assert(vol.vol_type != VNONE);
-    
-    return (vol.vol_first_sector + numBloc)%HDA_MAXSECTOR; 
+
+    return (vol.vol_first_sector + numBloc)%HDA_MAXSECTOR;
 }
 int cylinder_of_bloc(int numVol, int numBloc){
-  
+
     struct vol_descr_s vol = mbr.mbr_vols[numVol];
 
     assert(numVol < MAXVOL);
     assert(numBloc < vol.vol_n_sectors);
     assert(vol.vol_type != VNONE);
-    
-    return vol.vol_first_cylinder + (int)((numBloc+vol.vol_first_sector) / HDA_MAXSECTOR);   
+
+    return vol.vol_first_cylinder + (int)((numBloc+vol.vol_first_sector) / HDA_MAXSECTOR);
 }
 void read_bloc(unsigned int numVol,unsigned int numBloc, unsigned int size, unsigned char *buffer){
     assert(mbr.mbr_vols[numVol].vol_type != VNONE);
@@ -87,7 +86,7 @@ char * printType(enum vol_type_e type){
 
 void display_vol(){
     int c0,s0,nBloc,cl,sl,i;
-    char *type; 
+    char *type;
     for(i=0; i<MAXVOL; i++){
         if(mbr.mbr_vols[i].vol_type != VNONE){
 
@@ -120,7 +119,7 @@ void make_vol(unsigned int first_sector, unsigned int first_cylinder,unsigned in
             break;
         }
     }
-    
+
 }
 static void empty_it()
 {
@@ -130,7 +129,7 @@ static void empty_it()
 void init_mbr()
 {
 	 unsigned int i;
-    
+
     /* init hardware */
     if(init_hardware("hwconfig.ini") == 0) {
 	fprintf(stderr, "Error in hardware initialization\n");
@@ -179,14 +178,15 @@ int load_super(unsigned int vol){
     read_bloc(vol, SUPER, sizeof(struct super_s), &super);
 
     if(super.super_magic == SUPERMAGIC){
-        return EXIT_FAILURE;
-    }
-
-    if (current_volume == NULL){
         current_volume = vol;
+        return EXIT_SUCCESS;
     }
 
-    return current_volume;
+    /*if (current_volume == NULL){
+        current_volume = vol;
+    }*/
+
+    return EXIT_FAILURE;
 }
 void save_super(){
     write_bloc(current_volume, SUPER, sizeof(struct freeb_s), &super);
@@ -198,7 +198,7 @@ unsigned int new_bloc(){
         printf("etst');");
         return 0;
     }
-    
+
 	assert(super.super_first_free);
 
     unsigned int bloc = super.super_first_free;
@@ -210,7 +210,7 @@ unsigned int new_bloc(){
         write_bloc(current_volume, bloc+1, sizeof(struct freeb_s), &fb);
         super.super_first_free ++;
     }else{
-       super.super_first_free = fb.fb_next; 
+       super.super_first_free = fb.fb_next;
     }
     super.nb_bloc_free --;
     save_super();
@@ -224,7 +224,7 @@ unsigned int new_bloc_zero(){
 
     memset(buffer, 0, BLOC_SIZE);
     bloc = new_bloc();
-    
+
     write_bloc(current_volume, bloc, BLOC_SIZE, buffer);
 
     return bloc;
@@ -261,5 +261,3 @@ void display_bloc()
 			mbr.mbr_vols[current_volume].vol_n_sectors-1-super.nb_bloc_free,
 			super.nb_bloc_free);
 }
-
-

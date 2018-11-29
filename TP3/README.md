@@ -100,7 +100,7 @@ La réduction du cycle hamiltonien vers TSP donne une matrice d' entiers n*n tel
 Q2. (Voir code : initValHAM)
 
 Q3. Etant donnée que Halmitone-Cycle est NP-Complet et, en considérant le faite que Halmitone-Cycle se réduis en TSP, TSP est donc au pire NP-Complet. 
-
+    
 Q4. Oui il se réduit. En effet, tous les deux sont NP-Complet. Par conséquent ils se réduisent polynomialement l'un,l'autre .  
 
 

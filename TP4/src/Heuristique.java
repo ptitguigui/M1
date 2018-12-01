@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,15 +15,17 @@ public class Heuristique {
     public static void main(String[] args) {
         init();
 
-        List<Integer> sommetsGlobale = heuristiqueGlobaleIterative();
-        System.out.println("Résultat de l'heuristique globales de façon itérative : " + calculDistance(sommetsGlobale) + " pour la permutation : " + sommetsGlobale);
+       /* List<Integer> sommetsGlobale = heuristiqueGlobaleIterative();
+        System.out.println("Résultat de l'heuristique globales de façon itérative : " + calculDistance(sommetsGlobale) + " pour la permutation : " + displayPermutation(sommetsGlobale));
 
-        /*List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
+        List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
         System.out.println("Résultat de l'heuristique avec toutes les possibilités: "
                 + calculDistance(sommetsAllPossibilities) + " pour la permutation : " + sommetsAllPossibilities);
-
-        List<Integer> otherList = swap(sommetsAllPossibilities, 2, 5);
-        System.out.println(otherList);*/
+        */
+        List<Integer> list = getNewList();
+        List<Integer> otherList = swap(list, 2, 5);
+        System.out.println(getNewList());
+        System.out.println(otherList);
 
     }
 
@@ -33,20 +38,18 @@ public class Heuristique {
      * @return la liste avec les deux éléments swap
      */
     private static List<Integer> swap(List<Integer> list, int debut, int fin) {
-        List<Integer> newList = new ArrayList<Integer>();
+        List<Integer> newList = new ArrayList<>();
 
         for (int i = 0; i <= debut; i++) {
-            newList.add(list.get(i));
+            newList.add(list.get(0));
+            list.remove(0);
         }
 
-        for (int j = fin; j > debut; j--) {
-            newList.add(list.get(j));
-        }
+        newList.add(fin);
+        list.remove(new Integer(fin));
 
-        if (fin < list.size()) {
-            for (int k = fin + 1; k < list.size(); k++) {
-                newList.add(list.get(k));
-            }
+        for (int sommet : list) {
+            newList.add(sommet);
         }
 
         return newList;
@@ -66,12 +69,12 @@ public class Heuristique {
         List<Integer> sommets = new ArrayList<>();
         List<Integer> sommetsOut = new ArrayList<>();
         List<Integer> bestSolution = new ArrayList<>();
-
-        /*System.out.println("Veuillez choisir le premier sommet entre 0 et " + taille + " :");
-        int sommet = Integer.parseInt(sc.nextLine());
-        int sommet = getDepartSommet();*/
-
         int min = 9999;
+        int taille = dimension - 1;
+
+        //Pour tous les sommets possible en entrée,
+        // choisir la permutation qui a la plus courte distance
+        // selon l'algo  globale itérative
         for (int i = 0; i < dimension; i++) {
             List<Integer> sommetsIn = getNewList();
             int currentDistance = searchBestWithTheFirst(i, sommetsIn, sommetsOut);
@@ -92,15 +95,24 @@ public class Heuristique {
         return sommets;
     }
 
+    /**
+     * Algo globale itérative qui crée une permutation selon un sommet de départ
+     * et l'ensemble des plus courte distance pour chaque sommets
+     *
+     * @param sommet     le point de départ
+     * @param sommetsIn  la liste des sommets possible
+     * @param sommetsOut la permutation finale
+     * @return la distance de la permutation sommetsOut
+     */
     private static int searchBestWithTheFirst(int sommet, List<Integer> sommetsIn, List<Integer> sommetsOut) {
-        // Retire parmis les sommets disponible
+        // Retire le sommet parmis les sommets disponible
         sommetsIn.remove(new Integer(sommet));
         // L'ajoute la premiere permutation
         sommetsOut.add(sommet);
 
         int addSommet = 0;
-        int cpt = 0;
-        while (!sommetsIn.isEmpty() || (cpt < dimension)) {
+        int cpt = 1;
+        while (!sommetsIn.isEmpty() && (cpt < dimension)) {
             int min = 9999;
             for (int i : sommetsIn) {
                 if (matrice[sommet][i] != 0 && matrice[sommet][i] < min) {
@@ -113,7 +125,6 @@ public class Heuristique {
             sommetsIn.remove(new Integer(addSommet));
             sommetsOut.add(addSommet);
         }
-        System.out.println(sommetsOut);
         return calculDistance(sommetsOut);
     }
 
@@ -259,6 +270,20 @@ public class Heuristique {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Affiche le certificat sous la forme demandé en entrée sur code contest
+     *
+     * @param list la permutation a afficher
+     * @return la permutation sous forme d'une chaine de caractère
+     */
+    private static String displayPermutation(List<Integer> list) {
+        String res = "";
+        for (int i : list) {
+            res += i + " ";
+        }
+        return res;
     }
 
     /**

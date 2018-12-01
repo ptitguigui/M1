@@ -15,18 +15,16 @@ public class Heuristique {
     public static void main(String[] args) {
         init();
 
-       /* List<Integer> sommetsGlobale = heuristiqueGlobaleIterative();
+        List<Integer> sommetsGlobale = heuristiqueGlobaleIterative();
         System.out.println("Résultat de l'heuristique globales de façon itérative : " + calculDistance(sommetsGlobale) + " pour la permutation : " + displayPermutation(sommetsGlobale));
 
         List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
-        System.out.println("Résultat de l'heuristique avec toutes les possibilités: "
-                + calculDistance(sommetsAllPossibilities) + " pour la permutation : " + sommetsAllPossibilities);
-        */
-        List<Integer> list = getNewList();
+        System.out.println("Résultat de l'heuristique avec toutes les possibilités: " + calculDistance(sommetsAllPossibilities) + " pour la permutation : " + displayPermutation(sommetsAllPossibilities));
+
+       /* List<Integer> list = getNewList();
         List<Integer> otherList = swap(list, 2, 5);
         System.out.println(getNewList());
-        System.out.println(otherList);
-
+        System.out.println(otherList);*/
     }
 
     /**

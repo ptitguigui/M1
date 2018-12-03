@@ -40,15 +40,13 @@ static void mmuhandler()
 
     vaddr = _in(MMU_FAULT_ADDR);
 
-    if((unsigned int)virtual_memory < vaddr || vaddr >= ((unsigned int) virtual_memory + VM_SIZE)){
-        printf("dedans premier if : VM_SIZE = 0x%.8X, virtual_memory = 0x%.8X, vaddr = 0x%.8X,  \n", VM_SIZE, virtual_memory, vaddr );
+    if(vaddr >= ((unsigned int) virtual_memory + VM_SIZE)){
         error();
     }
 
     int vpage = (vaddr >> 12) & 0xFFF;
 
     if(vpage >= N/2){
-        printf("dedans deuxieme if \n");
         error();
     }
 

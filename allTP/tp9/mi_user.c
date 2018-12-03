@@ -1,8 +1,5 @@
 #include "mi_syscall.h"
 
-
-static int current_process;
-
 static int 
 sum(void *ptr) 
 {
@@ -15,8 +12,7 @@ sum(void *ptr)
 }
 
 
-int 
-main(int argc, char **argv) 
+int main(int argc, char **argv) 
 {
     void *ptr;
     int res;
@@ -38,4 +34,6 @@ main(int argc, char **argv)
     _int(SYSCALL_SWTCH_1);
     res = sum(ptr);
     printf("Resultat processus 1 : %d\n",res);
+
+    return 0;
 }

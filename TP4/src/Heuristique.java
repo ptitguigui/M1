@@ -16,12 +16,29 @@ public class Heuristique {
         init();
 
         List<Integer> sommetsGlobale = heuristiqueGlobaleIterative();
-        System.out.println("Résultat de l'heuristique globales de façon itérative : " + calculDistance(sommetsGlobale) + " pour la permutation : " + displayPermutation(sommetsGlobale));
+        int heuristique = calculDistance(sommetsGlobale);
+        System.out.println("Résultat de l'heuristique globales de façon itérative : " + heuristique + " pour la permutation : " + displayPermutation(sommetsGlobale));
 
-        List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
+        /*List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
         System.out.println("Résultat de l'heuristique avec toutes les possibilités: " + calculDistance(sommetsAllPossibilities) + " pour la permutation : " + displayPermutation(sommetsAllPossibilities));
+        */
+        List<Integer> sommetsLocal = sommetsGlobale;
 
-       /* List<Integer> list = getNewList();
+        for (int i : sommetsLocal) {
+            for (int j = i + 1; j < dimension - 1; j++) {
+                List<Integer> list = swap(sommetsLocal, i, j);
+                System.out.println(list);
+                int newHeuristique = calculDistance(list);
+                if (!(newHeuristique < heuristique)) {
+                    swap(sommetsLocal, j, i);
+                } else {
+                    heuristique = newHeuristique;
+                }
+            }
+        }
+        System.out.println("Résultat de l'heuristique Locale : " + heuristique + " pour la permutation : " + displayPermutation(sommetsGlobale));
+
+       /*List<Integer> list = getNewList();
         List<Integer> otherList = swap(list, 2, 5);
         System.out.println(getNewList());
         System.out.println(otherList);*/
@@ -36,6 +53,8 @@ public class Heuristique {
      * @return la liste avec les deux éléments swap
      */
     private static List<Integer> swap(List<Integer> list, int debut, int fin) {
+        System.out.println("swap : "+list);
+        List<Integer> oldList = list;
         List<Integer> newList = new ArrayList<>();
 
         for (int i = 0; i <= debut; i++) {
@@ -46,10 +65,9 @@ public class Heuristique {
         newList.add(fin);
         list.remove(new Integer(fin));
 
-        for (int sommet : list) {
-            newList.add(sommet);
-        }
+        newList.addAll(list);
 
+        list = oldList;
         return newList;
     }
 

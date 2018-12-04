@@ -1016,6 +1016,9 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_7Izc1OGoEei8g-F-snWXxQ" y="15"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_7I0D4OGoEei8g-F-snWXxQ" type="Class_AttributeCompartment">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-iLycPesEei3osk4Ko-mFw" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-iLycfesEei3osk4Ko-mFw" key="collapsed" value="true"/>
+        </eAnnotations>
         <children xmi:type="notation:Shape" xmi:id="_oYRgkOGpEei8g-F-snWXxQ" type="Property_ClassAttributeLabel">
           <element xmi:type="uml:Property" href="Produits.uml#_oYOdQOGpEei8g-F-snWXxQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_oYRgkeGpEei8g-F-snWXxQ"/>

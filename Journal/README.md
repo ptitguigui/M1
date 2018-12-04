@@ -37,3 +37,4 @@
 |1| Travail sur la maquette| 20/11/18 | 2:00 | 2:00 | Emeline et Thomas | 20/11/18 |
 |1| Travail sur le dossier| 27/11/18 | 2:00 | 2:00 | Guillaume, Florian, Fabien | 27/11/18 |
 |1| Travail sur la maquette| 27/11/18 | 2:00 | 2:00 | Emeline et Thomas | 27/11/18 |
+|1| Ajout de scénarios pour le patron| 04/12/18 | 1:00 | 1:00 | Thomas et Emeline | 04/12/18 |

@@ -41,6 +41,6 @@ Par conséquent il trouve uniquement les jeux de données suivants :
 - br17.atsp  et autres -->  données trop grande
 
 
-### Version exhaustive 
+### Version locale : Hill Climbing 
 
 #TODO

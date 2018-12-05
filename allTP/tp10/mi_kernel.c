@@ -1,6 +1,8 @@
 #include "mi_syscall.h"
 
+
 unsigned int current_process = 0;
+unsigned int vpage_mapped;
 
 static int ppage_of_vpage(int process, unsigned vpage){
     if(vpage > N/2 -1){
@@ -40,21 +42,20 @@ static void mmuhandler()
 
     vaddr = _in(MMU_FAULT_ADDR);
 
-    if(vaddr >= ((unsigned int) virtual_memory + VM_SIZE) || virtual_memory > vaddr){
+    if(vaddr >= ((unsigned int) virtual_memory + VM_SIZE) || vaddr < virtual_memory){
         error();
     }
 
-    int vpage = (vaddr >> 12) & 0xFFF;
+    store_to_swap(vpage_mapped, 1);
+    vpage_mapped = (vaddr >> 12) & 0xFFF;
 
-    if(vpage >= N/2){
-        error();
-    }
-
+    fetch_from_swap(vpage_mapped, 1);
     struct tlb_entry_s tlbe;
-    tlbe.tlbe_vpage = vpage;
-    tlbe.tlbe_ppage = ppage_of_vpage(current_process, vpage);
+    tlbe.tlbe_vpage = vpage_mapped ;
+    tlbe.tlbe_ppage = 1;
     tlbe.tlbe_xwr = 7;
-    tlbe.tlbe_access = 1;
+    tlbe.tlbe_access= 1;
+
     _out(TLB_ADD_ENTRY, *((int *)(&tlbe)));
 }
 
@@ -67,8 +68,8 @@ void init(){
 
     /* Interreupt handlers */
     IRQVECTOR[MMU_IRQ] = mmuhandler;
-    IRQVECTOR[SYSCALL_SWITCH_0] = switch_to_process0;
-    IRQVECTOR[SYSCALL_SWITCH_1] = switch_to_process1;
+    IRQVECTOR[SYSCALL_SWTCH_0] = switch_to_process0;
+    IRQVECTOR[SYSCALL_SWTCH_1] = switch_to_process1;
     
     
 }

@@ -23,15 +23,15 @@ int main(int argc, char **argv)
 
     ptr = virtual_memory;
 
-    _int(SYSCALL_SWITCH_0);
+    _int(SYSCALL_SWTCH_0);
     memset(ptr, 1, PAGE_SIZE * N/2);
-    _int(SYSCALL_SWITCH_1);
+    _int(SYSCALL_SWTCH_1);
     memset(ptr, 3, PAGE_SIZE * N/2);
 
-    _int(SYSCALL_SWITCH_0);
+    _int(SYSCALL_SWTCH_0);
     res = sum(ptr);
     printf("Resultat du processus 0 : %d\n",res);
-    _int(SYSCALL_SWITCH_1);
+    _int(SYSCALL_SWTCH_1);
     res = sum(ptr);
     printf("Resultat processus 1 : %d\n",res);
 

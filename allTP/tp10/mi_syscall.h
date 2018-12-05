@@ -3,10 +3,11 @@
 #include <string.h>
 #include <ctype.h>
 #include <assert.h>
+#include "swap.h"
 #include "hardware.h"
 
-#define SYSCALL_SWITCH_0 16
-#define SYSCALL_SWITCH_1 17
+#define SYSCALL_SWTCH_0 16
+#define SYSCALL_SWTCH_1 17
 
 #define PAGE_SIZE 4096
 #define PM_PAGES 256
@@ -30,4 +31,15 @@ struct tlb_entry_s{
     unsigned int tlbe_access:1;
 };
 
+struct vm_mapping_s{
+    unsigned int vm_ppage:8;
+    unsigned int vm_mapped:1;
+};
+
+struct pm_mapping_s{
+    unsigned int pm_ppage:12;
+    unsigned int pm_mapped:1;
+};
+static struct vm_mapping_s vm_mapping[VM_PAGES];
+static struct pm_mapping_s pm_mapping[PM_PAGES];
 void init(void);

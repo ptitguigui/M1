@@ -22,7 +22,7 @@ public class Heuristique {
         /*List<Integer> sommetsAllPossibilities = vericiationAllPossibilities(generateAllPossibilities());
         System.out.println("Résultat de l'heuristique avec toutes les possibilités: " + calculDistance(sommetsAllPossibilities) + " pour la permutation : " + displayPermutation(sommetsAllPossibilities));
         */
-        List<Integer> sommetsLocal = sommetsGlobale;
+       /* List<Integer> sommetsLocal = sommetsGlobale;
 
         for (int i : sommetsLocal) {
             for (int j = i + 1; j < dimension - 1; j++) {
@@ -37,11 +37,11 @@ public class Heuristique {
             }
         }
         System.out.println("Résultat de l'heuristique Locale : " + heuristique + " pour la permutation : " + displayPermutation(sommetsGlobale));
-
-       /*List<Integer> list = getNewList();
-        List<Integer> otherList = swap(list, 2, 5);
-        System.out.println(getNewList());
-        System.out.println(otherList);*/
+        	*/
+		List<Integer> list = getNewList();
+		List<Integer> otherList = swap(list, 2, 5);
+		System.out.println(getNewList());
+		System.out.println(otherList);
     }
 
     /**
@@ -53,22 +53,26 @@ public class Heuristique {
      * @return la liste avec les deux éléments swap
      */
     private static List<Integer> swap(List<Integer> list, int debut, int fin) {
-        System.out.println("swap : "+list);
-        List<Integer> oldList = list;
-        List<Integer> newList = new ArrayList<>();
+    	List<Integer> newList = new ArrayList<Integer>();
 
-        for (int i = 0; i <= debut; i++) {
-            newList.add(list.get(0));
-            list.remove(0);
-        }
+		for (int i = 0; i < debut; i++) {
+			newList.add(list.get(i));
+		}
+		
+		for (int j = fin; j > debut; j--) {
+			newList.add(list.get(j));
+		}
+		
+		newList.add(list.get(debut));
 
-        newList.add(fin);
-        list.remove(new Integer(fin));
+		if (fin < list.size()) {
+			for (int k = fin + 1; k < list.size(); k++) {
+				newList.add(list.get(k));
+			}
+		}
 
-        newList.addAll(list);
+		return newList;
 
-        list = oldList;
-        return newList;
     }
 
     /**
@@ -359,6 +363,5 @@ public class Heuristique {
         for (int i = 0; i < 3; i++) {
             br.readLine();
         }
-
     }
 }

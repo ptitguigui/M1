@@ -15,8 +15,8 @@ Dans ce tp vous trouverez les fichiers suivant :
 - make
 - ./mkvol
 - ./mknfs
-- CURRENT_VOLUME=0
-- export CURRENT_VOLUME
+- export CURRENT_VOLUME=0
 - ./if_nfile
-- ./if_cfile
-- ./if_pfile
+- ./if_cfile 1
+- ./if_pfile 1
+- ./dfs

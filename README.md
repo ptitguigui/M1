@@ -103,3 +103,10 @@ Au sein de ce repo, veuillez trouver les documents suivants :
 
 - Mise à jour des DSS  
 - Avancement de la maquette
+
+
+### Semaine 10:
+
+- ajouts de scénarios sur la gestion patron
+- Mise à jour des DSS sur la gestion patron  
+- Avancement de la maquette sur la gestion patron

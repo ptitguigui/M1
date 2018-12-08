@@ -38,3 +38,6 @@
 |1| Travail sur le dossier| 27/11/18 | 2:00 | 2:00 | Guillaume, Florian, Fabien | 27/11/18 |
 |1| Travail sur la maquette| 27/11/18 | 2:00 | 2:00 | Emeline et Thomas | 27/11/18 |
 |1| Ajout de scénarios pour le patron| 04/12/18 | 1:00 | 1:00 | Thomas et Emeline | 04/12/18 |
+|1| Travail sur les DSS | 04/12/18 | 1:30 | 1:45 | Guillaume | 04/12/18 |
+|1| Travail sur l'UML | 04/12/18 | 1:00 | 1:00 |Fabien | 04/12/18 |
+|1| Travail sur le dossier final | 04/12/18 |2:00 | 2:00 | Guillaume | 08/12/18 |

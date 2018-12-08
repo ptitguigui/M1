@@ -2,6 +2,7 @@
 
 void f_ping(void *arg);
 void f_pong(void *arg);
+int i;
 
 int main(int argc, char *argv[])
 {
@@ -14,22 +15,22 @@ int main(int argc, char *argv[])
 
 void f_ping(void *args)
 {
-    for(int i=0; i<10; i++) {
+    for(i=0; i<10; i++) {
         printf("A") ;
-        for (int i=0; i<1000000; i++);
+        for (i=0; i<1000000; i++);
         printf("B") ;
-        for (int i=0; i<1000000; i++);
+        for (i=0; i<1000000; i++);
         printf("C") ;
-        for (int i=0; i<1000000; i++);
+        for (i=0; i<1000000; i++);
     }
 }
 
 void f_pong(void *args)
 {
-    for(int i=0; i<10; i++) {
+    for(i=0; i<10; i++) {
         printf("1") ;
-        for (int i=0; i<1000000; i++);
+        for (i=0; i<1000000; i++);
         printf("2") ;
-        for (int i=0; i<1000000; i++);
+        for (i=0; i<1000000; i++);
     }
 }

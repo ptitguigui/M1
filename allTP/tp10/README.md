@@ -1,4 +1,4 @@
-# TP2
+# TP10
 
 Le but de se TP est de creer plusieurs contextes d'éxecution se retournant la balle. Ici vous trouverez l'exemple d'un ping pong.
 

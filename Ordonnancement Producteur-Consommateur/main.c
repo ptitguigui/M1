@@ -1,6 +1,6 @@
 #include "context.h"
 
-#define N 0                         /* nombre de places dans le tampon */
+#define N 10                         /* nombre de places dans le tampon */
 static int cpt = 0;
 static struct sem_s mutex, vide, plein;
 

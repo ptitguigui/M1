@@ -15,3 +15,8 @@ Dans ce tp vous trouverez les fichiers suivant :
 - Readme.md
 - hwconfig.ini
 - hwconfig.h
+
+## Utilisation 
+
+- make
+- ./main

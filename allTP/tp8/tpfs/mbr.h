@@ -2,7 +2,7 @@
 
 #define MAXVOL 8
 #define MBR_MAGIC 0xBEBE
-#define BLOC_SIZE  SECTORSIZE  
+#define BLOC_SIZE  SECTORSIZE
 /*TP7*/
 #define SUPERMAGIC 0xCAFE
 #define SUPER 0
@@ -20,6 +20,7 @@ struct vol_descr_s {
 struct mbr_s{
     struct vol_descr_s mbr_vols[MAXVOL];
     unsigned int mbr_magic;
+    int current_volume;
 };
 
 extern struct mbr_s mbr;

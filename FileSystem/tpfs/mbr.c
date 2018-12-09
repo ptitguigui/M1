@@ -29,9 +29,9 @@ int load_mbr(){
         int i;
         for(i=0; i<MAXVOL; i++){
         mbr.mbr_vols[i].vol_type = VNONE;
-        mbr.mbr_vols[i].vol_first_sector = 0;
+        /*mbr.mbr_vols[i].vol_first_sector = 0;
         mbr.mbr_vols[i].vol_first_cylinder = 0;
-        mbr.mbr_vols[i].vol_n_sectors = 0;}
+        mbr.mbr_vols[i].vol_n_sectors = 0*/;}
         return 0;
     }
     return 1;
@@ -159,26 +159,23 @@ void init_volume(unsigned int vol){
 
     /*Initialisation du superBloc*/
     //struct super_s mySuper;
-    super.super_magic = SUPERMAGIC;
-    super.super_first_free = 1;
-    //printf("nb bloc free = %d\n", mbr.mbr_vols[vol].vol_n_sectors -1);
-    super.nb_bloc_free = mbr.mbr_vols[vol].vol_n_sectors -1;
-    write_bloc(vol, SUPER, sizeof(struct super_s), &super);
-
-
+    struct super_s sup_s;
+    sup_s.super_magic = SUPERMAGIC;
+    sup_s.super_first_free = 1;
+    sup_s.nb_bloc_free = mbr.mbr_vols[vol].vol_n_sectors -1;
+    write_bloc(vol, SUPER, sizeof(struct super_s), &sup_s);
     /*Initialisation du 1er bloc libre*/
     struct freeb_s fb;
     fb.fb_nbloc = mbr.mbr_vols[vol].vol_n_sectors -1;
     fb.fb_next = NULL;
     write_bloc(vol, 1, sizeof(struct freeb_s), &fb);
-
 }
 int load_super(unsigned int vol){
 
     read_bloc(vol, SUPER, sizeof(struct super_s), &super);
 
     if(super.super_magic == SUPERMAGIC){
-        current_volume = vol;
+        current_volume = mbr.current_volume;
         return EXIT_SUCCESS;
     }
 
@@ -189,13 +186,12 @@ int load_super(unsigned int vol){
     return EXIT_FAILURE;
 }
 void save_super(){
-    write_bloc(current_volume, SUPER, sizeof(struct freeb_s), &super);
+    write_bloc(current_volume, SUPER, sizeof(struct super_s), &super);
 }
 unsigned int new_bloc(){
     struct freeb_s fb;
 
     if (super.nb_bloc_free == 0){
-        printf("etst');");
         return 0;
     }
 
@@ -256,6 +252,7 @@ void free_blocs(unsigned int blocs[], unsigned int size){
 void display_bloc()
 {
 
+  current_volume = mbr.current_volume;
   load_super(current_volume);
 	printf("Nombre de bloc : %d\nUtilisé\tDispo.\n %d\t %d\n",
 			mbr.mbr_vols[current_volume].vol_n_sectors,

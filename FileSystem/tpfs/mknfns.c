@@ -11,18 +11,19 @@ int main(int argc, char **argv)
 
 	init_mbr();
 	display_vol();
-	save_mbr();
+
 
 	printf("Saisir le numero du volume:\n");
     scanf("%i", &vol);
-    while (mbr.mbr_vols[vol].vol_n_sectors == 0)
+    while (mbr.mbr_vols[vol].vol_type == VNONE)
     {
     	printf("Veuillez saisir un  numero de volume valide:\n");
     	scanf("%i", &vol);
     }
-
+	mbr.current_volume = vol;
 	init_volume(vol);
-    
+	save_mbr();
+
 	/*printf("Saisir le nombre de blocs:\n");
     scanf("%i", &nb_blocs);
 
@@ -38,6 +39,6 @@ int main(int argc, char **argv)
 	}
 	printf("Superbloc rempli de %d blocs !\n", nb_blocs);
 	*/
-	
+
 	exit(EXIT_SUCCESS);
 }

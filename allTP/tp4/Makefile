@@ -1,4 +1,4 @@
-ROOTDIR=/home/enseign/ASE
+ROOTDIR=.
 
 CC = gcc
 
@@ -9,11 +9,11 @@ CFLAGS += -m32
 INCS    = -I$(ROOTDIR)/include
 LIBS    = -L$(ROOTDIR)/lib -lhardware
 
-ping_pong :main.o context.o 
-	$(CC) $(CFLAGS) -o main main.o context.o $(LIBS) 
-main.o :main.c hwconfig.h 
+ping_pong :main.o context.o
+	$(CC) $(CFLAGS) -o main main.o context.o $(LIBS)
+main.o :main.c hwconfig.h
 	$(CC) $(CFLAGS) $(INCS) -c main.c
-context.o :context.c hwconfig.h 
+context.o :context.c hwconfig.h
 	$(CC) $(CFLAGS) $(INCS) -c context.c
 
 

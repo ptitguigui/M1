@@ -1,4 +1,4 @@
-# Ordonnancement
+# TP3
 
 Le but de se TP est de creer un ordonnanceur avec interruptions. Ici vous trouverez l'exemple d'un ping pong se retournant la main aléatoirement.
 
@@ -15,8 +15,3 @@ Dans ce tp vous trouverez les fichiers suivant :
 - Readme.md
 - hwconfig.ini
 - hwconfig.h
-
-## Utilisation 
-
-- make
-- ./main

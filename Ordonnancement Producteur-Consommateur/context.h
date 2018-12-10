@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "hardware.h"
+#include "hwconfig.h"
 
 #define CTXMAGIC 0xCAFEBEBE
 

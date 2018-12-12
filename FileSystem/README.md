@@ -12,6 +12,7 @@ Dans ce tp vous trouverez les fichiers suivant :
 
 ## Utilisation
 
+- make realclean
 - make
 - ./mkvol --> suivre instruction (ex: 10 10 10 0)
 - ./mknfs --> choisir 0

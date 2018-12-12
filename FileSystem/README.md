@@ -13,10 +13,12 @@ Dans ce tp vous trouverez les fichiers suivant :
 ## Utilisation
 
 - make
-- ./mkvol
-- ./mknfs
+- ./mkvol --> suivre instruction (ex: 10 10 10 0)
+- ./mknfs --> choisir 0
 - export CURRENT_VOLUME=0
-- ./if_nfile
+- ./if_nfile < file2.txt
+- ./dfs
 - ./if_cfile 1
+- ./dfs
 - ./if_pfile 1
 - ./dfs

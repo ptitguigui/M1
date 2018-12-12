@@ -29,7 +29,6 @@ load_current_volume ()
 
     errno = 0;
     current_volume = strtol(current_volume_str, NULL, 10);
-    printf("vol =%d\n", current_volume);
     ffatal(!errno, "bad value of $CURRENT_VOLUME %s", current_volume_str);
 
     status = load_super(current_volume);

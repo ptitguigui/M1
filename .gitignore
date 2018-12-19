@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Created by https://www.gitignore.io/api/java,eclipse,jetbrains+all,jetbrains+iml
 
@@ -227,3 +228,62 @@ modules.xml
 =======
 /.metadata/
 >>>>>>> 2cd451fc3c000d88a217677d68da07f4bc7460de
+=======
+# Created by https://www.gitignore.io/api/c
+
+### C ###
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.li
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+
+# End of https://www.gitignore.io/api/c
+>>>>>>> 7cdac667e04326d0c6850253d3475f6e4e46bbf1

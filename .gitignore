@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Created by https://www.gitignore.io/api/java,eclipse,jetbrains+all,jetbrains+iml
 
@@ -223,3 +224,6 @@ modules.xml
 
 
 # End of https://www.gitignore.io/api/java,eclipse,jetbrains+all,jetbrains+iml
+=======
+/.metadata/
+>>>>>>> 2cd451fc3c000d88a217677d68da07f4bc7460de

@@ -33,8 +33,8 @@ Voir les fichiers `exo4.xml` et `exo4.dtd` dans le dossier `exo4`
 
 ## Exercice 5
 
-Voir le fichier `exo5.dtd` dans le dossier `exo5`
+Voir le fichier `famille.dtd` dans le dossier `exo5`
 
 ## Exercice 6
 
-Voir le fichier `exo6.dtd` dans le dossier `exo6`
+Voir le fichier `maisons.dtd` dans le dossier `exo6`

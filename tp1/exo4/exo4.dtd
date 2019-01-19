@@ -1,12 +1,12 @@
 
 <!ELEMENT  itineraire (modes,preference?,vitesse?,parcours)>
-<!ATTLIST itineraire date CDATA #REQUIRED 
-	                    de CDATA #REQUIRED 
+<!ATTLIST itineraire date CDATA #REQUIRED
+	                    de CDATA #REQUIRED
 	                    vers CDATA #REQUIRED>
 <!ELEMENT  modes (mode+)>
 <!ELEMENT  mode (#PCDATA)>
-<!ATTLIST mode ligne CDATA #IMPLIED 
-	               direction CDATA #IMPLIED>
+<!ATTLIST mode ligne CDATA #IMPLIED
+	             direction CDATA #IMPLIED>
 <!ELEMENT  preference (#PCDATA)>
 <!ELEMENT  vitesse (#PCDATA)>
 <!ELEMENT  parcours (etapes)>
@@ -18,8 +18,3 @@
 <!ELEMENT  temps_arrivee (#PCDATA)>
 <!ELEMENT  de (#PCDATA)>
 <!ELEMENT  vers (#PCDATA)>
-
-
-
-
-

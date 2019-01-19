@@ -29,6 +29,12 @@ Voici les combinaisons correcte :
 
 ## Exercice 4
 
+Voir les fichiers `exo4.xml` et `exo4.dtd` dans le dossier `exo4`
+
 ## Exercice 5
 
+Voir le fichier `exo5.dtd` dans le dossier `exo5`
+
 ## Exercice 6
+
+Voir le fichier `exo6.dtd` dans le dossier `exo6`

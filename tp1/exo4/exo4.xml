@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE exo4 SYSTEM "exo4.dtd">
+<!DOCTYPE itineraire SYSTEM "exo4.dtd">
 
 <itineraire date="Mardi 22 Janvier 2019 - 12h35" de="Seclin - Centre hospitalier"  vers="Roubaix - Avenue Motte">
 	<modes>

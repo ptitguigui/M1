@@ -92,3 +92,12 @@ L'expresion `/descendant::livre[1]` donne comme résultat `<livre>machin</livre>
 9. `//recette[contains(@categ, "entree")]`
 
 ## Exercice 4
+
+1. `count(//key[child::text()="Tracks"/following-sibling::dict[1]/dict)`
+2. `distinct-values(//key[text()="Album"]/following-sibling::string[1])`
+3. `//key[text()="Genre"]/following-sibling::string[1]`
+4. `count(//key[text()="Genre"]/following-sibling::string[1 and text()="Jazz"])`
+5. `distinct-values(//key[text()="Genre"]/following-sibling::string[1])`
+6. ``
+7. ``
+8. `` faire un not(//key[text()="Year"]/following-sibling::integer[1] < //key[text()="Year"]/following-sibling::integer[1]) dans un predicat  

@@ -1,4 +1,4 @@
-package M1S2;
+package tp1;
 
 import static org.junit.Assert.assertTrue;
 

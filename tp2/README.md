@@ -98,6 +98,6 @@ L'expresion `/descendant::livre[1]` donne comme résultat `<livre>machin</livre>
 3. `//key[text()="Genre"]/following-sibling::string[1]`
 4. `count(//key[text()="Genre"]/following-sibling::string[1 and text()="Jazz"])`
 5. `distinct-values(//key[text()="Genre"]/following-sibling::string[1])`
-6. ``
-7. ``
-8. `` faire un not(//key[text()="Year"]/following-sibling::integer[1] < //key[text()="Year"]/following-sibling::integer[1]) dans un predicat  
+6. `//key[text()="Play Count"]/following-sibling::integer[position()=1 and (number(text()) gt 0)]/preceding-sibling::key[text()="Name"]/following-sibling::string[1]`
+7. `//key[text()="Name"and not(following-sibling::key[text()="Play Count"])]/following-sibling::string[1]`
+8. `//key[text()="Year"]/following-sibling::integer[1 and text() = min(//key[text()="Year"]/following-sibling::integer[1])]/preceding-sibling::key[text()="Name"]/following-sibling::string[1]`  

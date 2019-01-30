@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!--Tous les types -->
+<xs:complexType name="typeStock">
+	<xs:sequence>
+		<xs:element name="occases"  type="typeOccases" minOccurs="1" />
+		<xs:element name="neufs" type="typeNeufs" minOccurs="1"/>
+	</xs:sequence>
+	<xs:attribute name="nom" type="xs:string"/>
+</xs:complexType>
+
+<xs:complexType name="typeOccases">	
+	<xs:sequence>	
+		<xs:element name="item"  type="typeItemOccaz" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="typeNeufs">
+	<xs:sequence>
+		<xs:element name="item"  type="typeItemNeuf" minOccurs="1" maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="typeItemNeuf">
+	<xs:sequence>
+		<xs:element name="marque" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="modele" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	</xs:sequence>
+	<xs:attribute name="prix" type="xs:integer"/>
+</xs:complexType>
+
+
+<xs:complexType name="typeItemOccaz">
+	<xs:complexContent>
+		<xs:extension base="typeItemNeuf">		
+			<xs:sequence>
+					<xs:element name="annee" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<!--Tous les elements -->
+<xs:element name="stock" type="typeStock"/>
+
+</xs:schema>

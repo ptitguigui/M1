@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!--Tous les types -->
+<xs:complexType name="typeExpr">
+	<xs:group  ref="choix"/>	
+</xs:complexType>
+
+<xs:simpleType name="typeVal">
+ 	<xs:restriction base="xs:string">
+ 		<xs:enumeration value="+"/>
+ 		<xs:enumeration value="-"/>
+ 		<xs:enumeration value="*"/>
+ 		<xs:enumeration value="/"/>
+ 	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="typeOp">
+	<xs:group  ref="choix"/>
+	<xs:attribute name="val" type="typeVal"/>
+</xs:complexType>
+
+
+<xs:group name="choix">
+
+	<xs:sequence>
+	
+	<xs:choice minOccurs="0" maxOccurs="2">
+			<xs:element name="op" type="typeOp"  />
+			<xs:element name="var" type="xs:string"  />
+			<xs:element name="cons" type="xs:integer" />
+		</xs:choice>
+	</xs:sequence>
+
+</xs:group>
+
+<!--Tous les elements -->
+<xs:element name="expr" type="typeExpr"/>
+
+</xs:schema>

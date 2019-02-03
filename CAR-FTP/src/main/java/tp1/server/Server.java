@@ -7,12 +7,10 @@ import java.net.Socket;
 public class Server implements Runnable {
 
     private ServerSocket serverSocket;
-    private String directory;
     private boolean running;
 
-    public Server(int port, String directory) throws Exception {
+    public Server(int port) throws Exception {
         this.serverSocket = new ServerSocket(port);
-        this.directory = directory;
         this.running = true;
     }
 

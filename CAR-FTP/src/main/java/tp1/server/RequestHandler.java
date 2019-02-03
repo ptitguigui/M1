@@ -13,18 +13,24 @@ public class RequestHandler implements Runnable {
     private Socket client;
     private RequestMessage requestMessage;
     private BufferedReader in;
+    private String currentDirectory;
+    private boolean isConnected;
 
     RequestHandler(Socket client) throws Exception {
         this.client = client;
         this.requestMessage = new RequestMessage(new DataOutputStream(this.client.getOutputStream()));
         this.in = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
+        this.currentDirectory = "/";
+        this.isConnected = true;
     }
 
     @Override
     public void run() {
         try {
             this.requestMessage.sendMessage(RequestMessage.CODE_220);
-            evaluateMessageFromClient();
+            while (this.isConnected) {
+                evaluateMessageFromClient();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -37,15 +43,22 @@ public class RequestHandler implements Runnable {
     }
 
     private void evaluateMessageFromClient() throws IOException {
-        String command = this.in.readLine();
-        System.out.println(command);
+        String line = this.in.readLine();
+        System.out.println(line);
+        String command = line.split(" ")[0];
         switch (command) {
             case "USER":
                 this.requestMessage.sendMessage(RequestMessage.CODE_230);
                 break;
-            case "PASS":
-                this.requestMessage.sendMessage(RequestMessage.CODE_230);
+            case "PWD":
+                this.requestMessage.sendMessage((RequestMessage.CODE_257.replace("DIRECTORY", this.currentDirectory)));
                 break;
+            case "QUIT":
+                this.isConnected = false;
+                this.requestMessage.sendMessage(RequestMessage.CODE_221);
+                break;
+            case "TYPE":
+                this.requestMessage.sendMessage(RequestMessage.CODE_200.replace("DIRECTORY", this.currentDirectory));
             default:
                 this.requestMessage.sendMessage(RequestMessage.CODE_502);
                 break;

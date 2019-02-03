@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws Exception {
         try {
-            Server server = new Server(1025, "../../../myFTPDirectory/");
+            Server server = new Server(1025);
             server.run();
         } catch (IOException e) {
             e.printStackTrace();

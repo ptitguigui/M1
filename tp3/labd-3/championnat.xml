@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<championnat xsi:noNamespaceSchemaLocation="championnat.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<championnat xs:noNamespaceSchemaLocation="../exo4.xsd" 
+	  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" >
 	<clubs>
 		<club id="LOSC">
 			<nom>LOSC Lille Metropole</nom>

@@ -1,4 +1,4 @@
-package java.tp1;
+package tp1;
 
 import org.junit.Test;
 

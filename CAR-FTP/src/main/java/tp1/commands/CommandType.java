@@ -6,8 +6,8 @@ import tp1.utils.RequestMessage;
 
 import java.io.DataOutputStream;
 
-public class CommandeType extends Command {
-    public CommandeType(DataOutputStream dataOutputStream) {
+public class CommandType extends Command {
+    public CommandType(DataOutputStream dataOutputStream) {
         super(dataOutputStream);
     }
 

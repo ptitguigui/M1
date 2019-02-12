@@ -4,12 +4,22 @@ public class ConfigurationClient {
 
     private String login;
     private boolean loggedIn;
+    private boolean passiveMode;
 
     public ConfigurationClient() {
         this.loggedIn = false;
+        this.passiveMode = true;
     }
 
-    public String getLogin() {
+    public boolean isPassiveMode() {
+		return passiveMode;
+	}
+
+	public void setPassiveMode(boolean passiveMode) {
+		this.passiveMode = passiveMode;
+	}
+
+	public String getLogin() {
         return login;
     }
 

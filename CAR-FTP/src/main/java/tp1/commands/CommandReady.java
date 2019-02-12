@@ -6,9 +6,9 @@ import tp1.utils.RequestMessage;
 
 import java.io.DataOutputStream;
 
-public class CommandeReady extends Command {
+public class CommandReady extends Command {
 
-    public CommandeReady(DataOutputStream dataOutputStream) {
+    public CommandReady(DataOutputStream dataOutputStream) {
         super(dataOutputStream);
     }
 

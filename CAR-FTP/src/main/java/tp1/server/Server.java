@@ -23,7 +23,7 @@ public class Server implements Runnable {
         try {
             while (this.running) {
                 Socket client = this.commandServerSocket.accept();
-                new Thread(new RequestHandler(client, transferServerSocket)).start();
+                new Thread(new RequestHandler(client, this.transferServerSocket)).start();
             }
         } catch (Exception e) {
             e.printStackTrace();

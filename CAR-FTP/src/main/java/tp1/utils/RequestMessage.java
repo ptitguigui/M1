@@ -17,8 +17,11 @@ public class RequestMessage {
     public static final String CODE_229 = "229 Entering Extended Passive Mode (|||PORT|)\r\n";
     public static final String CODE_331 = "331 User name okay, need password.\r\n";
     public static final String CODE_332 = "332 Need account for login.\r\n";
+    public static final String CODE_500 = "500 Syntax error, command unrecognized.";
+    public static final String CODE_501 = "501 Syntax error in parameters or argument.";
     public static final String CODE_502 = "502 Command not implemented.\r\n";
     public static final String CODE_530 = "530 Not logged in.\r\n";
+    public static final String CODE_550 = "550 /pubilc: No such file or directory.";
 
     private DataOutputStream dataOutputStream;
 

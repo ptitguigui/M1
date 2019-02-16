@@ -1,5 +1,9 @@
 package tp1.server;
 
+import tp1.commands.*;
+import tp1.utils.ConfigurationClient;
+import tp1.utils.ConfigurationServer;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,10 +11,6 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-
-import tp1.commands.*;
-import tp1.utils.ConfigurationClient;
-import tp1.utils.ConfigurationServer;
 
 public class RequestHandler implements Runnable {
 
@@ -39,11 +39,15 @@ public class RequestHandler implements Runnable {
         commands.put("PASS", new CommandPass(dataOutputStream));
         commands.put("SYST", new CommandSyst(dataOutputStream));
         commands.put("PWD", new CommandPwd(dataOutputStream));
+        commands.put("CWD", new CommandCwd(dataOutputStream));
         commands.put("TYPE", new CommandType(dataOutputStream));
         commands.put("PASV", new CommandPassive(dataOutputStream));
         commands.put("PORT", new CommandPort(dataOutputStream));
         commands.put("LIST", new CommandList(dataOutputStream));
         commands.put("QUIT", new CommandQuit(dataOutputStream));
+        commands.put("RETR", new CommandRetrieve(dataOutputStream));
+        commands.put("STOR", new CommandStore(dataOutputStream));
+        commands.put("DELE", new CommandDelete(dataOutputStream));
     }
 
     @Override

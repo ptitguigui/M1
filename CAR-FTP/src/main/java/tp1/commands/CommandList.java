@@ -24,10 +24,10 @@ public class CommandList extends Command {
             Socket transferSocket = configServer.getTransferServerSocket().accept();
             DataOutputStream transferDataOutputStream = new DataOutputStream(transferSocket.getOutputStream());
 
+            this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
             transferDataOutputStream.writeBytes(list);
             transferDataOutputStream.flush();
             transferSocket.close();
-            this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
         }
 	}
 

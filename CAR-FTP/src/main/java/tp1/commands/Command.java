@@ -14,7 +14,7 @@ public abstract class Command {
         this.requestMessage = new RequestMessage(dataOutputStream);
     }
 
-    public abstract void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer);
+    public abstract void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer) throws Exception;
 
     RequestMessage getRequestMessage() {
         return requestMessage;

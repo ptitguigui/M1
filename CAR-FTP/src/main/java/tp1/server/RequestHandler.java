@@ -13,7 +13,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 /**
- * Class which handles the commands from the FTP client
+ * Class which handles the requests from the FTP client
  *
  * @author irakoze & lepretre
  */

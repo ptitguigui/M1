@@ -3,7 +3,7 @@ package tp1.utils;
 import java.io.DataOutputStream;
 
 /**
- * Class to handle all the messages send by the FTP server to the client.
+ * Class which associate messages to send with the request from the FTP server to the client.
  *
  * @author irakoze & lepretre
  */
@@ -35,7 +35,7 @@ public class RequestMessage {
     private DataOutputStream dataOutputStream;
 
     /**
-     * RequestMessage builder. It initilizes the attribut dataOutputStream
+     * RequestMessage builder. It initializes the attribute dataOutputStream
      *
      * @param dataOutputStream the dataOutputStream used to write message.
      */

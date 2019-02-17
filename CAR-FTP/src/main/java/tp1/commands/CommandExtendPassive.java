@@ -11,6 +11,9 @@ public class CommandExtendPassive extends Command {
         super(dataOutputStream);
     }
 
+    /* (non-Javadoc)
+     * @see tp1.commands.Command#execute(java.lang.String, tp1.utils.ConfigurationClient, tp1.utils.ConfigurationServer)
+     */
     public void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer) throws Exception {
         if (!configClient.isLoggedIn()) {
             this.getRequestMessage().sendMessage(RequestMessage.CODE_530);

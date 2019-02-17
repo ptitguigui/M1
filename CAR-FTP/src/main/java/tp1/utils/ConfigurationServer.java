@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.util.HashMap;
 
 /**
- * Class to handle the
+ * Class to handle the informations on the server like (users end passwords)
  *
  * @author irakoze & lepretre
  */

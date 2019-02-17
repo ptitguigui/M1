@@ -16,7 +16,6 @@ import java.util.HashMap;
  * Class which handles the commands from the FTP client
  *
  * @author irakoze & lepretre
- *
  */
 public class RequestHandler implements Runnable {
 
@@ -53,6 +52,7 @@ public class RequestHandler implements Runnable {
         commands.put("CWD", new CommandCwd(dataOutputStream));
         commands.put("TYPE", new CommandType(dataOutputStream));
         commands.put("PASV", new CommandPassive(dataOutputStream));
+        commands.put("EPSV", new CommandExtendPassive(dataOutputStream));
         commands.put("PORT", new CommandPort(dataOutputStream));
         commands.put("LIST", new CommandList(dataOutputStream));
         commands.put("QUIT", new CommandQuit(dataOutputStream));
@@ -95,7 +95,7 @@ public class RequestHandler implements Runnable {
      */
     private void evaluateMessageFromClient() throws Exception {
         String clientMessage = this.in.readLine();
-        if(clientMessage != null) {
+        if (clientMessage != null) {
             System.out.println(clientMessage);
             Command command = this.commands.get(clientMessage.split(" ")[0]);
             if (command != null) {
@@ -103,7 +103,7 @@ public class RequestHandler implements Runnable {
             } else {
                 this.commands.get("UK").execute(clientMessage, configClient, configServer);
             }
-        }else{
+        } else {
             System.out.println("Client Disconnected");
             this.isConnected = false;
         }

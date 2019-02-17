@@ -12,8 +12,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+/**
+ * Class which handles the commands from the FTP client
+ * 
+ * @author irakoze & lepretre
+ *
+ */
 public class RequestHandler implements Runnable {
-
+	
     private Socket client;
     private HashMap<String, Command> commands;
     private BufferedReader in;
@@ -30,6 +36,11 @@ public class RequestHandler implements Runnable {
         this.configClient = new ConfigurationClient();
     }
 
+    /**
+     * Initiate Hashmap listing Commands as keys and the functions to be executed as values
+     *  
+     * @throws IOException
+     */
     private void initHashMap() throws IOException {
         commands = new HashMap<>();
         DataOutputStream dataOutputStream = new DataOutputStream(this.client.getOutputStream());
@@ -50,8 +61,12 @@ public class RequestHandler implements Runnable {
         commands.put("DELE", new CommandDelete(dataOutputStream));
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Runnable#run()
+     */
     @Override
     public void run() {
+    	
         try {
             this.commands.get("READY").execute("", this.configClient, this.configServer);
 
@@ -68,7 +83,12 @@ public class RequestHandler implements Runnable {
             }
         }
     }
-
+    
+    /**
+     * Evaluate  the validity of the command from the client 
+     * 
+     * @throws Exception
+     */
     private void evaluateMessageFromClient() throws Exception {
         String clientMessage = this.in.readLine();
         System.out.println(clientMessage);

@@ -36,12 +36,18 @@ public class CommandCwd extends Command {
                     currentDirectory += "/" + directory + "/";
                 }
             }
-            File tmpDir = new File(currentDirectory);
-            if (tmpDir.exists()) {
-                configServer.setCurrentDirectory(currentDirectory);
-                this.getRequestMessage().sendMessage(RequestMessage.CODE_200.replace("DIRECTORY", currentDirectory));
+
+            String rootDirectory = configServer.getRootDirectory();
+            if (currentDirectory.contains(rootDirectory)) {
+                File tmpDir = new File(currentDirectory);
+                if (tmpDir.exists()) {
+                    configServer.setCurrentDirectory(currentDirectory);
+                    this.getRequestMessage().sendMessage(RequestMessage.CODE_200.replace("DIRECTORY", currentDirectory));
+                } else {
+                    this.getRequestMessage().sendMessage(RequestMessage.CODE_550);
+                }
             } else {
-                this.getRequestMessage().sendMessage(RequestMessage.CODE_550);
+                this.getRequestMessage().sendMessage(RequestMessage.CODE_421);
             }
         }
     }

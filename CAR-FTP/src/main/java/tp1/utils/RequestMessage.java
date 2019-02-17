@@ -24,12 +24,13 @@ public class RequestMessage {
     public static final String CODE_331 = "331 User name okay, need password.\r\n";
     public static final String CODE_332 = "332 Need account for login.\r\n";
     public static final String CODE_350 = "350 ready to rename.\r\n";
+    public static final String CODE_421 = "421 Home directory not available - aborting \r\n";
     public static final String CODE_450 = "450 Requested file action not taken.\r\n";
     public static final String CODE_500 = "500 Syntax error, command unrecognized.\r\n";
     public static final String CODE_501 = "501 Syntax error in parameters or argument.\r\n";
     public static final String CODE_502 = "502 Command not implemented.\r\n";
     public static final String CODE_530 = "530 Not logged in.\r\n";
-    public static final String CODE_550 = "550 /pubilc: No such file or directory.";
+    public static final String CODE_550 = "550 No such file or directory.";
 
     private DataOutputStream dataOutputStream;
 

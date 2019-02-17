@@ -13,6 +13,7 @@ public class CommandQuit extends Command {
 	}
 
 	public void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer) {
+		System.out.println("Client Disconnected");
 		this.getRequestMessage().sendMessage(RequestMessage.CODE_221);
 	}
 

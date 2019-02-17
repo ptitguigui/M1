@@ -31,14 +31,14 @@ public class ConfigurationServer {
 		this.fileConf = new File(System.getProperty("user.dir") + "/fileConf.txt");
 		this.currentDirectory = System.getProperty("user.dir") + "/myFTPDirectory";
 		users = new HashMap<>();
-		getInformationsFromFile();
+		getInformationFromFile();
 	}
 
 	/**
 	 * This method get all informations from file configuration And initialize
 	 * login/mdp
 	 */
-	private void getInformationsFromFile() {
+	private void getInformationFromFile() {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(fileConf));

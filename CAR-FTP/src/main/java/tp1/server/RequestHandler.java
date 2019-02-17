@@ -14,12 +14,12 @@ import java.util.HashMap;
 
 /**
  * Class which handles the commands from the FTP client
- * 
+ *
  * @author irakoze & lepretre
  *
  */
 public class RequestHandler implements Runnable {
-	
+
     private Socket client;
     private HashMap<String, Command> commands;
     private BufferedReader in;
@@ -38,7 +38,7 @@ public class RequestHandler implements Runnable {
 
     /**
      * Initiate Hashmap listing Commands as keys and the functions to be executed as values
-     *  
+     *
      * @throws IOException
      */
     private void initHashMap() throws IOException {
@@ -59,14 +59,17 @@ public class RequestHandler implements Runnable {
         commands.put("RETR", new CommandRetrieve(dataOutputStream));
         commands.put("STOR", new CommandStore(dataOutputStream));
         commands.put("DELE", new CommandDelete(dataOutputStream));
+        commands.put("MKD", new CommandMkd(dataOutputStream));
+        commands.put("RMD", new CommandRmd(dataOutputStream));
+        commands.put("RNFR", new CommandRenameFrom(dataOutputStream));
+        commands.put("RNTO", new CommandRenameTo(dataOutputStream));
     }
 
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
-    @Override
     public void run() {
-    	
+
         try {
             this.commands.get("READY").execute("", this.configClient, this.configServer);
 
@@ -83,20 +86,26 @@ public class RequestHandler implements Runnable {
             }
         }
     }
-    
+
     /**
-     * Evaluate  the validity of the command from the client 
-     * 
+     * Evaluate  the validity of the command from the client
+     * And execute the Command
+     *
      * @throws Exception
      */
     private void evaluateMessageFromClient() throws Exception {
         String clientMessage = this.in.readLine();
-        System.out.println(clientMessage);
-        Command command = this.commands.get(clientMessage.split(" ")[0]);
-        if (command != null) {
-            command.execute(clientMessage, this.configClient, this.configServer);
-        } else {
-            this.commands.get("UK").execute(clientMessage, configClient, configServer);
+        if(clientMessage != null) {
+            System.out.println(clientMessage);
+            Command command = this.commands.get(clientMessage.split(" ")[0]);
+            if (command != null) {
+                command.execute(clientMessage, this.configClient, this.configServer);
+            } else {
+                this.commands.get("UK").execute(clientMessage, configClient, configServer);
+            }
+        }else{
+            System.out.println("Client Disconnected");
+            this.isConnected = false;
         }
     }
 

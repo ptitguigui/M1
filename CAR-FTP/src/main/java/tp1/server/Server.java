@@ -30,6 +30,14 @@ public class Server implements Runnable {
 		this.running = true;
 	}
 
+	public ServerSocket getCommandServerSocket() {
+		return commandServerSocket;
+	}
+
+	public void setCommandServerSocket(ServerSocket commandServerSocket) {
+		this.commandServerSocket = commandServerSocket;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */

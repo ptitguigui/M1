@@ -2,6 +2,8 @@ package testCommand;
 
 import static org.junit.Assert.*;
 
+import java.net.InetAddress;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,10 +13,18 @@ public class TestCommandPass {
 	String address;
 	int port;
 
+	FTPClient client;
+
+	/**
+	 * Initialization of the FTP client
+	 * 
+	 * @throws Exception
+	 */
 	@Before
 	public void Initialization() throws Exception {
-		address = "0.0.0.0";
+		address = InetAddress.getLocalHost().getHostName();
 		port = 1025;
+		client = new FTPClient();
 	}
 
 	/**
@@ -25,7 +35,6 @@ public class TestCommandPass {
 	 */
 	@Test
 	public void testLoginTrue() throws Exception {
-		FTPClient client = new FTPClient();
 		client.connect(address, port);
 		boolean isLoggedIn = client.login("franco", "123");
 		assertTrue(client.getReplyString().equals("230 User logged in, proceed.\r\n"));
@@ -41,7 +50,6 @@ public class TestCommandPass {
 	 */
 	@Test
 	public void testLoginFalse() throws Exception {
-		FTPClient client = new FTPClient();
 		client.connect(address, port);
 		boolean isLoggedIn = client.login("toto", "125");
 		assertTrue(client.getReplyString().equals("530 Not logged in.\r\n"));

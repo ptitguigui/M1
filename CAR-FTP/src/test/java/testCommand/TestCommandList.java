@@ -19,7 +19,11 @@ public class TestCommandList {
 	FTPClient client;
 	String listexpected = "drwxr-xr-x 1 irakoze irakoze 4096 Feb 17 20:59 folder1\n"
 			+ "-rw-r--r-- 1 irakoze irakoze 26 Feb 17 20:59 fileee1.txt";
-
+	/**
+	 * Initialization of the FTP client
+	 * 
+	 * @throws Exception
+	 */
 	@Before
 	public void Initialization() throws Exception {
 		address = InetAddress.getLocalHost().getHostName();
@@ -27,6 +31,11 @@ public class TestCommandList {
 		client = new FTPClient();
 	}
 
+	/**
+	 * Test the FTP server ability to list the content of a directory
+	 * 
+	 * @throws IOException
+	 */
 	@Test
 	public void test() throws IOException {
 		client.connect(address, port);
@@ -39,6 +48,11 @@ public class TestCommandList {
 		}
 	}
 
+	/**
+	 * End the connection of the FTP Client
+	 * 
+	 * @throws IOException
+	 */
 	@After
 	public void end() throws IOException {
 		client.disconnect();

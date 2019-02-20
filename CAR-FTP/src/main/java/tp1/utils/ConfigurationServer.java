@@ -70,7 +70,7 @@ public class ConfigurationServer {
      * @return currentDirectory the current directory
      */
     public String getCurrentDirectory() {
-        return currentDirectory;
+        return this.currentDirectory;
     }
 
     /**

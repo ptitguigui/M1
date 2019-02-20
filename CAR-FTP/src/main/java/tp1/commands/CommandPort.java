@@ -30,15 +30,10 @@ public class CommandPort extends Command {
 	public void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer) {
 		// TODO
 
-		String data[] = clientMessage.split(",");
-			String address = data[0].split(" ")[1] + "."+ data[1] + "."+ data[2] + data[3];
-			int port = Integer.parseInt(data[4]) * 256 + Integer.parseInt(data[5]);
-			this.getRequestMessage()
-			.sendMessage(RequestMessage.CODE_227
-					.replace("PORT_DIVIDED",
-							data[4])
-					.replace("PORT_MODULO",
-							data[5]));
+//		String data[] = clientMessage.split(",");
+//		String address = data[0].split(" ")[1] + "."+ data[1] + "."+ data[2] + data[3];
+//		int port = Integer.parseInt(data[4]) * 256 + Integer.parseInt(data[5]);
+			
 	}
 
 }

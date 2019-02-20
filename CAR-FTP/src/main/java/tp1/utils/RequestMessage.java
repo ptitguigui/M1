@@ -1,6 +1,7 @@
 package tp1.utils;
 
 import java.io.DataOutputStream;
+import java.net.InetAddress;
 
 /**
  * Class which associate messages to send with the request from the FTP server to the client.
@@ -49,8 +50,12 @@ public class RequestMessage {
      * @param message the message to sent
      */
     public void sendMessage(String message) {
-        System.out.println("Send the message : " + message);
         try {
+        	if(message.contains("227")) {
+        		String hoString = InetAddress.getLocalHost().getHostAddress().replace(".", ",");
+        		message = "227 Entering Passive Mode ("+hoString+ message.substring(36);
+        	}
+        	System.out.println("Send the message : " + message);
             this.dataOutputStream.writeBytes(message);
             this.dataOutputStream.flush();
         } catch (Exception e) {

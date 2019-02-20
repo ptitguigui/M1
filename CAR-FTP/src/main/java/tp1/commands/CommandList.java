@@ -33,10 +33,12 @@ public class CommandList extends Command {
 	 * @see tp1.commands.Command#execute(java.lang.String, tp1.utils.ConfigurationClient, tp1.utils.ConfigurationServer)
 	 */
 	public void execute(String clientMessage, ConfigurationClient configClient, ConfigurationServer configServer) throws Exception {
+		String list;
         if(!configClient.isLoggedIn()) {
             this.getRequestMessage().sendMessage(RequestMessage.CODE_530);
         }else {
-            String list = ListDirectory.generateList(configServer.getCurrentDirectory());
+        	if(clientMessage.split(" ").length == 1) { list = ListDirectory.generateList(configServer.getCurrentDirectory());}
+        	else {list = ListDirectory.generateList(clientMessage.split(" ")[1]);}
             this.getRequestMessage().sendMessage(RequestMessage.CODE_150);
             Socket transferSocket = configServer.getTransferServerSocket().accept();
             DataOutputStream transferDataOutputStream = new DataOutputStream(transferSocket.getOutputStream());

@@ -1,6 +1,7 @@
 package tp1.server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,8 +26,8 @@ public class Server implements Runnable {
 	 * @throws Exception
 	 */
 	public Server() throws Exception {
-		this.commandServerSocket = new ServerSocket(FTP_SERVER_COMMAND_PORT);
-		this.transferServerSocket = new ServerSocket(FTP_SERVER_TRANSFER_PORT);
+		this.commandServerSocket = new ServerSocket(FTP_SERVER_COMMAND_PORT, 1, InetAddress.getLocalHost());
+		this.transferServerSocket = new ServerSocket(FTP_SERVER_TRANSFER_PORT, 1, InetAddress.getLocalHost());
 		this.running = true;
 	}
 

@@ -41,5 +41,8 @@ public class CommandDelete extends Command {
         if (new File(fileToDelete).delete()) {
             this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
         }
+        else {
+        	this.getRequestMessage().sendMessage(RequestMessage.CODE_450);
+        }
     }
 }

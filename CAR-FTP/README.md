@@ -11,6 +11,9 @@ TP1 : serveur FTP
 - Un projet `Maven` regroupant notre projet FTP
 - Le code source se trouve dans `src/main`
 - Les tests unitaire dans `src/test`
+- Les diagammes de classe dans `/diagrams`
+- Un fichier de config dans `fileConf.txt`
+- Le dossier d'accès par le client `/myFTPDirectory` permettant de stocker/transférer ce qu'il veut
 - Ainsi que le `README.md` de ce tp
 
 # Mise en place du TP :

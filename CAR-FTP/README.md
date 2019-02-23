@@ -41,7 +41,7 @@ On y trouve deux configurations, une pour le `client`, une pour le `serveur` per
 Chaque commandes sont définis par une classe qui implémente la classe abstraite `Command` et sont stockés dans une Hashmap, présent dans `RequestHandler`.  
 Ainsi, vous pouvez voir l'ensemble des commandes mis en place ci-dessous :  
 
-![image](diagrams/commands.png)
+![image](diagrams/server.png)
  
  Ces commandes ont chacune une seule méthode `execute` qui traite la requête du client et qui renvoie les informations nécessaire à son fonctionnement.  
  Pour cela, nous avons utilisé une classe permettant de gérer les réponses possible à envoyer au client : `RequestMessage`. Elle y répertorie, les différents codes à envoyer au client, pour que celui-ci puisse comprendre ce que nous avons réalisé.

@@ -51,6 +51,13 @@ public abstract class Command {
     }
 
 
+    /**
+     * Get transfert socket within actif or passive mode
+     * @param configClient
+     * @param configServer
+     * @return transferSocket
+     * @throws Exception
+     */
     Socket getTransferSocket(ConfigurationClient configClient, ConfigurationServer configServer) throws Exception {
         Socket transferSocket;
         if (configClient.isPassiveMode()) {

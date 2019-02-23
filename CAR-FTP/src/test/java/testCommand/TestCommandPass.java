@@ -1,13 +1,13 @@
 package testCommand;
 
-import static org.junit.Assert.*;
-
-import java.net.InetAddress;
-
+import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.apache.commons.net.ftp.FTPClient;
+import java.net.InetAddress;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TestCommandPass {
 	String address;

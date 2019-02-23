@@ -25,6 +25,14 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>commons-net-3.6</groupId>
+            <artifactId>commons-net-3.6</artifactId>
+            <version>3.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/commons-net-3.6.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,7 +81,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

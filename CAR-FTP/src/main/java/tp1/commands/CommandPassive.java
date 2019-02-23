@@ -36,7 +36,7 @@ public class CommandPassive extends Command {
 		if (!configClient.isLoggedIn()) {
 			this.getRequestMessage().sendMessage(RequestMessage.CODE_530);
 		} else {
-
+			configClient.setPassiveMode(true);
 			this.getRequestMessage()
 					.sendMessage(RequestMessage.CODE_227
 							.replace("PORT_DIVIDED",

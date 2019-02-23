@@ -43,7 +43,7 @@ public class CommandStore extends Command {
 		this.getRequestMessage().sendMessage(RequestMessage.CODE_125);
 
 		String filename = clientMessage.split(" ")[1];
-		Socket transferSocket = configServer.getTransferServerSocket().accept();
+		Socket transferSocket = getTransferSocket(configClient,configServer);
 		InputStream in = transferSocket.getInputStream();
 
 		File file = new File(configServer.getCurrentDirectory() + "/" + filename);

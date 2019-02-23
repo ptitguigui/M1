@@ -12,7 +12,7 @@ public class RequestMessage {
 
     public static final String CODE_125 = "125 Data connection already open; transfer starting.\r\n";
     public static final String CODE_150 = "150 File status okay; about to open data connection.\r\n";
-    public static final String CODE_200 = "200 Directory changed to \"DIRECTORY\"\r\n";
+    public static final String CODE_200 = "200 OK \r\n";
     public static final String CODE_215 = "215 Unix system type.\r\n";
     public static final String CODE_220 = "220 Service ready for new user.\r\n";
     public static final String CODE_221 = "221 Service closing control connection.\r\n";

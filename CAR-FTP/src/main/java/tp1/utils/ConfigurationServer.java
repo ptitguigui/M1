@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.HashMap;
 
 /**
@@ -18,6 +19,7 @@ public class ConfigurationServer {
     private String currentDirectory;
     private HashMap<String, String> users;
     private ServerSocket transferServerSocket;
+    private Socket socketTransfer;
 
     /**
      * ConfigurationServer builder. Initialize the attributes of the
@@ -92,12 +94,26 @@ public class ConfigurationServer {
     }
 
     /**
-     * Getter of the ServerSocket used to handle file transfer
+     * Set a new transfer socketTransfer when is actif
+     * @param socketTransfer the new socket
+     */
+    public void setSocketTransfer(Socket socketTransfer) {
+        this.socketTransfer = socketTransfer;
+    }
+
+    /**
+     * Getter of the socketTransfer used to handle file transfer when active
+     * @return
+     */
+    public Socket getSocketTransfer() {
+        return socketTransfer;
+    }
+
+    /**
+     * Getter of the ServerSocket used to handle file transfer when passive
      *
      * @return transferServerSocket
      */
-
-
     public ServerSocket getTransferServerSocket() {
         return transferServerSocket;
     }

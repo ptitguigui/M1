@@ -19,8 +19,6 @@ public class ConfigurationClient {
      */
     public ConfigurationClient() {
         this.loggedIn = false;
-        this.passiveMode = true;
-
     }
 
     /**

@@ -178,7 +178,6 @@
         <option value="$PROJECT_DIR$/src/main/java/tp1/server/RequestHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/testCommand/TestCommandPass.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/tp1/utils/RequestMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/tp1/commands/CommandCwd.java" />
         <option value="$PROJECT_DIR$/src/main/java/tp1/utils/ConfigurationServer.java" />
@@ -189,6 +188,7 @@
         <option value="$PROJECT_DIR$/src/main/java/tp1/utils/ConfigurationClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/tp1/commands/CommandRetrieve.java" />
         <option value="$PROJECT_DIR$/src/main/java/tp1/commands/Command.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -457,7 +457,7 @@
       <workItem from="1549473687560" duration="2841000" />
       <workItem from="1550313268328" duration="11871000" />
       <workItem from="1550411942904" duration="8227000" />
-      <workItem from="1550910871203" duration="11034000" />
+      <workItem from="1550910871203" duration="11089000" />
     </task>
     <servers />
   </component>
@@ -470,7 +470,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43848000" />
+    <option name="totallyTimeSpent" value="43903000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -523,13 +523,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/jre/lib/rt.jar!/sun/nio/fs/WindowsFileSystemProvider.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
@@ -898,17 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="224">
-            <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/diagrams/server.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1081,11 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/diagrams/server.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="uml://JAVA/tp1.commands">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1126,6 +1103,27 @@
           </Categories>
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diagrams/server.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/diagrams/commands.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="523">
+            <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -38,9 +38,9 @@ public class TestCommandDelete {
 	public void test() throws SocketException, IOException {
 		client.connect(address, port);
 		client.login("franco", "123");
-		client.enterRemotePassiveMode();
+		client.enterLocalPassiveMode();
 		client.dele("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1/fileee1.txt");
-		assertTrue(client.getReplyString().equals("221 Service closing control connection.\r\n"));
+		assertTrue(client.getReplyString().equals("550 No such file or directory. \r\n"));
 		client.disconnect();
 	}
 

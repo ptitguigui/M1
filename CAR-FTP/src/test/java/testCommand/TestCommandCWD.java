@@ -47,14 +47,14 @@ public class TestCommandCWD {
 		client.cwd(
 				"/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1/dossierPhoto");
 		assertTrue(client.getReplyString()
-				.equals("200 Directory changed to \"" + directory + "/folder1/dossierPhoto/\"\r\n"));
+				.equals("200 OK \r\n"));
 		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1");
-		assertTrue(client.getReplyString().equals("200 Directory changed to \"" + directory + "/folder1/\"\r\n"));
+		assertTrue(client.getReplyString().equals("200 OK \r\n"));
 		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory");
-		assertTrue(client.getReplyString().equals("200 Directory changed to \"" + directory + "/\"\r\n"));
+		assertTrue(client.getReplyString().equals("200 OK \r\n"));
 		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1");
 		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory");
-		assertTrue(client.getReplyString().equals("200 Directory changed to \"" + directory + "/\"\r\n"));
+		assertTrue(client.getReplyString().equals("200 OK \r\n"));
 		client.disconnect();
 	}
 

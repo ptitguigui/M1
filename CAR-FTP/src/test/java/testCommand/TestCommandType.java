@@ -42,7 +42,7 @@ public class TestCommandType {
 		client.connect(address, port);
 		client.login("franco", "123");
 		client.type(FTP.BINARY_FILE_TYPE);
-		assertTrue(client.getReplyString().equals("200 Directory changed to \"" + directory + "\"\r\n"));
+		assertTrue(client.getReplyString().equals("200 OK \r\n"));
 		client.disconnect();
 	}
 

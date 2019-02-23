@@ -18,7 +18,7 @@ public class TestCommandList {
 	int port;
 	FTPClient client;
 	String listexpected = "drwxr-xr-x 1 irakoze irakoze 4096 Feb 17 20:59 folder1\n"
-			+ "-rw-r--r-- 1 irakoze irakoze 26 Feb 17 20:59 fileee1.txt";
+			+ "-rw-r--r-- 1 irakoze irakoze 26 Feb 17 20:59 file1.txt";
 	/**
 	 * Initialization of the FTP client
 	 * 

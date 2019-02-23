@@ -39,10 +39,10 @@ public class CommandDelete extends Command {
         String fileToDelete = configServer.getCurrentDirectory() + "/" + clientMessage.split(" ")[1];
 
         if (new File(fileToDelete).delete()) {
-            this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
+            this.getRequestMessage().sendMessage(RequestMessage.CODE_250);
         }
         else {
-        	this.getRequestMessage().sendMessage(RequestMessage.CODE_450);
+        	this.getRequestMessage().sendMessage(RequestMessage.CODE_550);
         }
     }
 }

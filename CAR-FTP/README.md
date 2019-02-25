@@ -6,6 +6,8 @@ TP1 : serveur FTP
 ----------
 <p> Bienvenue sur notre serveur FTP. Mini projet réalisé dans le cadre de la Construction d'Application Repartie par Irakoze Franco Davy et Leprêtre Guillaume. Dans ce tp, vous trouverez un serveur FTP</p>
 
+**Note importante  Compilation est faite avec la commande suivante: ./serverRun "mvn exec:java" "mvn package"**
+
 # Composition du TP :
 
 - Un projet `Maven` regroupant notre projet FTP

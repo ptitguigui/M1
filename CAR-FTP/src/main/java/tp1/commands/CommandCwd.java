@@ -59,7 +59,7 @@ public class CommandCwd extends Command {
 				if (tmpDir.exists()) {
 					configServer.setCurrentDirectory(currentDirectory);
 					this.getRequestMessage()
-							.sendMessage(RequestMessage.CODE_200.replace("DIRECTORY", currentDirectory));
+							.sendMessage(RequestMessage.CODE_200);
 				} else {
 					this.getRequestMessage().sendMessage(RequestMessage.CODE_550);
 				}

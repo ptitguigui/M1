@@ -31,7 +31,7 @@ public class RequestMessage {
     public static final String CODE_501 = "501 Syntax error in parameters or argument.\r\n";
     public static final String CODE_502 = "502 Command not implemented.\r\n";
     public static final String CODE_530 = "530 Not logged in.\r\n";
-    public static final String CODE_550 = "550 No such file or directory.";
+    public static final String CODE_550 = "550 No such file or directory.\r\n";
 
     private DataOutputStream dataOutputStream;
 

@@ -6,6 +6,7 @@ import tp1.utils.RequestMessage;
 
 import java.io.DataOutputStream;
 import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -34,16 +35,15 @@ public class CommandPort extends Command {
         if (!configClient.isLoggedIn()) {
             this.getRequestMessage().sendMessage(RequestMessage.CODE_530);
         } else {
-
             String data[] = clientMessage.split(",");
-            String address = data[0].split(" ")[1] + "." + data[1] + "." + data[2] + data[3];
+            String address = data[0].split(" ")[1] + "." + data[1] + "." + data[2] + "." + data[3];
             int port = Integer.parseInt(data[4]) * 256 + Integer.parseInt(data[5]);
-
             Socket transferServer = new Socket(address, port);
             configServer.setSocketTransfer(transferServer);
             configClient.setPassiveMode(false);
 
             this.getRequestMessage().sendMessage(RequestMessage.CODE_200);
+
         }
 
 

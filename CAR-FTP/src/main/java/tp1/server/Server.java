@@ -55,11 +55,18 @@ public class Server implements Runnable {
 			e.printStackTrace();
 			this.running = false;
 		} finally {
-			try {
-				this.commandServerSocket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+				stop();
+			
+		}
+	}
+	/**
+	 * Stop the server
+	 */
+	public void stop() {
+		try {
+			this.commandServerSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

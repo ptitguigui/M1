@@ -12,6 +12,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+import javax.print.attribute.standard.PrinterLocation;
+
 /**
  * Class which handles the requests from the FTP client
  *

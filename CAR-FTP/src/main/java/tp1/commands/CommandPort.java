@@ -13,7 +13,7 @@ import java.net.Socket;
 /**
  * Class to define the PORT command from the Client
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class CommandPort extends Command {
 

@@ -10,7 +10,7 @@ import tp1.utils.RequestMessage;
  * Class to define the PASSIVE command from the Client. It changes the
  * connection type from active to passive.
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandPassive extends Command {

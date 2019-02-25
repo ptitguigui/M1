@@ -8,7 +8,7 @@ import java.io.DataOutputStream;
 /**
  * Class to define the SYST command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandSyst extends Command {

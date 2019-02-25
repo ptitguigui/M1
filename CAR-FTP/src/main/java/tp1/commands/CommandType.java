@@ -9,7 +9,7 @@ import java.io.DataOutputStream;
 /**
  * Class to define the TYPE command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandType extends Command {

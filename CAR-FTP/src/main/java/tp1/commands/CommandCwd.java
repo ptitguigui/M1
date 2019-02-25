@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * Class to define the CWD command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandCwd extends Command {

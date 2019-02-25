@@ -9,10 +9,7 @@ for cmd in "$@"; do {
 trap "kill $PID_LIST" SIGINT
 
 echo "Parallel processes have started";
-
 wait $PID_LIST
-
-echo "fin"
-exit
+echo "ok"
 echo "All processes have completed";
-
+for pid in $PID_LIST; do kill -9 $pid; done

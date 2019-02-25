@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Class to handle the informations on the server like (users end passwords)
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class ConfigurationServer {
 

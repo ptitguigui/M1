@@ -12,7 +12,7 @@ import java.net.Socket;
 /**
  * Class to define the RETRIEVE command from the Client
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class CommandRetrieve extends Command {
     /**

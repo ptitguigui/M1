@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Main class to run the FTP server
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class Main {

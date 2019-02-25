@@ -12,7 +12,7 @@ import java.net.Socket;
 /**
  * Class to define the STORE command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandStore extends Command {

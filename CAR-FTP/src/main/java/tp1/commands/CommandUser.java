@@ -9,7 +9,7 @@ import tp1.utils.RequestMessage;
 /**
  * Class to define the USER command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandUser extends Command {

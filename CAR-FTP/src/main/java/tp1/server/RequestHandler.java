@@ -17,7 +17,7 @@ import javax.print.attribute.standard.PrinterLocation;
 /**
  * Class which handles the requests from the FTP client
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class RequestHandler implements Runnable {
 

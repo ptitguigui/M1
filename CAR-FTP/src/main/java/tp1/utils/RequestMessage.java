@@ -6,7 +6,7 @@ import java.net.InetAddress;
 /**
  * Class which associate messages to send with the request from the FTP server to the client.
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class RequestMessage {
 

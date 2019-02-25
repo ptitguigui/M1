@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Class to define the PASS command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandPass extends Command {

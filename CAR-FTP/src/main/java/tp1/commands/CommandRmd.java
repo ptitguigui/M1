@@ -9,7 +9,7 @@ import java.io.File;
 /**
  * Class to define the RMD command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandRmd extends Command {

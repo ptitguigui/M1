@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Class to handle the listing of a folder content
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class ListDirectory {

@@ -11,7 +11,7 @@ import tp1.utils.RequestMessage;
 /**
  * Class to define the LIST command from the Client
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class CommandList extends Command {
 

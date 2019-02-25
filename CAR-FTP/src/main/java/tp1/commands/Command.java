@@ -10,7 +10,7 @@ import java.net.Socket;
 /**
  * Abstract class to handle client command
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public abstract class Command {
 

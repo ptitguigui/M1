@@ -8,7 +8,7 @@ import tp1.utils.RequestMessage;
 /**
  * Class to handle all commands from the Client unknown by the server
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandUnknown extends Command{

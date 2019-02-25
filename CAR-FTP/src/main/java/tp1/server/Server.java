@@ -8,7 +8,7 @@ import java.net.Socket;
 /**
  * Create a FTP server
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class Server implements Runnable {

@@ -5,7 +5,7 @@ package tp1.utils;
  * It contains also information about the mode used in the
  * connection Client - Server
  *
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  */
 public class ConfigurationClient {
 

@@ -8,7 +8,7 @@ import tp1.utils.RequestMessage;
 /**
  * Class to define the QUIT command from the Client
  * 
- * @author irakoze & lepretre
+ * @author irakoze and lepretre
  *
  */
 public class CommandQuit extends Command {

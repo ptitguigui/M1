@@ -20,10 +20,10 @@ TP1 : serveur FTP
 
 - Télécharger l'archive à l'aide de la commande `git clone`
 - Compiler les différents modules avec la commande `./serverRun "mvn exec:java" "mvn package"`
-	Nous avons utilisé un script bash à défaut de trouver une meilleure solution par rapport au fait que 
-	nous avions besoin de faire tourner le serveur pour lancer les Tests. En effet pour tester 
-	les différentes commandes sur le  Serveur FTP nous avons 
-	utilié un classe  `org.apache.commons.net.ftp.FTPClient`
+	Nous avons utilisé un script bash (lance le serveur et lance la comilation) à défaut de trouver 
+	une meilleure solution par rapport au fait que nous avions besoin de faire tourner le serveur 
+	pour lancer les Tests. En effet pour tester les différentes commandes sur le  Serveur FTP nous avons 
+	utilié un classe  `org.apache.commons.net.ftp.FTPClient`.
 - Vous pouvez générer la javadoc avec la commande `mvn javadoc:javadoc`
 - Pour lancer le programme, situé vous à la racine du module à savoir `CAR-FTP`
 - Exécuter la commande suivante `java -jar target/CAR-FTP-1.0-SNAPSHOT.jar repository`

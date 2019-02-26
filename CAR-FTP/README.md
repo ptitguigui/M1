@@ -6,7 +6,7 @@ TP1 : serveur FTP
 ----------
 <p> Bienvenue sur notre serveur FTP. Mini projet réalisé dans le cadre de la Construction d'Application Repartie par Irakoze Franco Davy et Leprêtre Guillaume. Dans ce tp, vous trouverez un serveur FTP</p>
 
-**Note importante  Compilation est faite avec la commande suivante: ./serverRun "mvn exec:java" "mvn package"**
+**Note importante  Compilation est faite avec la commande suivante: ./serverFTP "mvn exec:java" "mvn package"**
 
 # Composition du TP :
 
@@ -21,7 +21,7 @@ TP1 : serveur FTP
 # Mise en place du TP :
 
 - Télécharger l'archive à l'aide de la commande `git clone`
-- Compiler les différents modules avec la commande `./serverRun "mvn exec:java" "mvn package"`
+- Compiler les différents modules avec la commande `./serverFTP "mvn exec:java" "mvn package"`
 	Nous avons utilisé un script bash (lance le serveur et lance la comilation) à défaut de trouver 
 	une meilleure solution par rapport au fait que nous avions besoin de faire tourner le serveur 
 	pour lancer les Tests. En effet pour tester les différentes commandes sur le  Serveur FTP nous avons 
@@ -58,4 +58,4 @@ Ainsi, vous pouvez voir l'ensemble des commandes mis en place ci-dessous :
 Nous avons implémentés les tes dans le dossier `src/test/java/testCommand`
 
 Pour lancer les tests, vous pouvez faire la commande suivante:
-`./serverRun "mvn exec:java" "mvn package"`
+`./serverFTP "mvn exec:java" "mvn test"`

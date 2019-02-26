@@ -15,8 +15,6 @@ import org.junit.Test;
 
 import tp1.server.Server;
 
-
-
 public class TestCommandDelete {
 
 	String address;
@@ -56,7 +54,7 @@ public class TestCommandDelete {
 	}
 
 	/**
-	 * Test FTP server on deleting an existing file 
+	 * Test FTP server on deleting an existing file
 	 * 
 	 * @throws SocketException
 	 * @throws IOException
@@ -68,11 +66,10 @@ public class TestCommandDelete {
 		client1.setFileType(FTP.BINARY_FILE_TYPE);
 		client1.setFileType(FTP.BINARY_FILE_TYPE);
 		client1.enterLocalPassiveMode();
-		FileInputStream file = new FileInputStream(
-				new File("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/fileConf.txt"));
+		FileInputStream file = new FileInputStream(new File(System.getProperty("user.dir") + "/fileConf.txt"));
 		client1.storeFile("file.txt", file);
 		client1.enterLocalPassiveMode();
-		client1.dele("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/file.txt");
+		client1.dele(System.getProperty("user.dir")+"/myFTPDirectory/file.txt");
 		assertTrue(client1.getReplyString().equals("250 Requested file action okay, completed. \r\n"));
 		client1.disconnect();
 	}

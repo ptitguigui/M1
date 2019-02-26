@@ -44,16 +44,14 @@ public class TestCommandCWD {
 		client.login("franco", "123");
 		client.enterLocalPassiveMode();
 		client.listFiles();
-		client.cwd(
-				"/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1/dossierPhoto");
-		assertTrue(client.getReplyString()
-				.equals("200 OK \r\n"));
-		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1");
+		client.cwd(System.getProperty("user.dir") + "/myFTPDirectory/folder1/dossierPhoto");
 		assertTrue(client.getReplyString().equals("200 OK \r\n"));
-		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory");
+		client.cwd(System.getProperty("user.dir") + "/myFTPDirectory/folder1");
 		assertTrue(client.getReplyString().equals("200 OK \r\n"));
-		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory/folder1");
-		client.cwd("/home/irakoze/Desktop/M1/semestre2/car-lepretre-irakoze/CAR-FTP/myFTPDirectory");
+		client.cwd(System.getProperty("user.dir") + "/myFTPDirectory");
+		assertTrue(client.getReplyString().equals("200 OK \r\n"));
+		client.cwd(System.getProperty("user.dir") + "/myFTPDirectory/folder1");
+		client.cwd(System.getProperty("user.dir") + "/myFTPDirectory");
 		assertTrue(client.getReplyString().equals("200 OK \r\n"));
 		client.disconnect();
 	}
@@ -65,7 +63,7 @@ public class TestCommandCWD {
 	 * @throws SocketException
 	 * @throws IOException
 	 */
-	@Test (expected = FTPConnectionClosedException.class)
+	@Test(expected = FTPConnectionClosedException.class)
 	public void testCWDNotWorking() throws SocketException, IOException {
 		client1.connect(address, port);
 		client1.login("guillaume", "mdp123");

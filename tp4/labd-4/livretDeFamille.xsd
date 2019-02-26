@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		xmlns="http://xml.insee.fr/schema/livretDeFamille.xsd"
+		xmlns:ind="http://xml.insee.fr/schema"
+		xmlns:co="http://xml.insee.fr/schema"
+		elementFormDefault="qualified" 
+		targetNamespace="http://xml.insee.fr/schema/livretDeFamille.xsd">
+ <xs:import namespace="http://xml.insee.fr/schema" schemaLocation="individu.xsd"/>
+ <xs:import namespace="http://xml.insee.fr/schema" schemaLocation="insee-commun.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>Modélisation de la brique livret famille INSEE</xs:documentation>
+  </xs:annotation>
+  
+
+
+</xs:schema>

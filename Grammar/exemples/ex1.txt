@@ -1,0 +1,3 @@
+# le langage a^n b^n
+# Ã©videmment, il ne peut pas produire la chaine "b"
+<S> ::= "" | "a" <S> "b"

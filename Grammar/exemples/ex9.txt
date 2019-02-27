@@ -1,0 +1,5 @@
+# Une instance facile du problÃ¨me de Frobenius
+# C'est un langage rÃ©gulier, et il ne gÃ©nÃ¨re pas les mots de taille 3.
+<S> ::= "" | <L> | <T>
+<T> ::= <L><L> <T> | <L><L><L><L><L> <T>
+<L> ::= "a" | "b"

@@ -1,0 +1,4 @@
+# le langage de Åukasiewicz
+# il ne contient pas la chaine "a"
+<S> ::= "" | <T>
+<T> ::= "a" <T><T> | "b"

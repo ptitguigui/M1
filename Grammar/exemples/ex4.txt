@@ -1,0 +1,3 @@
+# le langage composÃ© des palindromes sur {a, b}
+# il ne peut pas produire la chaine "ab"
+<S> ::= "" | "a" <S> "a" | "b" <S> "b"

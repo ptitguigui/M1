@@ -1,0 +1,5 @@
+# le langage composÃ© des nombres en binaire qui ne commencent pas par un zÃ©ro et qui ont (au moins) deux fois plus de 0 que de 1.
+# il ne peut pas produire la chaine "1"
+<S> ::= "" | <T>
+<T> ::= "1" <R> "0" "0" | "1" "0" <R> "0" | "1" "0" "0" <S>
+<R> ::= "" |Â 0" <R> | <T>

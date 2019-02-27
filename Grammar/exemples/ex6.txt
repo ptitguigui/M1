@@ -1,0 +1,5 @@
+# le langage a^0 1^b 0^c avec c == a + b
+# il ne peut pas produire la chaine "0"
+
+<S> ::= "" | "0" <S> "0" | <T>
+<T> ::= "" | "1" <T> "0"

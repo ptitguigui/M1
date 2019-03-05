@@ -17,14 +17,10 @@ import org.apache.commons.net.ftp.FTPClient;
 @Path("myresource")
 public class MyResource {
 
-	private String address;
-	private int port;
-	private FTPClient client;
+	
 
-	public MyResource() throws Exception {
-		this.address = InetAddress.getLocalHost().getHostName();
-		this.port = 1025;
-		this.client = new FTPClient();
+	public MyResource() {
+		
 	}
 
 	/**
@@ -38,11 +34,6 @@ public class MyResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getIt() throws Exception {
-		this.client.connect(address, port);
-		this.client.user("fr");
-		String answer = client.getReplyString();
-		this.client.disconnect();
-
-		return answer;
+		return "Got it!";
 	}
 }

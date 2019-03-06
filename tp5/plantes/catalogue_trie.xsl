@@ -21,22 +21,22 @@
 <xsl:template match="CATALOG">
   <xsl:param name="cle_tri"/>
   <table border="1">
-      <tr><xsl:apply-templates select="//PLANT[1]" mode="titre"/></tr>
-      <xsl:apply-templates select="//PLANT" mode="valeur"> <xsl:sort select="./*[name(.) = $cle_tri]"/> </xsl:apply-templates>
+      <tr><xsl:apply-templates select="//PLANT[1]/*" mode="titre"/></tr>
+      <xsl:apply-templates select="//PLANT"> <xsl:sort select="./*[name(.) = $cle_tri]"/> </xsl:apply-templates>
     </table>
 </xsl:template>
 
-<xsl:template match="//PLANT[1]/*" mode="titre">  
+<xsl:template match="*" mode="titre">  
      <th><a href=" ?cle_tri={name()}"><xsl:value-of select ="name()"/></a></th>
 </xsl:template>
   
-<xsl:template match="//PLANT" mode="valeur">
+<xsl:template match="//PLANT">
   <tr>
-       <xsl:apply-templates select="*"/>
+       <xsl:apply-templates select="*" mode="valeur"/>
   </tr>
 </xsl:template>
   
-<xsl:template match="*" >
+<xsl:template match="*" mode="valeur">
   <td>
     <xsl:apply-templates select="text()"/>
    </td>

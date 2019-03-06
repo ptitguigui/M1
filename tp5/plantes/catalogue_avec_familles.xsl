@@ -24,13 +24,33 @@
   <!--xsl:variable name="sort_key" select="//param[@name='sort_key']"/-->
   <xsl:param name="sort_key"/>
   <xsl:param name="families_xml"/>
-
-  Template CATALOG et PLANT a implementer.
+  <table border="1">
+      <tr>
+        <xsl:apply-templates select="//PLANT[1]/*" mode="titre"/>      
+        <th><a href=" ?sort_key=Family">Family</a></th> 
+      </tr>
+      <xsl:apply-templates select="//PLANT">
+        <xsl:sort select="./*[name(.) = $sort_key]"/>   
+      </xsl:apply-templates>
+    </table>
 </xsl:template>
+<xsl:template match="*" mode="titre">  
+     <th><a href=" ?sort_key={name()}"><xsl:value-of select ="name()"/></a></th>
+</xsl:template>
+  
+<xsl:template match="//PLANT" >
+  <xsl:param name="family"/>
+  <tr>
+      <xsl:apply-templates select="*" mode="valeur"/>
+      <!-- <xsl:apply-templates select="document($catalog_xml)//CATALOG/SPECIES" mode="valeur"/>       -->
+  </tr>
+</xsl:template>
+  
+<xsl:template match="*" mode="valeur" >
+  <td>
+    <xsl:apply-templates select="text()"/>
+  </td>
 
-<xsl:template match="PLANT">
-  <xsl:param name='families_xml'/>
-  ...
 </xsl:template>
 
 </xsl:stylesheet>

@@ -77,6 +77,15 @@ class MainWindow(QMainWindow):
                 fichierMenu.addAction(quitAct)
                 quitAct.triggered.connect(self.quit)
 
+                fileToolBar = QToolBar("file")
+                fileToolBar.addAction(newAct)
+                fileToolBar.addAction(openAct)
+                fileToolBar.addAction(saveAct)
+                fileToolBar.addAction(copyAct)
+                fileToolBar.addAction(quitAct)
+                self.addToolBar(fileToolBar)
+                self.setStatusBar(QStatusBar())
+
         def addTextEdit(self):
                 textEdit = QTextEdit( self );
                 self.setCentralWidget( textEdit );

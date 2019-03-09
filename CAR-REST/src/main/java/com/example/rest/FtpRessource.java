@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -31,14 +32,17 @@ public class FtpRessource {
     /**
      * Permet de lancer la commande SYST du server ftp
      */
-    public String doSyst() throws IOException {
+    public Response doSyst() throws IOException {
         try {
             this.ftp.syst();
+            return Response.ok(ftp.getReplyString()).build();
         } catch (Exception e) {
             this.ftp.disconnect();
             e.printStackTrace();
+        } finally {
+            ftp.disconnect();
         }
-        return this.ftp.getReplyString();
+        return null;
     }
 
 
@@ -48,21 +52,19 @@ public class FtpRessource {
     /**
      * Permet de télécharger le fichier sélectionner par l'utilisateur
      */
-    public String getFile(@PathParam("filename") String filename) throws Exception {
+    public Response getFile(@PathParam("filename") String filename) throws Exception {
         try {
-            String directory = System.getProperty("user.dir")+"/files/";
-            FileOutputStream fos = new FileOutputStream(directory+ filename);
+            String directory = System.getProperty("user.dir") + "/files/";
+            FileOutputStream fos = new FileOutputStream(directory + filename);
             ftp.enterLocalPassiveMode();
             ftp.retrieveFile(filename, fos);
             if (fos != null) {
                 fos.close();
-                return "fichier téléchargé avec succès";
-            }else{
-                return "Erreur lors du téléchargement du fichier :" + filename+ "Reponse du server :"+ftp.getReplyString();
+                return Response.ok("Fichier transférer avec succès").build();
             }
         } catch (Exception e) {
-           e.printStackTrace();
-        }finally {
+            e.printStackTrace();
+        } finally {
             ftp.disconnect();
         }
         return null;
@@ -74,10 +76,10 @@ public class FtpRessource {
     /**
      * Permet de lancer la commande QUIT du server ftp
      */
-    public String doQuit() throws Exception {
+    public Response doQuit() throws Exception {
         try {
             this.ftp.quit();
-            return this.ftp.getReplyString();
+            return Response.ok(ftp.getReplyString()).build();
         } catch (Exception e) {
             this.ftp.disconnect();
             e.printStackTrace();

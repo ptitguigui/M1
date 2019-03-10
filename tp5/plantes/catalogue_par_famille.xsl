@@ -44,7 +44,13 @@
 
 <xsl:template match="FAMILY" mode="generate-select">
   <xsl:param name="default"/>
-  <option value="{NAME/text()}"><xsl:apply-templates select="NAME/text()"/></option>
+  <xsl:variable name="name" select="NAME/text()"/>
+  <option value="{$name}">
+    <xsl:if test = "$name = $default">
+      <xsl:attribute name="selected">selected</xsl:attribute>
+    </xsl:if>
+    <xsl:value-of select= "$name"/>
+  </option>
 </xsl:template>
 
 <xsl:template match="CATALOG">
@@ -52,30 +58,40 @@
   <xsl:param name="family"/>
   <xsl:param name="families_xml"/>
   <table border="1">
-      <tr><xsl:apply-templates select="//PLANT[1]/*" mode="titre"/></tr>
-      <xsl:apply-templates select="//PLANT">
-       <xsl:sort select="./*[name(.) = $sort_key]"/>   
-       <xsl:param name="family"/>
-     </xsl:apply-templates>
-    </table>
+      <xsl:variable name="species" select="document($families_xml)//SPECIES[../NAME=$family]/text()"/>
+      <tr>
+        <xsl:apply-templates select="//PLANT[1]/*" mode="titre"/>
+      </tr>
+      <xsl:variable name="plantes" select="//PLANT[BOTANICAL/text() = $species]"/>
+      <xsl:choose>
+        <xsl:when test="count($plantes) = 0">
+            <xsl:apply-templates select="//PLANT" >
+              <xsl:sort select="./*[name(.) = $sort_key]"/>
+           </xsl:apply-templates>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$plantes" >
+            <xsl:sort select="./*[name(.) = $sort_key]"/>
+            <xsl:copy-of select = "$plantes"/>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
+  </table>
+
 </xsl:template>
 
-<xsl:template match="*" mode="titre">  
-     <th><a href=" ?sort_key={name()}"><xsl:value-of select ="name()"/></a></th>
+<xsl:template match="*" mode="titre">
+  <th>
+    <a href=" ?sort_key={name()}"><xsl:value-of select ="name()"/></a>
+  </th>
 </xsl:template>
-  
-<xsl:template match="//PLANT" >
-  <xsl:param name="family"/>
+
+<xsl:template match="*" >
   <tr>
-  <!-- <td><xsl:value-of select="$family"/></td> -->
-  <!-- document($catalog_xml)//CATALOG/SPECIES[Name=$family] -->
-    <!-- <xsl:if test = "./BOTANICAL/text() = //SPECIES[../NAME=$family]/text()"> -->
-
-      <xsl:apply-templates select="*" mode="valeur"/>
-    <!-- </xsl:if> -->
+    <xsl:apply-templates select="*" mode="valeur"/>
   </tr>
 </xsl:template>
-  
+
 <xsl:template match="*" mode="valeur" >
   <td>
     <xsl:apply-templates select="text()"/>

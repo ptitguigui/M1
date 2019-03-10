@@ -3,6 +3,7 @@
 <?php
   echo "<page>
           <params>
+            <param name='family'>".$_REQUEST['family']."</param>
             <param name='sort_key'>".$_REQUEST['sort_key']."</param>
             <param name='catalog_xml'>plant_catalog.xml</param>
             <param name='families_xml'>plant_families.xml</param>

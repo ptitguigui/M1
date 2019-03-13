@@ -1,4 +1,4 @@
-TP1 : Passerelle REST
+TP2 : Passerelle REST
 ===================
 
 
@@ -44,7 +44,7 @@ Vous pouvez effectuer les commandes suivantes :
 | RETRIEVE | Télécharge un fichier du serveur en spécifiant plus de configurations |  POST  | POST /myapp/ftp/download HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
 | STORE |  Upload un fichier vers le serveur  |  GET  |/myapp/ftp/upload/folder1 HTTP/1.1 Host: localhost:8080 |
 | STORE |  Upload un fichier vers le serveur en spécifiant plus de configurations  |  POST  |POST /myapp/ftp/upload HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
-| QUIT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/quit HTTP/1.1 Host: localhost:8080 |
+| QUIT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/disconnect HTTP/1.1 Host: localhost:8080 |
 
 
 # Tests :

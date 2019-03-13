@@ -39,7 +39,7 @@ public class FtpResource {
         int reply = ftp.getReplyCode();
         if (!FTPReply.isPositiveCompletion(reply)) {
             this.clientConnector.close();
-            throw new IOException("Exception in connecting to FTP Server");
+            return Response.ok("Mauvais login/mdp").build();
         }
         return Response.ok("Client connecté").build();
     }
@@ -47,6 +47,9 @@ public class FtpResource {
     @GET
     @Path("disconnect")
     public Response disconnect() throws IOException {
+        if (!ClientConnector.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
         FTPClient ftp = clientConnector.getFTPClient();
         ftp.quit();
         ClientConnector.setIsConnected(false);
@@ -144,6 +147,37 @@ public class FtpResource {
     }
 
     /**
+     * Permet de télécharger un fichier se trouvant dans le repertoire courant du FTP
+     *
+     * @param filename
+     * @return
+     */
+    @GET
+    @Path("download/{filename}")
+    public Response getFile(@PathParam("filename") String filename) {
+
+        if (!ClientConnector.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+
+        try {
+            FTPClient ftp = clientConnector.getFTPClient();
+            FileOutputStream fos = new FileOutputStream(DEFAULT_DIRECTORY + filename);
+            ftp.enterLocalPassiveMode();
+            ftp.setFileType(FTP.BINARY_FILE_TYPE);
+            ftp.retrieveFile(filename, fos);
+            if (fos != null) {
+                fos.close();
+                return Response.ok("Fichier transféré avec succès").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors du téléchargement du fichier").build();
+    }
+
+    /**
      * Permet de télécharger un fichier vers le serveur FTP
      *
      * @param file
@@ -170,11 +204,42 @@ public class FtpResource {
                 fos.close();
                 return Response.ok("Fichier transféré avec succès").build();
             }
-            return Response.serverError().build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
+        return Response.ok("Erreur lors du téléchargement du fichier").build();
+    }
+
+    /**
+     * Upload un fichier du serveur se trouvant dans le repertoire par défaut
+     * vers le repertoire courant du serveur FTP
+     *
+     * @param filename
+     * @return
+     */
+    @GET
+    @Path("upload/{filename}")
+    public Response upload(@PathParam("filename") String filename) {
+
+        if (!ClientConnector.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+
+        try {
+            FTPClient ftp = clientConnector.getFTPClient();
+            FileInputStream fileUpload = new FileInputStream(DEFAULT_DIRECTORY + filename);
+            ftp.enterLocalPassiveMode();
+            ftp.setFileType(FTP.BINARY_FILE_TYPE);
+            if (ftp.storeFile(filename, fileUpload)) {
+                fileUpload.close();
+                return Response.ok("Fichier upload avec succès").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors du téléchargement du fichier").build();
     }
 
     /**
@@ -203,11 +268,11 @@ public class FtpResource {
                 fileUpload.close();
                 return Response.ok("Fichier upload avec succès").build();
             }
-            return Response.serverError().build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
+        return Response.ok("Erreur lors de l'upload du fichier").build();
     }
 
     /**

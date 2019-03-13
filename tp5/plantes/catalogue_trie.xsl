@@ -40,7 +40,7 @@
        <td>
 
            <!-- <xsl:value-of select="$common"/> -->
-         <a href="panier_ajouter.php?plant=$common">Add</a>
+         <a href="panier_ajouter.php?plant={$common}">Add</a>
        </td>
   </tr>
 </xsl:template>

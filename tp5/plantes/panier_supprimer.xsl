@@ -5,7 +5,10 @@
 <xsl:param name="no_item"/>
 
 <xsl:template match="/">
-  <!-- template à implémenter-->
+  <BASKET>
+    <xsl:copy-of select="document('panier_local.xml', .)//BASKET/COMMON[position() != $no_item]"/>
+  </BASKET>
 </xsl:template>
+
 
 </xsl:stylesheet>

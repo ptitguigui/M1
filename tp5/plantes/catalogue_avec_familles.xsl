@@ -33,6 +33,7 @@
       <tr>
         <xsl:apply-templates select="//PLANT[1]/*" mode="titre"/>
         <th>FAMILY</th>
+        <th>Ajouter</th>
       </tr>
       <xsl:choose>
         <xsl:when test="count($plantes) = 0">
@@ -42,8 +43,12 @@
                   <xsl:apply-templates select="*" mode="valeur"/>
                   <xsl:variable name="name" select = "BOTANICAL/text()"/>
                   <xsl:variable name="famille" select="document($families_xml)//SPECIES[text() = $name]/../NAME/text()"/>
+                  <xsl:variable name="common" select="COMMON/text()"/>
                   <td>
                     <a href=" ?family={$famille}"><xsl:value-of select ="$famille"/></a>
+                  </td>
+                  <td>
+                    <a href="panier_ajouter.php?plant={$common}">Add</a>
                   </td>
                   <!-- <xsl:apply-templates select="document($catalog_xml)//CATALOG/SPECIES" mode="valeur"/>       -->
               </tr>
@@ -56,8 +61,12 @@
                   <xsl:apply-templates select="*" mode="valeur"/>
                   <xsl:variable name="name" select = "BOTANICAL/text()"/>
                   <xsl:variable name="famille" select="document($families_xml)//SPECIES[text() = $name]/../NAME/text()"/>
+                  <xsl:variable name="common" select="COMMON/text()"/>
                   <td>
                     <a href=" ?family={$famille}"><xsl:value-of select ="$famille"/></a>
+                  </td>
+                  <td>
+                    <a href="panier_ajouter.php?plant={$common}">Add</a>
                   </td>
                   <!-- <xsl:apply-templates select="document($catalog_xml)//CATALOG/SPECIES" mode="valeur"/>       -->
               </tr>

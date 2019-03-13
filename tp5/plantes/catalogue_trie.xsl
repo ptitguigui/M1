@@ -38,8 +38,6 @@
   <tr>
        <xsl:apply-templates select="*" mode="valeur"/>
        <td>
-
-           <!-- <xsl:value-of select="$common"/> -->
          <a href="panier_ajouter.php?plant={$common}">Add</a>
        </td>
   </tr>

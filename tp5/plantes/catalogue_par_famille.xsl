@@ -61,6 +61,7 @@
       <xsl:variable name="species" select="document($families_xml)//SPECIES[../NAME=$family]/text()"/>
       <tr>
         <xsl:apply-templates select="//PLANT[1]/*" mode="titre"/>
+        <th> Ajouter </th>
       </tr>
       <xsl:variable name="plantes" select="//PLANT[BOTANICAL/text() = $species]"/>
       <xsl:choose>
@@ -88,7 +89,11 @@
 
 <xsl:template match="*" >
   <tr>
+    <xsl:variable name="common" select="COMMON/text()"/>
     <xsl:apply-templates select="*" mode="valeur"/>
+    <td>
+      <a href="panier_ajouter.php?plant={$common}">Add</a>
+    </td>
   </tr>
 </xsl:template>
 

@@ -20,10 +20,36 @@
 </xsl:template>
 
 <xsl:template match="BASKET">
-  <xsl:param name="catalog_xml"/>
+  <h1> Panier : </h1>
+  <table border="1">
+    <th>COMMON</th>
+    <th>Qte</th>
+    <th>unit price</th>
+    <th>Price</th>
+      <xsl:apply-templates select="./COMMON"/>
+  </table>
+</xsl:template>
 
-  Templates BASKET, PLANT a implementer.
+<xsl:template match="COMMON">
+  <xsl:variable name="text" select="text()"/>
+  <xsl:variable name="qte" select="count(document('panier_local.xml',.)//COMMON[text() = $text])"/>
+  <xsl:variable name="p" select="document('plant_catalog.xml',.)//COMMON[text() = $text]/following-sibling::PRICE[1]/text()"/>
+  <tr>
+    <td>
+      <xsl:value-of select="text()"/>
+    </td>
+    <td>
+      <xsl:value-of select= "$qte"/>
+    </td>
+    <td>
+      <xsl:value-of select= "$p"/>
+    </td>
+    <td>
+      <xsl:value-of select= "concat('$',string(number(substring-after($p,'$')) * number($qte)))"/>
 
+    </td>
+
+  </tr>
 </xsl:template>
 
 

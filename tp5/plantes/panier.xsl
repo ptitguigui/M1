@@ -21,16 +21,20 @@
   <h1> Panier : </h1>
   <table border="1">
     <th>COMMON</th>
-    <tr>
+    <th>        </th>
       <xsl:apply-templates select="./COMMON"/>
-    </tr>
   </table>
 </xsl:template>
 
 <xsl:template match="COMMON">
-  <td>
-    <xsl:value-of select="text()"/>
-  </td>
+  <tr>
+    <td>
+      <xsl:value-of select="text()"/>
+    </td>
+    <td>
+      <a href="panier_supprimer.php?no_item={position()}">Remove</a>
+    </td>
+  </tr>
 </xsl:template>
 
 

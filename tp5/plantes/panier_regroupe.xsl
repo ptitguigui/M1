@@ -18,8 +18,25 @@
 </xsl:template>
 
 <xsl:template match="BASKET">
-  Templates BASKET, PLANT a implementer.
+  <h1> Panier : </h1>
+  <table border="1">
+    <th>COMMON</th>
+    <th>Qte</th>
+      <xsl:apply-templates select="./COMMON"/>
+  </table>
 </xsl:template>
 
+<xsl:template match="COMMON">
+  <xsl:variable name="text" select="text()"/>
+  <xsl:variable name="qte" select="count(document('panier_local.xml',.)//COMMON[text() = $text])"/>
+  <tr>
+    <td>
+      <xsl:value-of select="text()"/>
+    </td>
+    <td>
+      <xsl:value-of select= "$qte"/>
+    </td>
+    </tr>
+</xsl:template>
 
 </xsl:stylesheet>

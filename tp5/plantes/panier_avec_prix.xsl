@@ -20,13 +20,28 @@
 </xsl:template>
 
 <xsl:template match="BASKET">
-  <xsl:param name="catalog_xml"/>
-  Templates BASKET et PLANT a implementer.
+  <h1> Panier : </h1>
+  <table border="1">
+    <th>COMMON</th>
+    <th>Prix</th>
+    <th>        </th>
+      <xsl:apply-templates select="./COMMON"/>
+  </table>
 </xsl:template>
 
-<xsl:template match="PLANT">
-  <xsl:param name="catalog_xml"/>
-  ...
+<xsl:template match="COMMON">
+  <xsl:variable name="text" select="text()"/>
+  <tr>
+    <td>
+      <xsl:value-of select="text()"/>
+    </td>
+    <td>
+      <xsl:value-of select= "document('plant_catalog.xml',.)//COMMON[text() = $text]/following-sibling::PRICE[1]/text()"/>
+    </td>
+    <td>
+      <a href="panier_supprimer.php?no_item={position()}">Remove</a>
+    </td>
+  </tr>
 </xsl:template>
 
 </xsl:stylesheet>

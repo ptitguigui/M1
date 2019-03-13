@@ -32,7 +32,7 @@
       <xsl:variable name="plantes" select="//PLANT[BOTANICAL/text()=$species]"/>
       <tr>
         <xsl:apply-templates select="//PLANT[1]/*" mode="titre"/>
-        <th><a href=" ?sort_key=FAMILY">FAMILY</a></th>
+        <th>FAMILY</th>
       </tr>
       <xsl:choose>
         <xsl:when test="count($plantes) = 0">

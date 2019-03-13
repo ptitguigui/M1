@@ -18,11 +18,19 @@
 </xsl:template>
 
 <xsl:template match="BASKET">
-  Templates BASKET et PLANT a implementer.
+  <h1> Panier : </h1>
+  <table border="1">
+    <th>COMMON</th>
+    <tr>
+      <xsl:apply-templates select="./COMMON"/>
+    </tr>
+  </table>
 </xsl:template>
 
-<xsl:template match="PLANT">
-  ...
+<xsl:template match="COMMON">
+  <td>
+    <xsl:value-of select="text()"/>
+  </td>
 </xsl:template>
 
 

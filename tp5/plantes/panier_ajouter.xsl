@@ -3,10 +3,16 @@
 
 
 <xsl:param name="plant"/>
+<xsl:variable name='panier_local_xml' select="//param[@name='panier_local_xml']"/>
 
 <xsl:template match="/">
-  <!-- Feuille de style à implémenter -->
-
+      <BASKET>
+       <xsl:copy-of select="document($panier_local_xml)//BASKET/*"/>
+        <COMMON>
+          <xsl:value-of select="$plant"/>
+        </COMMON>
+      </BASKET>
 </xsl:template>
+
 
 </xsl:stylesheet>

@@ -36,7 +36,7 @@ Vous pouvez effectuer les commandes suivantes :
 
 | Commande   | Description   | Methode    | Commande curl |
 |------------|------------|------------|------------|
-| Connexion  | Connexion au serveur  |  POST  | POST /myapp/ftp/connect HTTP/1.1 Host: localhost:8080 Content-Type: application/json {"username":"[user]","password":"[mdp]"} |
+| CONNECT  | Connexion au serveur  |  POST  | POST /myapp/ftp/connect HTTP/1.1 Host: localhost:8080 Content-Type: application/json {"username":"[user]","password":"[mdp]"} |
 | LIST  |  liste le repertoire courant | GET | /myapp/ftp/list HTTP/1.1 Host: localhost:8080  |
 | LIST  |  liste le repertoire choisis selon un chemin | POST | POST /myapp/ftp/list HTTP/1.1 Host: localhost:8080  Content-Type: application/json {"serverPath":"[path/to/directory]"}|
 | CWD |  change de repertoire  |  GET  | GET /myapp/ftp/cwd/folder1 HTTP/1.1 Host: localhost:8080 |
@@ -44,7 +44,7 @@ Vous pouvez effectuer les commandes suivantes :
 | RETRIEVE | Télécharge un fichier du serveur en spécifiant plus de configurations |  POST  | POST /myapp/ftp/download HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
 | STORE |  Upload un fichier vers le serveur  |  GET  |/myapp/ftp/upload/folder1 HTTP/1.1 Host: localhost:8080 |
 | STORE |  Upload un fichier vers le serveur en spécifiant plus de configurations  |  POST  |POST /myapp/ftp/upload HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
-| QUIT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/disconnect HTTP/1.1 Host: localhost:8080 |
+| DISCONNECT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/disconnect HTTP/1.1 Host: localhost:8080 |
 
 
 # Tests :

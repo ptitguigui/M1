@@ -11,7 +11,6 @@ public class ClientConnector {
     private static int port;
     private static FTPClient FTP_CLIENT;
     private static ClientConnector client = new ClientConnector();
-    private static boolean isConnected = false;
 
     private ClientConnector() {
     }
@@ -24,7 +23,6 @@ public class ClientConnector {
             throw new IOException("Exception in connecting to FTP Server");
         }
         FTP_CLIENT.login(username, password);
-        isConnected = true;
     }
 
     public void close() throws IOException {
@@ -39,17 +37,9 @@ public class ClientConnector {
         ConfigClient configClient = new ConfigClient();
         address = configClient.getAddress();
         port = configClient.getPort();
-        if (!isConnected) {
+        if (FTP_CLIENT == null) {
             FTP_CLIENT = new FTPClient();
         }
         return FTP_CLIENT;
-    }
-
-    public static boolean isConnected() {
-        return isConnected;
-    }
-
-    public static void setIsConnected(boolean isConnected) {
-        ClientConnector.isConnected = isConnected;
     }
 }

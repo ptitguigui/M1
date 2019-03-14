@@ -47,12 +47,12 @@ public class FtpResource {
     @GET
     @Path("disconnect")
     public Response disconnect() throws IOException {
-        if (!ClientConnector.isConnected()) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
-        FTPClient ftp = clientConnector.getFTPClient();
         ftp.quit();
-        ClientConnector.setIsConnected(false);
         return Response.ok("Client déconnecté").build();
     }
 
@@ -62,11 +62,12 @@ public class FtpResource {
     @GET
     @Path("list")
     public Response listFiles() {
-        if (!ClientConnector.isConnected()) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             ftp.enterLocalPassiveMode();
             FTPFile[] files = ftp.listFiles();
             StringBuilder filesDisplay = getDetailsFiles(files);
@@ -88,12 +89,11 @@ public class FtpResource {
     @Path("list")
     public Response listFiles(File file) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
-
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             ftp.enterLocalPassiveMode();
             FTPFile[] files = ftp.listFiles(file.getServerPath());
             StringBuilder filesDisplay = getDetailsFiles(files);
@@ -109,20 +109,22 @@ public class FtpResource {
     @Path("cwd/{directory}")
     public Response doCWD(@PathParam("directory") String directory) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
 
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             ftp.enterLocalPassiveMode();
-            ftp.cwd(directory);
+            if (ftp.cwd(directory) == 200) {
+                return Response.ok("Déplacer vers " + directory).build();
+            }
 
-            return Response.ok(ftp.getReplyString()).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
+        return Response.ok("Erreur lors du déplacement du répertoire " + directory).build();
     }
 
     /**
@@ -156,12 +158,12 @@ public class FtpResource {
     @Path("download/{filename}")
     public Response getFile(@PathParam("filename") String filename) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
 
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             FileOutputStream fos = new FileOutputStream(DEFAULT_DIRECTORY + filename);
             ftp.enterLocalPassiveMode();
             ftp.setFileType(FTP.BINARY_FILE_TYPE);
@@ -189,12 +191,12 @@ public class FtpResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getFile(File file) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
 
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             String clientPath = getClientPath(file);
             FileOutputStream fos = new FileOutputStream(clientPath);
             ftp.enterLocalPassiveMode();
@@ -222,12 +224,12 @@ public class FtpResource {
     @Path("upload/{filename}")
     public Response upload(@PathParam("filename") String filename) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
 
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             FileInputStream fileUpload = new FileInputStream(DEFAULT_DIRECTORY + filename);
             ftp.enterLocalPassiveMode();
             ftp.setFileType(FTP.BINARY_FILE_TYPE);
@@ -254,12 +256,12 @@ public class FtpResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response upload(File file) {
 
-        if (!ClientConnector.isConnected()) {
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
 
         try {
-            FTPClient ftp = clientConnector.getFTPClient();
             String clientPath = getClientPath(file);
             FileInputStream fileUpload = new FileInputStream(clientPath);
             ftp.enterLocalPassiveMode();

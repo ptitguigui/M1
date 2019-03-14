@@ -5,6 +5,7 @@ public class File {
     private String serverPath;
     private String clientPath;
     private String filename;
+    private String newFilename;
 
     public File() {
     }
@@ -61,5 +62,23 @@ public class File {
      */
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    /**
+     * Getter newFilename of file object
+     *
+     * @return newFilename
+     */
+    public String getNewFilename() {
+        return newFilename;
+    }
+
+    /**
+     * Setter filename of file object
+     *
+     * @param newFilename
+     */
+    public void setNewFilename(String newFilename) {
+        this.newFilename = newFilename;
     }
 }

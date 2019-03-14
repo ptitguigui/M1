@@ -4,10 +4,7 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
-import tp2.utils.ClientConnector;
-import tp2.utils.ConfigClient;
-import tp2.utils.File;
-import tp2.utils.User;
+import tp2.utils.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -293,4 +290,67 @@ public class FtpResource {
         }
         return pathClient;
     }
+
+    @PUT
+    @Path("rename")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response rename(File file) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+
+        try {
+            if (ftp.rename(file.getFilename(), file.getNewFilename())) {
+                return Response.ok("Modification effectué avec succés").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors de la modification").build();
+    }
+
+
+    @POST
+    @Path("create")
+    public Response createDirectory(File file) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+        String directory = file.getFilename();
+        try {
+            if (ftp.makeDirectory(directory)) {
+                return Response.ok("Creation du dossier " + directory + " effectué avec succés").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors de la creation du dossier " + directory).build();
+    }
+
+
+    @DELETE
+    @Path("remove/{directory}")
+    public Response removeDirectory(@PathParam("directory") String directory) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+        try {
+            if (ftp.removeDirectory(directory)) {
+                return Response.ok("Le dossier " + directory + " a été supprimé avec succés").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors de la suppression du dossier " + directory).build();
+    }
+
 }

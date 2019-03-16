@@ -28,7 +28,7 @@ TP2 : Passerelle REST
 
 Vous pouvez voir ci-dessous l'architecture de notre projet : 
 
-![image](diagrams/server.png)
+![image](diagrams/tp2.png)
 
 # Commandes REST 
 
@@ -39,11 +39,16 @@ Vous pouvez effectuer les commandes suivantes :
 | CONNECT  | Connexion au serveur  |  POST  | POST /myapp/ftp/connect HTTP/1.1 Host: localhost:8080 Content-Type: application/json {"username":"[user]","password":"[mdp]"} |
 | LIST  |  liste le repertoire courant | GET | /myapp/ftp/list HTTP/1.1 Host: localhost:8080  |
 | LIST  |  liste le repertoire choisis selon un chemin | POST | POST /myapp/ftp/list HTTP/1.1 Host: localhost:8080  Content-Type: application/json {"serverPath":"[path/to/directory]"}|
-| CWD |  change de repertoire  |  GET  | GET /myapp/ftp/cwd/folder1 HTTP/1.1 Host: localhost:8080 |
-| RETRIEVE | Télécharge un fichier du serveur |  GET  | GET /myapp/ftp/download HTTP/1.1 Host: localhost:8080 |
+| CWD |  change de repertoire  |  GET  | GET /myapp/ftp/cwd/{folder} HTTP/1.1 Host: localhost:8080 |
+| RETRIEVE | Télécharge un fichier du serveur |  GET  | GET /myapp/ftp/download/{filename} HTTP/1.1 Host: localhost:8080 |
 | RETRIEVE | Télécharge un fichier du serveur en spécifiant plus de configurations |  POST  | POST /myapp/ftp/download HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
-| STORE |  Upload un fichier vers le serveur  |  GET  |/myapp/ftp/upload/folder1 HTTP/1.1 Host: localhost:8080 |
+| RETRIEVE | Télécharge un dossier complet avec ses sous dossiers depuis le FTP |  GET  | GET /myapp/ftp/downloadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
+| STORE |  Upload un fichier vers le serveur  |  GET  |/myapp/ftp/upload/{folder} HTTP/1.1 Host: localhost:8080 |
 | STORE |  Upload un fichier vers le serveur en spécifiant plus de configurations  |  POST  |POST /myapp/ftp/upload HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
+| STORE | Upload un dossier complet avec ses sous dossiers depuis le FTP  |  GET  |GET /myapp/ftp/uploadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
+| RNTO  | Renomme un dossier ou un fichier |  PUT  | PUT /myapp/ftp/rename HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "newFilename":"[newFilename]", "filename": [filename]" }|
+| MKD | Crée un nouveau dossier sur le FTP |  POST  |POST /myapp/ftp/create HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "filename":"[folder]" }|
+| RMD | Supprime un dossier depuis le FTP |  DELETE  | DELETE /myapp/ftp/remove/{folder} HTTP/1.1 Host: localhost:8080 |
 | DISCONNECT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/disconnect HTTP/1.1 Host: localhost:8080 |
 
 

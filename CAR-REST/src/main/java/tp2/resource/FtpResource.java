@@ -143,19 +143,16 @@ public class FtpResource {
         }
 
         try {
-            FileOutputStream fos = new FileOutputStream(DEFAULT_DIRECTORY + filename);
             ftp.enterLocalPassiveMode();
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            ftp.retrieveFile(filename, fos);
-            if (fos != null) {
-                fos.close();
-                return Response.ok("Fichier transféré avec succès").build();
+            if (FTPUtil.downloadSingleFile(ftp, filename, DEFAULT_DIRECTORY + "/" + filename)) {
+                return Response.ok("Fichier téléchargé avec succès. ").build();
+            } else {
+                return Response.ok("Erreur lors du téléchargement du fichier. ").build();
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Erreur lors du téléchargement du fichier").build();
     }
 
     /**
@@ -176,20 +173,19 @@ public class FtpResource {
         }
 
         try {
+            String filename = file.getFilename();
             String clientPath = getClientPath(file);
-            FileOutputStream fos = new FileOutputStream(clientPath);
             ftp.enterLocalPassiveMode();
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            ftp.retrieveFile(file.getServerPath() + file.getFilename(), fos);
-            if (fos != null) {
-                fos.close();
-                return Response.ok("Fichier transféré avec succès").build();
+
+            if (FTPUtil.downloadSingleFile(ftp, file.getServerPath() + filename, clientPath)) {
+                return Response.ok("Fichier télécharger avec succès. ").build();
+            } else {
+                return Response.ok("Erreur lors du téléchargement du fichier. ").build();
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Erreur lors du téléchargement du fichier").build();
     }
 
     /**
@@ -209,18 +205,16 @@ public class FtpResource {
         }
 
         try {
-            FileInputStream fileUpload = new FileInputStream(DEFAULT_DIRECTORY + filename);
             ftp.enterLocalPassiveMode();
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            if (ftp.storeFile(filename, fileUpload)) {
-                fileUpload.close();
-                return Response.ok("Fichier upload avec succès").build();
+            if (FTPUtil.uploadSingleFile(ftp, DEFAULT_DIRECTORY + "/" + filename, filename)) {
+                return Response.ok("Fichier upload avec succès. ").build();
+            } else {
+                return Response.ok("Erreur lors de l'upload du fichier. ").build();
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Erreur lors du téléchargement du fichier").build();
     }
 
     /**
@@ -241,19 +235,19 @@ public class FtpResource {
         }
 
         try {
+            String filename = file.getFilename();
             String clientPath = getClientPath(file);
-            FileInputStream fileUpload = new FileInputStream(clientPath);
+
             ftp.enterLocalPassiveMode();
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            if (ftp.storeFile(file.getServerPath() + file.getFilename(), fileUpload)) {
-                fileUpload.close();
-                return Response.ok("Fichier upload avec succès").build();
+            if (FTPUtil.uploadSingleFile(ftp, clientPath, file.getServerPath() + filename)) {
+                return Response.ok("Fichier upload avec succès. ").build();
+            } else {
+                return Response.ok("Erreur lors de l'upload du fichier. ").build();
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Erreur lors de l'upload du fichier").build();
     }
 
     /**
@@ -265,7 +259,7 @@ public class FtpResource {
      */
     private String getClientPath(File file) {
         String pathClient;
-        if (file.getClientPath() == null) {
+        if (file.getClientPath() != null || !file.getClientPath().equals("")) {
             pathClient = file.getClientPath() + file.getFilename();
         } else {
             pathClient = DEFAULT_DIRECTORY + file.getFilename();
@@ -284,6 +278,7 @@ public class FtpResource {
         }
 
         try {
+            ftp.enterLocalPassiveMode();
             if (ftp.rename(file.getFilename(), file.getNewFilename())) {
                 return Response.ok("Modification effectué avec succés").build();
             }
@@ -305,6 +300,7 @@ public class FtpResource {
         }
         String directory = file.getFilename();
         try {
+            ftp.enterLocalPassiveMode();
             if (ftp.makeDirectory(directory)) {
                 return Response.ok("Creation du dossier " + directory + " effectué avec succés").build();
             }
@@ -325,6 +321,7 @@ public class FtpResource {
             return Response.ok("Le client n'est pas connecté").build();
         }
         try {
+            ftp.enterLocalPassiveMode();
             if (ftp.removeDirectory(directory)) {
                 return Response.ok("Le dossier " + directory + " a été supprimé avec succés").build();
             }

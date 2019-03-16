@@ -42,8 +42,7 @@ public class FTPUtil {
      * @return true si fichier télécharger, false sinon
      * @throws IOException
      */
-    public static boolean downloadSingleFile(FTPClient ftpClient,
-                                             String remoteFilePath, String savePath) throws IOException {
+    public static boolean downloadSingleFile(FTPClient ftpClient, String remoteFilePath, String savePath) throws IOException {
         File downloadFile = new File(savePath);
 
         File parentDir = downloadFile.getParentFile();
@@ -79,7 +78,6 @@ public class FTPUtil {
 
             if (subFiles != null && subFiles.length > 0) {
                 for (FTPFile aFile : subFiles) {
-                    System.out.println(aFile.getName());
                     String currentFileName = aFile.getName();
                     if (currentFileName.equals(".") || currentFileName.equals("..")) {
                         // skip parent directory and the directory itself

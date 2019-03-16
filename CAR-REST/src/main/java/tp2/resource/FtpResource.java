@@ -259,11 +259,12 @@ public class FtpResource {
      */
     private String getClientPath(File file) {
         String pathClient;
-        if (file.getClientPath() != null || !file.getClientPath().equals("")) {
+        if (file.getClientPath() != null && !file.getClientPath().equals("")) {
             pathClient = file.getClientPath() + file.getFilename();
         } else {
             pathClient = DEFAULT_DIRECTORY + file.getFilename();
         }
+        System.out.println(pathClient);
         return pathClient;
     }
 

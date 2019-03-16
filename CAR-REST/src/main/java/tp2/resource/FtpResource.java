@@ -4,6 +4,8 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import tp2.data.File;
+import tp2.data.User;
 import tp2.utils.*;
 
 import javax.ws.rs.*;
@@ -67,7 +69,7 @@ public class FtpResource {
         try {
             ftp.enterLocalPassiveMode();
             FTPFile[] files = ftp.listFiles();
-            StringBuilder filesDisplay = getDetailsFiles(files);
+            StringBuilder filesDisplay = FTPUtil.getDetailsFiles(files);
 
             return Response.ok(filesDisplay.toString()).build();
         } catch (Exception e) {
@@ -93,7 +95,7 @@ public class FtpResource {
         try {
             ftp.enterLocalPassiveMode();
             FTPFile[] files = ftp.listFiles(file.getServerPath());
-            StringBuilder filesDisplay = getDetailsFiles(files);
+            StringBuilder filesDisplay = FTPUtil.getDetailsFiles(files);
 
             return Response.ok(filesDisplay.toString()).build();
         } catch (Exception e) {
@@ -124,26 +126,6 @@ public class FtpResource {
         return Response.ok("Erreur lors du déplacement du répertoire " + directory).build();
     }
 
-    /**
-     * Methode qui affiche le détail des fichiers
-     *
-     * @param files l'ensemble des fichiers
-     * @return StringBuilder le detail des fichiers
-     */
-    private StringBuilder getDetailsFiles(FTPFile[] files) {
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        StringBuilder filesDisplay = new StringBuilder();
-        for (FTPFile file : files) {
-            String details = file.getName();
-            if (file.isDirectory()) {
-                details = "[" + details + "]";
-            }
-            details += "\t\t" + file.getSize();
-            details += "\t\t" + dateFormatter.format(file.getTimestamp().getTime());
-            filesDisplay.append(details).append("\n");
-        }
-        return filesDisplay;
-    }
 
     /**
      * Permet de télécharger un fichier se trouvant dans le repertoire courant du FTP
@@ -351,6 +333,34 @@ public class FtpResource {
             return Response.serverError().build();
         }
         return Response.ok("Erreur lors de la suppression du dossier " + directory).build();
+    }
+
+
+    /**
+     * Télécharge le dossier complet du serveur se trouvant dans
+     * le répertoire courant
+     *
+     * @param directory
+     * @return
+     */
+    @GET
+    @Path("downloadDirectory/{directory}")
+    public Response downloadDirectory(@PathParam("directory") String directory) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+
+        try {
+            ftp.enterLocalPassiveMode();
+           // String saveDir =  + "/" + directory;
+            FTPUtil.downloadDirectory(ftp, directory, "", DEFAULT_DIRECTORY);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Le dossier a été télécharger avec succès").build();
     }
 
 }

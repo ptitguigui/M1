@@ -1,4 +1,4 @@
-package tp2.utils;
+package tp2.data;
 
 /**
  * @author lepretreg

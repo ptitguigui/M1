@@ -8,8 +8,6 @@ public class ConfigClient {
 
     private String address;
     private int port;
-    private String username;
-    private String password;
     private String directory;
     private File fileConf;
 
@@ -34,13 +32,6 @@ public class ConfigClient {
                         this.address = data[1].trim();
                         this.port = Integer.parseInt(data[2].trim());
                         break;
-                    case "username":
-                        this.username = data[1].trim();
-                        break;
-                    case "password":
-                        this.password = data[1].trim();
-                        break;
-
                     case "directory":
                         this.directory = System.getProperty("user.dir") + data[1].trim();
                         break;
@@ -76,24 +67,6 @@ public class ConfigClient {
      */
     public int getPort() {
         return port;
-    }
-
-    /**
-     * Getter of username
-     *
-     * @return username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Getter of password
-     *
-     * @return password
-     */
-    public String getPassword() {
-        return password;
     }
 
 }

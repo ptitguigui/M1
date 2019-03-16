@@ -135,7 +135,7 @@ public class FtpResource {
      */
     @GET
     @Path("download/{filename}")
-    public Response getFile(@PathParam("filename") String filename) {
+    public Response download(@PathParam("filename") String filename) {
 
         FTPClient ftp = clientConnector.getFTPClient();
         if (!ftp.isConnected()) {
@@ -168,7 +168,7 @@ public class FtpResource {
     @POST
     @Path("download")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response getFile(File file) {
+    public Response download(File file) {
 
         FTPClient ftp = clientConnector.getFTPClient();
         if (!ftp.isConnected()) {
@@ -351,15 +351,17 @@ public class FtpResource {
         if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
-
         try {
             ftp.enterLocalPassiveMode();
-            FTPUtil.downloadDirectory(ftp, directory, "", DEFAULT_DIRECTORY);
+            if (FTPUtil.downloadDirectory(ftp, directory, "", DEFAULT_DIRECTORY)) {
+                return Response.ok("Le dossier a été télécharger avec succès").build();
+            } else {
+                return Response.ok("Erreur lors du téléchargement du dossier " + directory).build();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Le dossier a été télécharger avec succès").build();
     }
 
 
@@ -381,12 +383,15 @@ public class FtpResource {
         String localParentDir = DEFAULT_DIRECTORY + directory;
         try {
             ftp.enterLocalPassiveMode();
-            FTPUtil.uploadDirectory(ftp, directory, localParentDir, "");
+            if (FTPUtil.uploadDirectory(ftp, directory, localParentDir, "")) {
+                return Response.ok("Le dossier a été upload avec succès").build();
+            } else {
+                return Response.ok("Erreur lors de l'upload du dossier " + directory).build();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Le dossier a été télécharger avec succès").build();
     }
 
 }

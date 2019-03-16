@@ -28,8 +28,8 @@
       <file leaf-file-name="FtpResource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tp2/resource/FtpResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6084">
-              <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+            <state relative-caret-position="3553">
+              <caret line="380" column="50" lean-forward="false" selection-start-line="380" selection-start-column="50" selection-end-line="380" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -38,8 +38,8 @@
       <file leaf-file-name="FTPUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tp2/utils/FTPUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="82" column="57" lean-forward="true" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
+            <state relative-caret-position="-184">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -67,6 +67,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>ftpClient</find>
+      <find>exis</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -147,12 +148,6 @@
             <path>
               <item name="jersey-service" type="b2602c69:ProjectViewProjectNode" />
               <item name="CAR-REST" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-              <item name="folderA" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jersey-service" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CAR-REST" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -188,11 +183,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CAR-FTP" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="tp2.utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lepretre\Desktop\Master\M1\M1S2\car-lepretre-irakoze\CAR-REST\files" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="tp2.utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -328,12 +323,12 @@
       <updated>1552136377243</updated>
       <workItem from="1552136385964" duration="10754000" />
       <workItem from="1552497905381" duration="10980000" />
-      <workItem from="1552741843409" duration="3880000" />
+      <workItem from="1552741843409" duration="9409000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26490000" />
+    <option name="totallyTimeSpent" value="32019000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -381,17 +376,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="966">
-            <caret line="42" column="14" lean-forward="false" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tp2/resource/FtpResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7268">
@@ -550,18 +534,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/files/folderB/file1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tp2/resource/FtpResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6084">
-          <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+        <state relative-caret-position="3553">
+          <caret line="380" column="50" lean-forward="false" selection-start-line="380" selection-start-column="50" selection-end-line="380" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tp2/utils/FTPUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="82" column="57" lean-forward="true" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
+        <state relative-caret-position="-184">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>

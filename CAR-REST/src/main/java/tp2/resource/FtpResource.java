@@ -354,8 +354,34 @@ public class FtpResource {
 
         try {
             ftp.enterLocalPassiveMode();
-           // String saveDir =  + "/" + directory;
             FTPUtil.downloadDirectory(ftp, directory, "", DEFAULT_DIRECTORY);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Le dossier a été télécharger avec succès").build();
+    }
+
+
+    /**
+     * Télécharge le dossier complet du serveur se trouvant dans
+     * le répertoire courant
+     *
+     * @param directory
+     * @return
+     */
+    @GET
+    @Path("uploadDirectory/{directory}")
+    public Response uploadDirectory(@PathParam("directory") String directory) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+        String localParentDir = DEFAULT_DIRECTORY + directory;
+        try {
+            ftp.enterLocalPassiveMode();
+            FTPUtil.uploadDirectory(ftp, directory, localParentDir, "");
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();

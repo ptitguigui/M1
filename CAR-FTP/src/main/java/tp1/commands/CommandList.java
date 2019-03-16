@@ -38,10 +38,15 @@ public class CommandList extends Command {
             if (clientMessage.split(" ").length == 1) {
                 list = ListDirectory.generateList(configServer.getCurrentDirectory());
             } else {
-                list = ListDirectory.generateList(clientMessage.split(" ")[1]);
+                String directory = clientMessage.split(" ")[1];
+                if (directory.startsWith("/")) {
+                    list = ListDirectory.generateList(directory);
+                } else {
+                    list = ListDirectory.generateList(configServer.getCurrentDirectory() + "/" + directory);
+                }
             }
             this.getRequestMessage().sendMessage(RequestMessage.CODE_150);
-            
+
             Socket transferSocket = getTransferSocket(configClient, configServer);
             DataOutputStream transferDataOutputStream = new DataOutputStream(transferSocket.getOutputStream());
 

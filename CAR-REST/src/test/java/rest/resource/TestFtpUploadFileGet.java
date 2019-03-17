@@ -18,7 +18,7 @@ import tp2.Main;
 public class TestFtpUploadFileGet {
 
 	private HttpServer server;
-    private WebTarget target1, target2, target3, target4;
+    private WebTarget target, target1, target2, target3, target4;
 
 	@Before
     public void setUp() throws Exception {
@@ -35,7 +35,8 @@ public class TestFtpUploadFileGet {
 
         target1 = c.target(Main.BASE_URI+"ftp/connect");
         target2 = c.target(Main.BASE_URI+"ftp/upload/file2.txt");
-        target3 = c.target(Main.BASE_URI+"ftp/download/newFile1.txt");
+        target3 = c.target(Main.BASE_URI+"ftp/upload/newFile1.txt");
+        target = c.target(Main.BASE_URI+"ftp/removeFile");
         target4 = c.target(Main.BASE_URI+"ftp/disconnect");
     }
 
@@ -63,13 +64,14 @@ public class TestFtpUploadFileGet {
 		Response response = target3.request().get();
 		String output = response.readEntity(String.class);
 		assertEquals("should return status 200", 200, response.getStatus());
-		assertTrue(output.equals("Fichier téléchargé avec succès. "));
+		assertTrue(output.equals("Fichier upload avec succès. "));
+		target.request().post(Entity.json("{\n" + 
+				"	\"filename\":\"newFile1.txt\"\n" + 
+				"}"));
 		target4.request().get();
 		
 	}
-	
-	
-	
+		
 	@After
 	public void shutdown() {
 		server.shutdownNow();

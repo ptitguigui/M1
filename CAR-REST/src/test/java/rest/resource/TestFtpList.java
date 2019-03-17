@@ -49,7 +49,7 @@ public class TestFtpList {
 		String output = response.readEntity(String.class);
 		
 		assertTrue(output.contains("[folder1]"));
-		assertTrue(output.contains("newFile1.txt"));
+		assertTrue(output.contains("new.txt"));
 		
 	}
 	

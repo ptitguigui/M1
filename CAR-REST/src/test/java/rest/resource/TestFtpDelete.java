@@ -15,10 +15,10 @@ import org.junit.Test;
 
 import tp2.Main;
 
-public class TestFtpDownloadFileGET {
+public class TestFtpDelete {
 
 	private HttpServer server;
-    private WebTarget target1, target2, target3, target4;
+    private WebTarget target1, target2, target;
 
 	@Before
     public void setUp() throws Exception {
@@ -26,47 +26,32 @@ public class TestFtpDownloadFileGET {
         server = Main.startServer();
         // create the client
         Client c = ClientBuilder.newClient();
+
         target1 = c.target(Main.BASE_URI+"ftp/connect");
-        target2 = c.target(Main.BASE_URI+"ftp/download/file1.txt");
-        target3 = c.target(Main.BASE_URI+"ftp/download/new.txt");
-        target4 = c.target(Main.BASE_URI+"ftp/disconnect");
+        target2 = c.target(Main.BASE_URI+"ftp/remove/folderA");
+        target = c.target(Main.BASE_URI+"ftp/create");
     }
-
-
+	
 	@Test
-	public void test_download_fail() {
+	public void test_delete_folder() {
 		target1.request().post(Entity.json("{\n" + 
 				"	\"username\":\"anonymous\",\n" + 
 				"	\"password\":\"\"\n" + 
 				"}"));
-		Response response = target2.request().get();
+		Response response = target2.request().delete();
 		String output = response.readEntity(String.class);
-		assertEquals("should return status 200", 200, response.getStatus());
-		assertTrue(output.equals("Erreur lors du téléchargement du fichier. "));
-		target4.request().get();
 		
-	}
-	
-	@Test
-	public void test_download() {
-		target1.request().post(Entity.json("{\n" + 
-				"	\"username\":\"anonymous\",\n" + 
-				"	\"password\":\"\"\n" + 
+		assertEquals("should return status 200", 200, response.getStatus());
+		assertTrue(output.equals("Le dossier folderA a été supprimé avec succés"));
+		target.request().post(Entity.json("{\n" + 
+				"	\"filename\":\"folderA\"\n" + 
 				"}"));
-		Response response = target3.request().get();
-		String output = response.readEntity(String.class);
-		assertEquals("should return status 200", 200, response.getStatus());
-		assertTrue(output.equals("Fichier téléchargé avec succès. "));
-		target4.request().get();
 		
 	}
-	
-	
 	
 	@After
 	public void shutdown() {
 		server.shutdownNow();
 	}
-
 
 }

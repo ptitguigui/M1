@@ -6,6 +6,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -15,45 +16,40 @@ import org.junit.Test;
 
 import tp2.Main;
 
-public class TestFtpRename {
+public class TestFtpCreateDirectory {
 
 	private HttpServer server;
-	private WebTarget target1, target2, target3, target4;
+    private WebTarget target, target1, target2, target3;
 
-	@Before
+    @Before
     public void setUp() throws Exception {
     	// start the server
         server = Main.startServer();
         // create the client
         Client c = ClientBuilder.newClient();
-        target1 = c.target(Main.BASE_URI+"ftp/connect");
-        target2 = c.target(Main.BASE_URI+"ftp/rename");
-        target3 = c.target(Main.BASE_URI+"ftp/rename");
-        target4 = c.target(Main.BASE_URI+"ftp/disconnect");
+
+        target = c.target(Main.BASE_URI+"ftp/connect");
+        target1 = c.target(Main.BASE_URI+"ftp/create");
+        target2 = c.target(Main.BASE_URI+"ftp/remove/folderC");
+        target3 = c.target(Main.BASE_URI+"ftp/disconnect");
     }
 
 
 	@Test
-	public void test_rename() {
-		target1.request().post(Entity.json("{\n" + 
+	public void test_create() {
+		target.request().post(Entity.json("{\n" + 
 				"	\"username\":\"anonymous\",\n" + 
 				"	\"password\":\"\"\n" + 
 				"}"));
-		Response response = target2.request().put(Entity.json("{\n" + 
-				"	\"filename\":\"file.txt\",\n" + 
-				"	\"newFilename\": \"newFile.txt\"\n" + 
+		Response response = target1.request().post(Entity.json("{\n" + 
+				"	\"filename\":\"folderC\"\n" + 
 				"}"));
 		String output = response.readEntity(String.class);
 		assertEquals("should return status 200", 200, response.getStatus());
-		assertTrue(output.equals("Modification effectué avec succés"));
-		target2.request().put(Entity.json("{\n" + 
-				"	\"filename\":\"newFile.txt\",\n" + 
-				"	\"newFilename\": \"file.txt\"\n" + 
-				"}"));
-		target4.request().get();
-		
-	}	
-	
+		assertTrue(output.equals("Creation du dossier folderC effectué avec succés"));
+		target2.request().delete();
+		target3.request().get();
+	}
 	@After
 	public void shutdown() {
 		server.shutdownNow();

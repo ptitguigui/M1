@@ -268,7 +268,13 @@ public class FtpResource {
         System.out.println(pathClient);
         return pathClient;
     }
-
+    
+    
+    /* *
+     * Permet de renommer le fichier donée en parametre
+     * 
+     *  @param file
+     */
     @PUT
     @Path("rename")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -314,10 +320,31 @@ public class FtpResource {
     }
 
 
+    @POST
+    @Path("removeFile")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeDirectory(File file) {
+
+        FTPClient ftp = clientConnector.getFTPClient();
+        if (!ftp.isConnected()) {
+            return Response.ok("Le client n'est pas connecté").build();
+        }
+        try {
+            ftp.enterLocalPassiveMode();
+            if (ftp.deleteFile(file.getFilename())) {
+                return Response.ok("Le Fichier " + file.getFilename() + " a été supprimé avec succés").build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.serverError().build();
+        }
+        return Response.ok("Erreur lors de la suppression du fichier " + file.getFilename()).build();
+    }
+    
+    
     @DELETE
     @Path("remove/{directory}")
-    public Response removeDirectory(@PathParam("directory") String directory) {
-
+    public Response removeFile(@PathParam("directory") String directory) { 
         FTPClient ftp = clientConnector.getFTPClient();
         if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();

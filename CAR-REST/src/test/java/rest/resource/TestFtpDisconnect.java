@@ -42,8 +42,8 @@ public class TestFtpDisconnect {
 	@Test
 	public void test_disconnect() {
 		target1.request().post(Entity.json("{\n" + 
-				"	\"username\":\"guillaume\",\n" + 
-				"	\"password\":\"mdp123\"\n" + 
+				"	\"username\":\"anonymous\",\n" + 
+				"	\"password\":\"\"\n" + 
 				"}"));
 		Response response = target2.request().get();
 		String output = response.readEntity(String.class);

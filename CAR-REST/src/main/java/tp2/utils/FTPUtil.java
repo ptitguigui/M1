@@ -129,6 +129,9 @@ public class FTPUtil {
     public static boolean uploadSingleFile(FTPClient ftpClient,
                                            String localFilePath, String remoteFilePath) throws IOException {
         File localFile = new File(localFilePath);
+        if (!localFile.exists()) {
+        	return false;
+        }
 
         try (InputStream inputStream = new FileInputStream(localFile)) {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
@@ -151,6 +154,7 @@ public class FTPUtil {
             File localDir = new File(localParentDir);
             File[] subFiles = localDir.listFiles();
             if (subFiles != null && subFiles.length > 0) {
+            	ftpClient.makeDirectory(remoteDirPath);
                 for (File item : subFiles) {
                     String remoteFilePath = remoteDirPath + "/" + remoteParentDir
                             + "/" + item.getName();

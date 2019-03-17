@@ -41,8 +41,8 @@ public class TestFtpCwd {
 	@Test
 	public void test_cwd() {
 		target1.request().post(Entity.json("{\n" + 
-				"	\"username\":\"guillaume\",\n" + 
-				"	\"password\":\"mdp123\"\n" + 
+				"	\"username\":\"anonymous\",\n" + 
+				"	\"password\":\"\"\n" + 
 				"}"));
 		Response response = target2.request().get();
 		String output = response.readEntity(String.class);
@@ -53,8 +53,8 @@ public class TestFtpCwd {
 	@Test
 	public void test_cwd_error() {
 		target1.request().post(Entity.json("{\n" + 
-				"	\"username\":\"guillaume\",\n" + 
-				"	\"password\":\"mdp123\"\n" + 
+				"	\"username\":\"anonymous\",\n" + 
+				"	\"password\":\"\"\n" + 
 				"}"));
 		Response response = target3.request().get();
 		String output = response.readEntity(String.class);

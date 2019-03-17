@@ -15,7 +15,8 @@ import org.junit.Test;
 
 import tp2.Main;
 
-public class TestFtpDownloadPOST {
+public class TestFtpUploadFilePost {
+
 	private HttpServer server;
     private WebTarget target1, target2, target3;
 
@@ -33,26 +34,26 @@ public class TestFtpDownloadPOST {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target1 = c.target(Main.BASE_URI+"ftp/connect");
-        target2 = c.target(Main.BASE_URI+"ftp/download");
+        target2 = c.target(Main.BASE_URI+"ftp/upload");
     }
 
 	
 	
 	
 	@Test
-	public void test_download_post() {
+	public void test_upload_post() {
 		target1.request().post(Entity.json("{\n" + 
 				"	\"username\":\"anonymous\",\n" + 
 				"	\"password\":\"\"\n" + 
 				"}"));
 		Response response = target2.request().post(Entity.json("{\n" + 
-				"	\"serverPath\":\"folder1/dossierPhoto/\",\n" + 
+				"	\"serverPath\":\"folder1/\",\n" + 
 				"	\"clientPath\":\"\",\n" + 
 				"	\"filename\": \"img.jpg\"\n" + 
 				"}"));
 		String output = response.readEntity(String.class);
 		assertEquals("should return status 200", 200, response.getStatus());
-		assertTrue(output.equals("Fichier téléchargé avec succès. "));
+		assertTrue(output.equals("Fichier upload avec succès. "));
 		
 	}
 	@After

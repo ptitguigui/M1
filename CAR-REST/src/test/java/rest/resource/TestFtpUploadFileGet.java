@@ -15,9 +15,10 @@ import org.junit.Test;
 
 import tp2.Main;
 
-public class TestFtpDownloadPOST {
+public class TestFtpUploadFileGet {
+
 	private HttpServer server;
-    private WebTarget target1, target2, target3;
+    private WebTarget target1, target2, target3, target4;
 
 	@Before
     public void setUp() throws Exception {
@@ -33,31 +34,46 @@ public class TestFtpDownloadPOST {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target1 = c.target(Main.BASE_URI+"ftp/connect");
-        target2 = c.target(Main.BASE_URI+"ftp/download");
+        target2 = c.target(Main.BASE_URI+"ftp/upload/file2.txt");
+        target3 = c.target(Main.BASE_URI+"ftp/download/newFile1.txt");
+        target4 = c.target(Main.BASE_URI+"ftp/disconnect");
     }
 
-	
-	
-	
+
 	@Test
-	public void test_download_post() {
+	public void test_upload_fail() {
 		target1.request().post(Entity.json("{\n" + 
 				"	\"username\":\"anonymous\",\n" + 
 				"	\"password\":\"\"\n" + 
 				"}"));
-		Response response = target2.request().post(Entity.json("{\n" + 
-				"	\"serverPath\":\"folder1/dossierPhoto/\",\n" + 
-				"	\"clientPath\":\"\",\n" + 
-				"	\"filename\": \"img.jpg\"\n" + 
+		Response response = target2.request().get();
+		String output = response.readEntity(String.class);
+		assertEquals("should return status 200", 200, response.getStatus());
+		assertTrue(output.equals("Erreur lors de l'upload du fichier. "));
+		target4.request().get();
+		
+	}
+	
+	@Test
+	public void test_upload() {
+		target1.request().post(Entity.json("{\n" + 
+				"	\"username\":\"anonymous\",\n" + 
+				"	\"password\":\"\"\n" + 
 				"}"));
+		Response response = target3.request().get();
 		String output = response.readEntity(String.class);
 		assertEquals("should return status 200", 200, response.getStatus());
 		assertTrue(output.equals("Fichier téléchargé avec succès. "));
+		target4.request().get();
 		
 	}
+	
+	
+	
 	@After
 	public void shutdown() {
 		server.shutdownNow();
 	}
+
 
 }

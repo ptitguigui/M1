@@ -50,8 +50,8 @@ public class TestFtpConnect{
 	@Test
 	public void test_connect() {
 		Response response = target.request().post(Entity.json("{\n" + 
-				"	\"username\":\"guillaume\",\n" + 
-				"	\"password\":\"mdp123\"\n" + 
+				"	\"username\":\"anonymous\",\n" + 
+				"	\"password\":\"\"\n" + 
 				"}"));
 		assertEquals("should return status 200", 200, response.getStatus());
 		

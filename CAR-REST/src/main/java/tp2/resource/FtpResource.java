@@ -115,7 +115,8 @@ public class FtpResource {
 
         try {
             ftp.enterLocalPassiveMode();
-            if (ftp.cwd(directory) == 200) {
+            int res = ftp.cwd(directory);
+            if ( res == 200 || res == 250) {
                 return Response.ok("Déplacer vers " + directory).build();
             }
 

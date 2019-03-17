@@ -37,26 +37,28 @@ public class CommandRetrieve extends Command {
         if (!configClient.isLoggedIn()) {
             this.getRequestMessage().sendMessage(RequestMessage.CODE_530);
         } else {
-            this.getRequestMessage().sendMessage(RequestMessage.CODE_125);
-
             String filename = clientMessage.split(" ")[1];
-            Socket transferSocket = getTransferSocket(configClient, configServer);
-            DataOutputStream transferDataOutputStream = new DataOutputStream(transferSocket.getOutputStream());
-
             File file = new File(configServer.getCurrentDirectory() + "/" + filename);
-
-            FileInputStream fileInputStream = new FileInputStream(file);
-            byte[] buffer = new byte[transferSocket.getSendBufferSize()];
-            int bytesRead = 0;
-
-            while ((bytesRead = fileInputStream.read(buffer)) > 0) {
-                transferDataOutputStream.write(buffer, 0, bytesRead);
+            if(!file.exists()) {
+            	this.getRequestMessage().sendMessage(RequestMessage.CODE_550);
             }
-
-            fileInputStream.close();
-            transferDataOutputStream.flush();
-            transferSocket.close();
-            this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
+            else {
+            	this.getRequestMessage().sendMessage(RequestMessage.CODE_125);
+            	Socket transferSocket = getTransferSocket(configClient, configServer);
+                DataOutputStream transferDataOutputStream = new DataOutputStream(transferSocket.getOutputStream());
+	            FileInputStream fileInputStream = new FileInputStream(file);
+	            byte[] buffer = new byte[transferSocket.getSendBufferSize()];
+	            int bytesRead = 0;
+	
+	            while ((bytesRead = fileInputStream.read(buffer)) > 0) {
+	                transferDataOutputStream.write(buffer, 0, bytesRead);
+	            }
+	
+	            fileInputStream.close();
+	            transferDataOutputStream.flush();
+	            transferSocket.close();
+	            this.getRequestMessage().sendMessage(RequestMessage.CODE_226);
+            }
         }
     }
 }

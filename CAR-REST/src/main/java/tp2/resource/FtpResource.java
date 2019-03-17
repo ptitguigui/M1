@@ -51,7 +51,7 @@ public class FtpResource {
         if (!ftp.isConnected()) {
             return Response.ok("Le client n'est pas connecté").build();
         }
-        ftp.quit();
+        ftp.disconnect();
         return Response.ok("Client déconnecté").build();
     }
 
@@ -178,7 +178,7 @@ public class FtpResource {
             ftp.enterLocalPassiveMode();
 
             if (FTPUtil.downloadSingleFile(ftp, file.getServerPath() + filename, clientPath)) {
-                return Response.ok("Fichier télécharger avec succès. ").build();
+                return Response.ok("Fichier téléchargé avec succès. ").build();
             } else {
                 return Response.ok("Erreur lors du téléchargement du fichier. ").build();
             }

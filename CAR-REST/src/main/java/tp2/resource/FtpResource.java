@@ -378,10 +378,9 @@ public class FtpResource {
      * @param file: le fichier à supprimer
      * @return Réponse du serveur
      */
-    @POST
-    @Path("removeFile")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response removeDirectory(File file) {
+    @DELETE
+    @Path("removeFile/{filename}")
+    public Response removeDirectory(@PathParam("filename") String filename) {
 
         FTPClient ftp = clientConnector.getFTPClient();
         if (!ftp.isConnected()) {
@@ -389,14 +388,14 @@ public class FtpResource {
         }
         try {
             ftp.enterLocalPassiveMode();
-            if (ftp.deleteFile(file.getFilename())) {
-                return Response.ok("Le Fichier " + file.getFilename() + " a été supprimé avec succés").build();
+            if (ftp.deleteFile(filename)) {
+                return Response.ok("Le Fichier " + filename + " a été supprimé avec succés").build();
             }
         } catch (Exception e) {
             e.printStackTrace();
             return Response.serverError().build();
         }
-        return Response.ok("Erreur lors de la suppression du fichier " + file.getFilename()).build();
+        return Response.ok("Erreur lors de la suppression du fichier " + filename).build();
     }
 
     /**

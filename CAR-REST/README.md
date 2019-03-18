@@ -37,19 +37,21 @@ Vous pouvez effectuer les commandes suivantes :
 
 | Commande   | Description                  | Methode    | Commande curl                                                             |
 |------------|------------------------------|------------|---------------------------------------------------------------------------|
-| CONNECT    | Connexion au serveur         |  POST      | POST /myapp/ftp/connect HTTP/1.1 Host: localhost:8080 Content-Type: application/json {"username":"[user]","password":"[mdp]"}    |
-| LIST       |  liste le repertoire courant | GET | /myapp/ftp/list HTTP/1.1 Host: localhost:8080  |
-| LIST  |  liste le repertoire choisis selon un chemin | POST | POST /myapp/ftp/list HTTP/1.1 Host: localhost:8080  Content-Type: application/json {"serverPath":"[path/to/directory]"}|
-| CWD |  change de repertoire  |  GET  | GET /myapp/ftp/cwd/{folder} HTTP/1.1 Host: localhost:8080 |
-| RETRIEVE | Télécharge un fichier du serveur |  GET  | GET /myapp/ftp/download/{filename} HTTP/1.1 Host: localhost:8080 |
-| RETRIEVE | Télécharge un fichier du serveur en spécifiant plus de configurations |  POST  | POST /myapp/ftp/download HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
-| RETRIEVE | Télécharge un dossier complet avec ses sous dossiers depuis le FTP |  GET  | GET /myapp/ftp/downloadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
-| STORE |  Upload un fichier vers le serveur  |  GET  |/myapp/ftp/upload/{folder} HTTP/1.1 Host: localhost:8080 |
+| CONNECT    | Connexion au serveur         |  POST      | curl -X POST http://localhost:8080/myapp/ftp/connect -H 'Content-Type: application/json' -d '{"username":"anonymous","password":""}'    |
+| LIST       |  liste le repertoire courant | GET | curl -X GET http://localhost:8080/myapp/ftp/list HTTP/1.1 Host: localhost:8080  |
+| LIST  |  liste le repertoire choisis selon un chemin | POST | curl -X POST http://localhost:8080/myapp/ftp/list -H 'Content-Type: application/json' -d '{"serverPath":"[/path/to/server/]"}' |
+| CWD |  change de repertoire  |  GET  | curl -X GET http://localhost:8080/myapp/ftp/cwd/{folder} HTTP/1.1 Host: localhost:8080 |
+| CWD | change sur le repertoire parent | GET | curl -X GET http://localhost:8080/myapp/ftp/cwdParent |
+| RETRIEVE | Télécharge un fichier du serveur |  GET  | curl -X GET http://localhost:8080/myapp/ftp/download/{filename} HTTP/1.1 Host: localhost:8080 |
+| RETRIEVE | Télécharge un fichier du serveur en spécifiant plus de configurations |  POST  | curl -X POST http://localhost:8080/myapp/ftp/download -H 'Content-Type: application/json' -d '{"serverPath":"[/path/to/server]","clientPath":"[/path/to/client]","filename": "[filename]"}' |
+| RETRIEVE | Télécharge un dossier complet avec ses sous dossiers depuis le FTP |  GET  | curl -X GET http://localhost:8080/myapp/ftp/downloadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
+| STORE |  Upload un fichier vers le serveur  |  GET  |curl -X GET http://localhost:8080/myapp/ftp/upload/{folder} HTTP/1.1 Host: localhost:8080 |
 | STORE |  Upload un fichier vers le serveur en spécifiant plus de configurations  |  POST  |POST /myapp/ftp/upload HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "serverPath":"[path/to/server]", "clientPath":"[path/to/server]", "filename": "[filename]"} |
-| STORE | Upload un dossier complet avec ses sous dossiers depuis le FTP  |  GET  |GET /myapp/ftp/uploadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
-| RNTO  | Renomme un dossier ou un fichier |  PUT  | PUT /myapp/ftp/rename HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "newFilename":"[newFilename]", "filename": [filename]" }|
-| MKD | Crée un nouveau dossier sur le FTP |  POST  |POST /myapp/ftp/create HTTP/1.1 Host: localhost:8080 Content-Type: application/json { "filename":"[folder]" }|
-| RMD | Supprime un dossier depuis le FTP |  DELETE  | DELETE /myapp/ftp/remove/{folder} HTTP/1.1 Host: localhost:8080 |
+| STORE | Upload un dossier complet avec ses sous dossiers depuis le FTP  |  GET  | curl -X GET http://localhost:8080/myapp/ftp/uploadDirectory/{folder} HTTP/1.1 Host: localhost:8080 |
+| RNTO  | Renomme un dossier ou un fichier |  PUT  | curl -X PUT http://localhost:8080/myapp/ftp/rename -H 'Content-Type: application/json' -d '{ "newFilename": "[newFilename]", "filename": ["gaspard.png"]}' |
+| MKD | Crée un nouveau dossier sur le FTP |  POST  | curl -X POST http://localhost:8080/myapp/ftp/create -H 'Content-Type: application/json' -d '{"filename":[folder]}'|
+| RMD | Supprime un dossier depuis le FTP |  DELETE  | curl -X DELETE http://localhost:8080/myapp/ftp/remove/{folder} HTTP/1.1 Host: localhost:8080 |
+| DELE | Supprime un fichier depuis le FTP |  DELETE  | curl -X DELETE http://localhost:8080/myapp/ftp/removeFile/new.txt |
 | DISCONNECT | Le client se déconnecte du serveur FTP |  GET  | GET /myapp/ftp/disconnect HTTP/1.1 Host: localhost:8080 |
 
 

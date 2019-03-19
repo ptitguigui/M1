@@ -28,8 +28,8 @@
   </table>
 </xsl:template>
 
-<xsl:template match="./COMMON[not(text() = following::COMMON/text())]">
-  <xsl:variable name="text" select=""/>
+<xsl:template match="COMMON">
+  <xsl:variable name="text" select="text()"/>
   <xsl:variable name="qte" select="count(document('panier_local.xml',.)//COMMON[text() = $text])"/>
   <tr>
     <td>

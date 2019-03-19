@@ -25,7 +25,9 @@
     <th>COMMON</th>
     <th>Prix</th>
     <th>        </th>
-      <xsl:apply-templates select="./COMMON"/>
+    <xsl:apply-templates select="./COMMON">
+        <xsl:sort select="." order="ascending" data-type="text"/>
+    </xsl:apply-templates>
   </table>
 </xsl:template>
 

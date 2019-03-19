@@ -10,7 +10,8 @@
     <body>
       <xsl:call-template name="menu"/>
       <div id="content">
-          <xsl:apply-templates select="document($panier_xml)/BASKET"/>
+          <xsl:apply-templates select="document($panier_xml)/BASKET">
+          </xsl:apply-templates>
       </div>
     </body>
   </html>
@@ -22,7 +23,9 @@
   <table border="1">
     <th>COMMON</th>
     <th>        </th>
-      <xsl:apply-templates select="./COMMON"/>
+      <xsl:apply-templates select="./COMMON">
+          <xsl:sort select="." order="ascending" data-type="text"/>
+      </xsl:apply-templates>
   </table>
 </xsl:template>
 

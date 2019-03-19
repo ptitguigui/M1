@@ -26,7 +26,9 @@
     <th>Qte</th>
     <th>unit price</th>
     <th>Price</th>
-      <xsl:apply-templates select="./COMMON"/>
+    <xsl:apply-templates select="./COMMON">
+        <xsl:sort select="." order="ascending" data-type="text"/>
+    </xsl:apply-templates>
   </table>
 </xsl:template>
 

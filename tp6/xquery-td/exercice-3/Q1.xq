@@ -10,7 +10,7 @@ declare function local:insert-family($nodes as node()*)
     typeswitch($node)
         case element(PLANT)
             return
-               let $family := doc($families)//FAMILY/NAME[../SPECIES = $nodes/BOTANICAL/text()]/text()
+               let $family := doc($families)//FAMILY/NAME[../SPECIES = $node/BOTANICAL/text()]/text()
                return 
                 element { name($node) } {
                     $node/@*, 

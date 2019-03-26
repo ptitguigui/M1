@@ -49,7 +49,7 @@
                     <arguments>
                         <argument>-classpath</argument>
                         <classpath />
-                        <argument>com.lightbend.akka.sample.AkkaQuickstart</argument>
+                        <argument>com.lightbend.akka.sample.ArbreAkka</argument>
                     </arguments>
                 </configuration>
             </plugin>

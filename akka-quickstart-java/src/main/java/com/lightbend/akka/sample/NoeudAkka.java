@@ -1,7 +1,7 @@
 package com.lightbend.akka.sample;
 
+import java.util.List;
 
-import com.lightbend.akka.sample.NoeudAkka.Tell;
 import com.lightbend.akka.sample.Printer.Greeting;
 
 import akka.actor.AbstractActor;
@@ -10,8 +10,8 @@ import akka.actor.Props;
 
 public class NoeudAkka extends AbstractActor {
 
-	static public Props props(String message, ActorRef printerActor, ActorRef filsG, ActorRef filsD) {
-		return Props.create(NoeudAkka.class, () -> new NoeudAkka(message, printerActor, filsG, filsD));
+	static public Props props(String message, ActorRef printerActor, List<ActorRef> fils) {
+		return Props.create(NoeudAkka.class, () -> new NoeudAkka(message, printerActor, fils));
 	}
 
 	static public class WhoToTell {
@@ -29,41 +29,41 @@ public class NoeudAkka extends AbstractActor {
 
 	// #greeter-messages
 
-	private final String message;
+	private final String nameNoeud;
 	private final ActorRef printerActor;
 	private String msg = "";
-	private ActorRef filsG;
-	private ActorRef filsD;
+	private List<ActorRef> fils;
 
-	public NoeudAkka(String message, ActorRef printerActor, ActorRef filsG, ActorRef filsD) {
-		this.message = message;
+	public NoeudAkka(String nameNoeud, ActorRef printerActor, List<ActorRef> fils) {
+		this.nameNoeud = nameNoeud;
 		this.printerActor = printerActor;
-		this.filsD = filsD;
-		this.filsG = filsG;
+		this.fils = fils;
+	}
+	
+	public void addNoeud(ActorRef actor) {
+		this.fils.add(actor);
+	}
+	
+	public void removeNoeud(ActorRef actor) {
+		this.fils.remove(actor);
 	}
 
 	@Override
 	public Receive createReceive() {
 		// TODO Auto-generated method stub
 		return receiveBuilder().match(WhoToTell.class, wtg -> {
-			if (this.filsG != null) {
-				System.out.println("Le Noeud "+ this.message + "reçoit le message");
-				this.filsG.tell(new WhoToTell(wtg.who), ActorRef.noSender());
-				this.filsG.tell(new Tell(), ActorRef.noSender());
-				this.msg = message + ", " + wtg.who;
+			if (fils != null) {
+				System.out.println("Le Noeud " + this.nameNoeud + " envoie le message "+ wtg.who +" à ses fils");
+				for (ActorRef actorRef : fils) {
+					actorRef.tell(new WhoToTell(wtg.who), ActorRef.noSender());
+					this.msg = nameNoeud + ", " + wtg.who;
+					actorRef.tell(new Tell(), ActorRef.noSender());
+				}
 			}
-			if (this.filsD != null) {
-				System.out.println("Le Noeud "+ this.message + "reçoit le message");
-				this.filsD.tell(new WhoToTell(wtg.who), ActorRef.noSender());
-				this.filsD.tell(new Tell(), ActorRef.noSender());
-				this.msg = message + ", " + wtg.who;
+			else {
+				this.msg = nameNoeud + ", " + wtg.who + "\n Le Noeud " + this.nameNoeud + " n'a pas de fils";
 			}
 
-			if (this.filsD == null && this.filsG == null) {
-				this.msg = message + ", " + wtg.who + "\n Le Noeud " + this.message + " n'a pas de fils";
-				
-			}
-			
 		}).match(Tell.class, x -> {
 			// #greeter-send-message
 			printerActor.tell(new Greeting(msg), getSelf());

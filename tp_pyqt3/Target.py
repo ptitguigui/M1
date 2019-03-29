@@ -3,14 +3,6 @@ import sys
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from BubbleWidget import *
-
-
-class MainBubble(QMainWindow):
-
-    def __init__(self):
-        super().__init__()
-
 
 class Target():
 
@@ -30,7 +22,8 @@ class Target():
         pen = QPen(QColor(Qt.black))
         pen.setWidth(2)
 
-        ellipse = QRect(QPoint(self.x, self.y), QSize(self.size, self.size))
+        ellipse = QRect(QPoint(self.x-(self.size/2), self.y -
+                               (self.size/2)), QSize(self.size, self.size))
 
         if self.toSelect:
             painter.setBrush(self.toSelectCol)
@@ -41,18 +34,3 @@ class Target():
 
         painter.setPen(pen)
         painter.drawEllipse(ellipse)
-
-
-def main(args):
-    app = QApplication(args)
-    window = MainBubble()
-    bubbleWidget = BubbleWidget()
-    window.setCentralWidget(bubbleWidget)
-    window.resize(1024, 800)
-    window.show()
-    app.exec_()
-
-
-if __name__ == "__main__":
-    print("execution du programme")
-    main(sys.argv)

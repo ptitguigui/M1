@@ -5,16 +5,16 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from BubbleCursor import *
 from Target import *
+from NormalCursor import *
 
 
-class BubbleWidget(QWidget):
+class NormalWidget(QWidget):
 
     def __init__(self):
         super().__init__()
         self.targets = list()
-        self.cursor = BubbleCursor(self.targets)
+        self.cursor = NormalCursor(self.targets)
         self.setMouseTracking(True)
 
         with open('src_tp_bubble.csv', 'r') as csvfile:
@@ -28,13 +28,12 @@ class BubbleWidget(QWidget):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        self.cursor.paint(painter)
         for target in self.targets:
             target.paint(painter)
 
     def mouseMoveEvent(self, event):
         point = event.pos()
-        self.cursor.move(point.x(), point.y())
+        self.cursor.move(event)
         self.update()
 
     def mouseReleaseEvent(self, event):

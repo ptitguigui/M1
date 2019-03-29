@@ -5,16 +5,16 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from BubbleCursor import *
+from RopeCursor import *
 from Target import *
 
 
-class BubbleWidget(QWidget):
+class RopeWidget(QWidget):
 
     def __init__(self):
         super().__init__()
         self.targets = list()
-        self.cursor = BubbleCursor(self.targets)
+        self.cursor = RopeCursor(self.targets)
         self.setMouseTracking(True)
 
         with open('src_tp_bubble.csv', 'r') as csvfile:

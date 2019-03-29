@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import *
 from scipy.spatial import distance
 from datetime import datetime
 
-from BubbleWidget import *
+from RopeWidget import *
 
 
-class BubbleCursor():
+class RopeCursor():
 
     defaultCol = QColor(Qt.green)
 
@@ -27,14 +27,11 @@ class BubbleCursor():
     def paint(self, painter):
         painter.setRenderHints(QPainter.Antialiasing)
         pen = QPen(QColor(Qt.black))
-        pen.setWidth(2)
-
-        ellipse = QRect(QPoint(self.x-(self.size/2), self.y-(self.size/2)),
-                        QSize(self.size, self.size))
-
-        painter.setBrush(self.defaultCol)
+        pen.setWidth(3)
         painter.setPen(pen)
-        painter.drawEllipse(ellipse)
+
+        if (self.closest is not None):
+            painter.drawLine(self.closest.x,self.closest.y,self.x, self.y)    
 
     def move(self, x, y):
         self.x = x 

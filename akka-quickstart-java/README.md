@@ -28,17 +28,15 @@ Vous pouvez voir ci-dessous l'architecture de notre projet :
 
 ![image](img/uml.png)
 
-## Code Samples:
-
 ### Fonctionnement du TP
 
 Dans ce TP vous trouverez trois application répartie :
 
-- Un tree avec un système : 
+- Un arbre avec un système : 
 
 ![image](img/simpleTree.png)
 
-- Un tree avec deux systèmes : 
+- Un arbre avec deux systèmes : 
 
 ![image](img/complexTree.png)
 

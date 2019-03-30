@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Main application, execute une application selon le choix de l'utilisateur
+ */
 public class MainAkka {
     public static void main(String[] args) {
         try {
@@ -36,6 +39,17 @@ public class MainAkka {
         }
     }
 
+    /**
+     * Permet de déterminer l'arbre choisis selon l'utilisateur
+     * Il y a trois choix possible à savoir :
+     * - Arbre avec un systeme
+     * - Arbre avec deux systemes
+     * - Arbre représentant un graphe
+     *
+     * @param br le reader
+     * @return l'abre choisis
+     * @throws IOException
+     */
     private static Tree choiceAkka(BufferedReader br) throws IOException {
         System.out.println("Choisissez votre application répartie : " +
                 "\n 1- tree" +

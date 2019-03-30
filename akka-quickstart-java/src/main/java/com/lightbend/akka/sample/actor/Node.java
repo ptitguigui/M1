@@ -10,10 +10,21 @@ import akka.actor.Props;
 
 public class Node extends AbstractActor {
 
+    /**
+     * Créer les propriété du noeud
+     *
+     * @param message
+     * @param printerActor
+     * @param fils
+     * @return
+     */
     static public Props props(String message, ActorRef printerActor, List<ActorRef> fils) {
         return Props.create(Node.class, () -> new Node(message, printerActor, fils));
     }
 
+    /**
+     * Classe qui définis le message
+     */
     static public class WhoToTell {
         public final String who;
 
@@ -22,6 +33,9 @@ public class Node extends AbstractActor {
         }
     }
 
+    /**
+     * Classe qui envoie les messages
+     */
     static public class Tell {
         public Tell() {
         }
@@ -32,13 +46,24 @@ public class Node extends AbstractActor {
     private String msg = "";
     private List<ActorRef> fils;
 
+    /**
+     * Constructeur du noeud représentant un acteur composés de ses fils
+     *
+     * @param nameNoeud
+     * @param printerActor
+     * @param fils
+     */
     public Node(String nameNoeud, ActorRef printerActor, List<ActorRef> fils) {
         this.nameNoeud = nameNoeud;
         this.printerActor = printerActor;
         this.fils = fils;
     }
 
-    @Override
+    /**
+     * Le noeud courant recevnant un message, l'envoie à tout ses fils
+     *
+     * @return
+     */
     public Receive createReceive() {
         return receiveBuilder().match(WhoToTell.class, wtg -> {
             if (fils != null) {

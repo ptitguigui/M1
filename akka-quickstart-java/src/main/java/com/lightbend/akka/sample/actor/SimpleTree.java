@@ -12,6 +12,9 @@ public class SimpleTree extends Tree {
     HashMap<String, ActorRef> noeuds;
     private final ActorSystem system = ActorSystem.create("Tree");
 
+    /**
+     * Constructeur de l'arbre avec un seul système
+     */
     public SimpleTree() {
         this.noeuds = new HashMap<>();
 
@@ -40,6 +43,11 @@ public class SimpleTree extends Tree {
         noeuds.put("6", noeud_6);
     }
 
+    /**
+     * Permet d'envoier le message au noeud choisis, ainsi qu'à ses fils
+     * @param id le noeud choisis
+     * @param message le message de l'utilisateur
+     */
     public void tell(String id, String message) {
         noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
     }

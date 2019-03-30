@@ -13,6 +13,9 @@ public class ComplexTree extends Tree {
     private final ActorSystem system = ActorSystem.create("Tree");
     private final ActorSystem system2 = ActorSystem.create("Tree");
 
+    /**
+     * Constructeur de l'arbre avec deux systèmes
+     */
     public ComplexTree() {
         this.noeuds = new HashMap<>();
 
@@ -40,6 +43,12 @@ public class ComplexTree extends Tree {
         noeuds.put("5", noeud_5);
         noeuds.put("6", noeud_6);
     }
+
+    /**
+     * Permet d'envoier le message au noeud choisis, ainsi qu'à ses fils
+     * @param id le noeud choisis
+     * @param message le message de l'utilisateur
+     */
     public void tell(String id, String message) {
         noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
     }

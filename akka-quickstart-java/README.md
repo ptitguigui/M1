@@ -32,16 +32,15 @@ Vous pouvez voir ci-dessous l'architecture de notre projet :
 
 ### Fonctionnement du TP
 
-Dans ce TP vous trouverez trois application répartie : 
+Dans ce TP vous trouverez trois application répartie :
 
-- Un arbre avec un système : 
+- Un tree avec un système : 
 
-![image](img/arbre.png)
+![image](img/simpleTree.png)
 
+- Un tree avec deux systèmes : 
 
-- Un arbre avec deux systèmes : 
-
-![image](img/arbreReparti.png)
+![image](img/complexTree.png)
 
 - Un graphe : 
 

@@ -1,4 +1,4 @@
-package com.lightbend.akka.sample;
+package com.lightbend.akka.sample.actor;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 
-public class NoeudAkka extends AbstractActor {
+public class Node extends AbstractActor {
 
     static public Props props(String message, ActorRef printerActor, List<ActorRef> fils) {
-        return Props.create(NoeudAkka.class, () -> new NoeudAkka(message, printerActor, fils));
+        return Props.create(Node.class, () -> new Node(message, printerActor, fils));
     }
 
     static public class WhoToTell {
@@ -32,18 +32,10 @@ public class NoeudAkka extends AbstractActor {
     private String msg = "";
     private List<ActorRef> fils;
 
-    public NoeudAkka(String nameNoeud, ActorRef printerActor, List<ActorRef> fils) {
+    public Node(String nameNoeud, ActorRef printerActor, List<ActorRef> fils) {
         this.nameNoeud = nameNoeud;
         this.printerActor = printerActor;
         this.fils = fils;
-    }
-
-    public void addNoeud(ActorRef actor) {
-        this.fils.add(actor);
-    }
-
-    public void removeNoeud(ActorRef actor) {
-        this.fils.remove(actor);
     }
 
     @Override

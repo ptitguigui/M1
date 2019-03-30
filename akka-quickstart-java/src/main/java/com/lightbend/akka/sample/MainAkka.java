@@ -1,47 +1,64 @@
 package com.lightbend.akka.sample;
 
+import com.lightbend.akka.sample.actor.ComplexTree;
+import com.lightbend.akka.sample.actor.GraphTree;
+import com.lightbend.akka.sample.actor.SimpleTree;
+import com.lightbend.akka.sample.actor.Tree;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-
-import com.lightbend.akka.sample.NoeudAkka.Tell;
-import com.lightbend.akka.sample.NoeudAkka.WhoToTell;
-
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
 
 public class MainAkka {
     public static void main(String[] args) {
-        final ActorSystem system = ActorSystem.create("arbre");
         try {
-
-
-            // Arbre arbre = new Arbre();
-            ArbreReparti arbre = new ArbreReparti();
-
-            String noeud;
-            String message;
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            Tree tree = choiceAkka(br);
+
+            String node;
+            String message;
+
             System.out.println("A partir de quel noeud voulez vous lancer la diffusion ?");
 
-            while ((noeud = br.readLine()) != null) {
-                if ("QUIT".equals(noeud.toUpperCase()))
+            while ((node = br.readLine()) != null) {
+                if ("QUIT".equals(node.toUpperCase()))
                     break;
 
-                System.out.println("Veuillez saisir le message que vous souhaitez envoyer aux différents noeuds : ");
+                System.out.println("Veuillez saisir le message que vous souhaitez envoyer: ");
                 message = br.readLine();
 
-                arbre.tell(noeud, message);
+                tree.tell(node, message);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            system.terminate();
         }
+    }
+
+    private static Tree choiceAkka(BufferedReader br) throws IOException {
+        System.out.println("Choisissez votre application répartie : " +
+                "\n 1- tree" +
+                "\n 2- tree réparti" +
+                "\n 3- GraphTree");
+        String choice = br.readLine();
+        Tree tree = null;
+
+        switch (choice) {
+            case "1":
+                tree = new SimpleTree();
+                break;
+            case "2":
+                tree = new ComplexTree();
+                break;
+            case "3":
+                tree = new GraphTree();
+                break;
+            default:
+                System.out.println("Veuillez choisir un choix correcte");
+                choiceAkka(br);
+                break;
+        }
+        return tree;
     }
 }

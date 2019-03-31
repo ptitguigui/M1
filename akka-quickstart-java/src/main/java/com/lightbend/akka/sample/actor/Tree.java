@@ -24,4 +24,7 @@ public abstract class Tree {
     public void tell(String id, String message) {
 //        noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
     }
+    public void delete(String id) {
+//      noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
+  }
 }

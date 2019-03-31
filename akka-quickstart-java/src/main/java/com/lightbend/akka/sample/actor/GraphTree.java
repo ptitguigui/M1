@@ -24,6 +24,12 @@ public class GraphTree extends Tree {
 	 * 
 	 * @throws IOException
 	 */
+	/**
+	 * Constructeur de l'arbre représentant un graphe
+	 * 
+	 * @param br : bufferReader
+	 * @throws IOException
+	 */
 	public GraphTree(BufferedReader br) throws IOException {
 		this.noeuds = new HashMap<>();
 		printerActor = system.actorOf(Printer.props(), "printerActor");
@@ -90,6 +96,11 @@ public class GraphTree extends Tree {
 				ActorRef.noSender());
 	}
 
+	/**
+	 * Crée les acteurs associés à chaque noeud 
+	 * 
+	 * @param printerActor
+	 */
 	public void initiate(ActorRef printerActor) {
 		for (String id : Data.keySet()) {
 			final ActorRef noeud = system.actorOf(Node.props("noeud_" + id, printerActor, Data.get(id)), "noeud_" + id);
@@ -98,9 +109,30 @@ public class GraphTree extends Tree {
 		}
 	}
 
+	/**
+	 * Reinitialise le HashMap servant à dire quel noeud a reçu un message
+	 * 
+	 */
 	public void initialize_visited() {
 		for (String id : this.Data.keySet()) {
 			this.Visited.put(id, false);
 		}
 	}
+	
+//	public void delete(String id) {
+//		String p = this.Data.get(id).get(0);
+//		for(String i : this.Data.get(id)) {
+//			if (!this.Data.get(p).contains(i) && !i.equals(p)) {
+//				this.Data.get(p).add(i);
+//				this.Data.get(i).add(p);
+//			}
+//			
+//		}
+//		this.Data.remove(id);
+//		this.Visited.remove(id);
+//		this.noeuds = new HashMap<>();
+//		system.
+//		initiate(printerActor);
+//		
+//	}
 }

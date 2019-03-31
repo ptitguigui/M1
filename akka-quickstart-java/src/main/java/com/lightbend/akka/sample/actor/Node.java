@@ -56,9 +56,9 @@ public class Node extends AbstractActor {
     /**
      * Constructeur du noeud représentant un acteur composés de ses fils
      *
-     * @param nameNoeud
-     * @param printerActor
-     * @param fils
+     * @param nameNoeud : nom du noeud
+     * @param printerActor: acteur chargé de print
+     * @param fils: liste de nom des noeud relié au noeud courent
      */
     public Node(String nameNoeud, ActorRef printerActor, List<String> fils) {
         this.nameNoeud = nameNoeud;
@@ -87,6 +87,7 @@ public class Node extends AbstractActor {
                 getSelf().tell(new Tell(), ActorRef.noSender());
             } else {
                 this.msg = nameNoeud + ", " + wtg.who + "\n Le Noeud " + this.nameNoeud + " n'a pas de fils";
+                getSelf().tell(new Tell(), ActorRef.noSender());
             }
 
         }).match(Tell.class, x -> {

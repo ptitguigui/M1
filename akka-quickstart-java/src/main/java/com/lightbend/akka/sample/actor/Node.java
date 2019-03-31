@@ -50,7 +50,7 @@ public class Node extends AbstractActor {
 
     private final String nameNoeud;
     private final ActorRef printerActor;
-    private String msg = "";
+    private String msg;
     private List<String> fils;
 
     /**
@@ -64,6 +64,7 @@ public class Node extends AbstractActor {
         this.nameNoeud = nameNoeud;
         this.printerActor = printerActor;
         this.fils = fils;
+        this.msg="";
     }
 
     /**
@@ -80,10 +81,10 @@ public class Node extends AbstractActor {
                 		wtg.Visited.replace(fils.get(i), true);
                 		System.out.println("Le Noeud " + this.nameNoeud + " envoie le message " + wtg.who + " au Noeud noeud_" + fils.get(i));
                         actorRef.tell(new WhoToTell(wtg.who, wtg.noeuds, wtg.Data, wtg.Visited), ActorRef.noSender());
-                        this.msg = nameNoeud + ", " + wtg.who;
-                        actorRef.tell(new Tell(), ActorRef.noSender());
                         }                	
                 }
+                this.msg = this.nameNoeud + ", " + wtg.who;
+                getSelf().tell(new Tell(), ActorRef.noSender());
             } else {
                 this.msg = nameNoeud + ", " + wtg.who + "\n Le Noeud " + this.nameNoeud + " n'a pas de fils";
             }

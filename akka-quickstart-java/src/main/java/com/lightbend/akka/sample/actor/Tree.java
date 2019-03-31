@@ -22,6 +22,6 @@ public abstract class Tree {
      * @param message le message de l'utilisateur
      */
     public void tell(String id, String message) {
-        noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
+//        noeuds.get(id).tell(new Node.WhoToTell(message), ActorRef.noSender());
     }
 }

@@ -66,7 +66,7 @@ public class MainAkka {
                 tree = new ComplexTree();
                 break;
             case "3":
-                tree = new GraphTree();
+                tree = new GraphTree(br);
                 break;
             default:
                 System.out.println("Veuillez choisir un choix correcte");

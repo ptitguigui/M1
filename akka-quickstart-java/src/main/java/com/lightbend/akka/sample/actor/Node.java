@@ -1,5 +1,6 @@
 package com.lightbend.akka.sample.actor;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.lightbend.akka.sample.Printer.Greeting;
@@ -18,7 +19,7 @@ public class Node extends AbstractActor {
      * @param fils
      * @return
      */
-    static public Props props(String message, ActorRef printerActor, List<ActorRef> fils) {
+    static public Props props(String message, ActorRef printerActor, List<String> fils) {
         return Props.create(Node.class, () -> new Node(message, printerActor, fils));
     }
 
@@ -27,9 +28,15 @@ public class Node extends AbstractActor {
      */
     static public class WhoToTell {
         public final String who;
+        public final HashMap<String, ActorRef> noeuds;
+        public HashMap<String, List<String>> Data;
+        public HashMap<String, Boolean> Visited;
 
-        public WhoToTell(String who) {
+        public WhoToTell(String who, HashMap<String, ActorRef> noeuds, HashMap<String, List<String>> Data, HashMap<String, Boolean> Visited) {
             this.who = who;
+            this.noeuds = noeuds;
+            this.Data = Data;
+            this.Visited = Visited;
         }
     }
 
@@ -44,7 +51,7 @@ public class Node extends AbstractActor {
     private final String nameNoeud;
     private final ActorRef printerActor;
     private String msg = "";
-    private List<ActorRef> fils;
+    private List<String> fils;
 
     /**
      * Constructeur du noeud représentant un acteur composés de ses fils
@@ -53,7 +60,7 @@ public class Node extends AbstractActor {
      * @param printerActor
      * @param fils
      */
-    public Node(String nameNoeud, ActorRef printerActor, List<ActorRef> fils) {
+    public Node(String nameNoeud, ActorRef printerActor, List<String> fils) {
         this.nameNoeud = nameNoeud;
         this.printerActor = printerActor;
         this.fils = fils;
@@ -67,11 +74,15 @@ public class Node extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder().match(WhoToTell.class, wtg -> {
             if (fils != null) {
-                System.out.println("Le Noeud " + this.nameNoeud + " envoie le message " + wtg.who + " à ses fils");
-                for (ActorRef actorRef : fils) {
-                    actorRef.tell(new WhoToTell(wtg.who), ActorRef.noSender());
-                    this.msg = nameNoeud + ", " + wtg.who;
-                    actorRef.tell(new Tell(), ActorRef.noSender());
+                for (int i = 0 ; i < fils.size(); i++) {
+                	if(!wtg.Visited.get(fils.get(i))) {
+                		ActorRef actorRef = wtg.noeuds.get(fils.get(i));
+                		wtg.Visited.replace(fils.get(i), true);
+                		System.out.println("Le Noeud " + this.nameNoeud + " envoie le message " + wtg.who + " au Noeud noeud_" + fils.get(i));
+                        actorRef.tell(new WhoToTell(wtg.who, wtg.noeuds, wtg.Data, wtg.Visited), ActorRef.noSender());
+                        this.msg = nameNoeud + ", " + wtg.who;
+                        actorRef.tell(new Tell(), ActorRef.noSender());
+                        }                	
                 }
             } else {
                 this.msg = nameNoeud + ", " + wtg.who + "\n Le Noeud " + this.nameNoeud + " n'a pas de fils";

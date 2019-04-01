@@ -43,8 +43,8 @@ public class TestTree {
 		HashMap<String, Boolean> Visited = new HashMap<>();
 		List<String> list = new ArrayList<>();
 		list.add("2");
-		final ActorRef noeud_2 = system.actorOf(Node.props("noeud_2", testProbe.getRef(), null), "noeud_2");
-		final ActorRef actorref = system.actorOf(Node.props("noeud_1", testProbe.getRef(), list), "noeud_1");
+		final ActorRef noeud_2 = system.actorOf(Node.props("noeud_2", testProbe.getRef(), null, null), "noeud_2");
+		final ActorRef actorref = system.actorOf(Node.props("noeud_1", testProbe.getRef(), list, null), "noeud_1");
 		noeuds.put("1", actorref);
 		noeuds.put("2", noeud_2);
 

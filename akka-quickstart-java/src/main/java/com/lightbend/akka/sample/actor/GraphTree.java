@@ -103,7 +103,7 @@ public class GraphTree extends Tree {
 	 */
 	public void initiate(ActorRef printerActor) {
 		for (String id : Data.keySet()) {
-			final ActorRef noeud = system.actorOf(Node.props("noeud_" + id, printerActor, Data.get(id)), "noeud_" + id);
+			final ActorRef noeud = system.actorOf(Node.props("noeud_" + id, printerActor, Data.get(id), system), "noeud_" + id);
 			this.noeuds.put(id, noeud);
 			this.Visited.put(id, false);
 		}

@@ -3,6 +3,8 @@ package com.lightbend.akka.sample.actor;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 import com.lightbend.akka.sample.Printer.Greeting;
 
 import akka.actor.AbstractActor;
@@ -85,12 +87,22 @@ public class Node extends AbstractActor {
 						wtg.Visited.replace(fils.get(i), true);
 						if (wtg.who.contains("delete")) {
 							delete(wtg, i);
-						} else if (wtg.who.contains("add")) {
-
 						}
+//						else if (wtg.who.contains("add")) {
+//
+//						}
 						System.out.println(
 								"Le " + this.nameNoeud + " envoie le message " + wtg.who + " au noeud_" + fils.get(i));
 						actorRef.tell(new WhoToTell(wtg.who, wtg.noeuds, wtg.Data, wtg.Visited), ActorRef.noSender());
+						if (wtg.Data.containsKey(wtg.who.substring(wtg.who.length() - 1))
+								&& wtg.Data.get(fils.get(i)) != null) {
+							if (wtg.Data.get(fils.get(i)).contains(wtg.who.substring(wtg.who.length() - 1))
+									&& wtg.Data.get(wtg.who.substring(wtg.who.length() - 1)) == null) {
+								wtg.Data.get(fils.get(i)).remove(wtg.who.substring(wtg.who.length() - 1));
+								System.out.println("Le noeud_" + wtg.who.substring(wtg.who.length() - 1)
+										+ " est supprimé dans la liste des noeuds relié au noeud_" + fils.get(i));
+							}
+						}
 					}
 				}
 				this.msg = this.nameNoeud + ", " + wtg.who;
@@ -109,7 +121,7 @@ public class Node extends AbstractActor {
 							+ wtg.who.substring(wtg.who.length() - 1));
 					system.stop(getSelf());
 				}
-				
+
 			}
 
 		}).match(Tell.class, x -> {
@@ -128,25 +140,46 @@ public class Node extends AbstractActor {
 		String noeud = wtg.who.substring(wtg.who.length() - 1);
 		if (wtg.Data.get(fils.get(i)) != null) {
 			if (wtg.Data.get(fils.get(i)).contains(noeud)) {
-				if (wtg.Data.get(noeud).size() > 1) {
-					wtg.Data.get(fils.get(i)).set(wtg.Data.get(fils.get(i)).indexOf(noeud), wtg.Data.get(noeud).get(0));
-					System.out.println("Le noeud_" + noeud + " est remplacé par le noeud_" + wtg.Data.get(noeud).get(0)
-							+ " dans la liste des noeuds relié au noeud_" + fils.get(i));
-				} else if (wtg.Data.get(noeud).size() == 1) {
-					wtg.Data.get(fils.get(i)).remove(noeud);
-					System.out.println("Le noeud_" + noeud + " est supprimé dans la liste des noeuds relié au noeud_"
-							+ fils.get(i));
-				}
-				if (wtg.noeuds.containsKey(noeud)) {
-					wtg.noeuds.remove(noeud);
-					System.out.println("Le noeud_" + noeud + " est supprimé dans la liste des noeuds");
-				}
+				if (wtg.Data.get(noeud) != null) {
+					if (wtg.Data.get(noeud).size() > 1) {
+						if (wtg.Data.get(noeud).get(0) != fils.get(i)) {
+							wtg.Data.get(fils.get(i)).set(wtg.Data.get(fils.get(i)).indexOf(noeud),
+									wtg.Data.get(noeud).get(0));
+							System.out.println(
+									"Le noeud_" + noeud + " est remplacé par le noeud_" + wtg.Data.get(noeud).get(0)
+											+ " dans la liste des noeuds relié au noeud_" + fils.get(i));
+						}
+					} else if (wtg.Data.get(noeud).size() == 1) {
+						wtg.Data.get(fils.get(i)).remove(noeud);
+						System.out.println("Le noeud_" + noeud
+								+ " est supprimé dans la liste des noeuds relié au noeud_" + fils.get(i));
+					}
+				} // else {
+//					wtg.Data.get(fils.get(i)).remove(noeud);
+//					System.out.println("Le noeud_" + noeud + " est supprimé dans la liste des noeuds relié au noeud_"
+//							+ fils.get(i));
+//				}
+//				if (wtg.noeuds.containsKey(noeud)) {
+//					wtg.noeuds.remove(noeud);
+//					System.out.println("Le noeud_" + noeud + " est supprimé dans la liste des noeuds");
+//				}
 			}
 		}
 		if (!wtg.Visited.containsValue(false)) {
+			if (wtg.Data.get(noeud) != null) {
+				wtg.Data.get(wtg.Data.get(noeud).get(0)).remove(noeud);
+				wtg.Data.get(wtg.Data.get(noeud).get(0))
+						.addAll(wtg.Data.get(noeud).subList(1, wtg.Data.get(noeud).size()));
+				System.out.println("Le noeud_" + wtg.who.substring(wtg.who.length() - 1)
+						+ " est supprimé dans la liste des noeuds relié au noeud_" + wtg.Data.get(noeud).get(0));
+				System.out.println("Les noeuds" + " reliés au noeud_" + wtg.Data.get(noeud).get(0) + " deviennent "
+						+ wtg.Data.get(wtg.Data.get(noeud).get(0)));
+			}
+
 			wtg.Data.remove(noeud);
 			wtg.Visited.remove(noeud);
-			System.out.println("Le noeud_ " + noeud + " n'est plus accessible dans les datas et Visited");
+			wtg.noeuds.remove(noeud);
+			System.out.println("Le noeud_ " + noeud + " n'est plus accessible dans les datas, noeuds et Visited");
 		}
 	}
 

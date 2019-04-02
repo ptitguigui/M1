@@ -12,8 +12,8 @@ declare variable $variables  := "variables.xml" ;
     return exp:eval($filename2)  ~:)
 
 (:~ Q3 ~:)
-let $filename1 := 'expression1.xml'
-    return exp:eval-var($filename1, $variables) 
+(:let $filename1 := 'expression1.xml'
+    return exp:eval-var($filename1, $variables) :)
 
 (:~ Q4 ~:)
 (:~ let $filename1 := 'expression1.xml'

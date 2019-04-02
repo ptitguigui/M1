@@ -13,7 +13,7 @@ declare function exp:useNodeEval($el as node()){
             case element(cons)
                 return
                     exp:printText($el)
-            default 
+            default
                 return
                     error()
 };
@@ -21,18 +21,18 @@ declare function exp:useNodeEval($el as node()){
 declare function exp:evalOp($op as node()){
     let $op1 := $op/*[1]
     let $op2 := $op/*[2]
-        return 
+        return
                 switch($op/@val)
                     case "+"
                          return
                             exp:useNodeEval($op1) + exp:useNodeEval($op2)
-                    case "/" 
+                    case "/"
                         return
                             exp:useNodeEval($op1) idiv exp:useNodeEval($op2)
-                    case "*" 
+                    case "*"
                         return
                             exp:useNodeEval($op1) * exp:useNodeEval($op2)
-                    case "-" 
+                    case "-"
                         return
                             exp:useNodeEval($op1) - exp:useNodeEval($op2)
                      default
@@ -41,18 +41,18 @@ declare function exp:evalOp($op as node()){
 };
 
 
-declare function exp:useNodeEvalWithVar($el as node(), $variables as xs:string) as xs:double{
+declare function exp:useNodeEvalWithVar($el as node(), $variables as xs:string){
     typeswitch($el)
             case element(op)
                 return
-                    number(exp:evalOpWithVar($el, $variables))
+                    exp:evalOpWithVar($el, $variables)
             case element(cons)
                 return
-                    number(exp:printText($el))
+                    exp:printText($el)
             case element(var)
                 return
-                    number(exp:printVar($el, $variables))
-            default 
+                    exp:printVar($el, $variables)
+            default
                 return
                     error()
 };
@@ -60,18 +60,18 @@ declare function exp:useNodeEvalWithVar($el as node(), $variables as xs:string) 
 declare function exp:evalOpWithVar($op as node(), $variables as xs:string){
     let $op1 := $op/*[1]
     let $op2 := $op/*[2]
-        return 
+        return
                 switch($op/@val)
                     case "+"
                          return
                             exp:useNodeEvalWithVar($op1, $variables) + exp:useNodeEvalWithVar($op2, $variables)
-                    case "/" 
+                    case "/"
                         return
                             exp:useNodeEvalWithVar($op1, $variables) idiv exp:useNodeEvalWithVar($op2, $variables)
-                    case "*" 
+                    case "*"
                         return
                             exp:useNodeEvalWithVar($op1, $variables) * exp:useNodeEvalWithVar($op2, $variables)
-                    case "-" 
+                    case "-"
                         return
                             exp:useNodeEvalWithVar($op1, $variables) - exp:useNodeEvalWithVar($op2, $variables)
                      default
@@ -84,7 +84,7 @@ declare function exp:useNode($el as node()){
             case element(op)
                 return
                     exp:printOp($el)
-            default 
+            default
                 return
                     exp:printText($el)
 };
@@ -101,15 +101,16 @@ declare function exp:printText($el as node()){
     $el/text()
 };
 
-declare function exp:printVar($el as node(), $variables as xs:string) as xs:double{
-    let $var := doc($variables)//$el/text()
-    return 
-        if (empty($var)) then 
+declare function exp:printVar($el as node(), $variables as xs:string) as xs:double {
+    let $var := $el/text()
+    let $varr := doc($variables)//*[name() = $var]
+    return
+        if (empty($var)) then
             (:~  tout le temp vide.. ~:)
-            error() 
-        else 
-            $var
-        
+            error()
+        else
+            $varr
+
 };
 
 declare function exp:print($name as xs:string){
@@ -129,8 +130,4 @@ declare function exp:eval-var($name as xs:string, $variables as xs:string) as xs
 };
 
 (:~ declare function exp:simplifie($name as xs:string , $variables as xs:string) as element(){
-    (:~ To do  ~:)
-};~:)
-
-
-
+     }; ~:)

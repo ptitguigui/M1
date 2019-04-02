@@ -30,14 +30,16 @@
 		</div>
 		<div>
 			<div>
-				<label>Titre : </label> <input type="text"  name="titleBook" id="titleBook">
+				<label>Titre : </label> <input type="text" name="titleBook"
+					id="titleBook">
 			</div>
 			<div>
 				<label>Auteur : </label> <input type="text" name="authorBook"
 					id="authorBook">
 			</div>
 			<div>
-				<label>Date de parution : </label> <input type="text"  name="dateBook" id="dateBook">
+				<label>Date de parution : </label> <input type="text"
+					name="dateBook" id="dateBook">
 			</div>
 			<div>
 				<button type="submit" class="btn btn-primary">Valider</button>

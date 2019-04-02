@@ -101,14 +101,14 @@ declare function exp:printText($el as node()){
     $el/text()
 };
 
-declare function exp:printVar($el as node(), $variables as xs:string){
-    let $var := doc($variables)/variables/X/text()
+declare function exp:printVar($el as node(), $variables as xs:string) as xs:double{
+    let $var := doc($variables)//$el/text()
     return 
         if (empty($var)) then 
             (:~  tout le temp vide.. ~:)
             error() 
         else 
-            $var/text
+            $var
         
 };
 
@@ -128,9 +128,9 @@ declare function exp:eval-var($name as xs:string, $variables as xs:string) as xs
         return exp:useNodeEvalWithVar($el, $variables)
 };
 
-declare function exp:simplifie($name as xs:string , $variables as xs:string) as element(){
+(:~ declare function exp:simplifie($name as xs:string , $variables as xs:string) as element(){
     (:~ To do  ~:)
-}
+};~:)
 
 
 

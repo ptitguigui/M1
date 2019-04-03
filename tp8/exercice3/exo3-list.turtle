@@ -1,0 +1,12 @@
+@prefix ns0: <http://example.org/stuff/1.0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ns0:list ns0:lettre
+ [ rdf:first "a";
+ rdf:rest [ rdf:first "b";
+    rdf:rest [rdf:first "c";
+        rdf:rest [ rdf:first "d";
+             rdf:rest rdf:nil]
+             ]
+          ]
+ ].

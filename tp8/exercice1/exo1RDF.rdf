@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://www.labd.org/2015/voitures/schema#">
+
+  <rdf:Description rdf:about="http://www.labd.org/2015/voitures/schema#v001">
+    <rdf:type rdf:resource="http://www.labd.org/2015/voitures/schema#Voiture"/>
+    <ns0:marque>Citroën</ns0:marque>
+    <ns0:nomVoiture>C4</ns0:nomVoiture>
+  </rdf:Description>
+
+  <ns0:Societe rdf:about="http://www.labd.org/2015/voitures/schema#s001">
+    <ns0:nomSociete>Citroën</ns0:nomSociete>
+    <ns0:fondeEn>1919</ns0:fondeEn>
+  </ns0:Societe>
+
+</rdf:RDF>

@@ -1,0 +1,19 @@
+Q1.
+1.	(Personne, type, Class)
+2.	(Stagiaire,type, Class)
+3.	(Stagiaire, type, Personne)
+4.	(Tuteur,type, Class)
+5.	(Tuteur, subClassOf, Personne)
+6.	(encadre, type, Property)
+7.	(encadre, domain, Tuteur)
+8.	(encadre, range, Stagiaire)
+9.	(encadre, subPropertyOf, knows)
+10.	(Ali, encadre, Louis)
+
+Q2.
+
+1. (Ali, type, Tuteur)
+2. (Ali, type, Stagiaire)
+3. (Ali, type, Personne)
+4. (Louis, type, Personne)
+5. (Ali, knows, Louis)

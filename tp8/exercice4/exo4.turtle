@@ -1,0 +1,21 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns0: <http://www.labd.org/stages#> .
+
+<http://www.labd.org/stages#Personne> a rdfs:Class .
+<http://www.labd.org/stages#Stagiaire>
+  a rdfs:Class ;
+  rdfs:subClassOf <http://www.labd.org/stages#Personne> .
+
+<http://www.labd.org/stages#Tuteur>
+  a rdfs:Class ;
+  rdfs:subClassOf <http://www.labd.org/stages#Personne> .
+
+<http://www.labd.org/stages#encadre>
+  a rdf:Property ;
+  rdfs:domain <http://www.labd.org/stages#Tuteur> ;
+  rdfs:range <http://www.labd.org/stages#Stagiaire> ;
+  rdfs:subPropertyOf foaf:knows .
+
+<http://www.labd.org/stages#Ali> ns0:encadre ns0:Louis .

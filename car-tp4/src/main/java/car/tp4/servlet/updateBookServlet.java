@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 
 @WebServlet("/updateBook")
@@ -26,9 +27,27 @@ public class updateBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("titleBook", request.getParameter("titleBook"));
-        request.setAttribute("authorBook", request.getParameter("authorBook"));
-        request.setAttribute("dateBook", request.getParameter("dateBook"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        Book book = bookBean.getBook(id);
+
+        request.setAttribute("book", book);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/updateBook.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String title = request.getParameter("titleBook");
+        String author = request.getParameter("authorBook");
+        String date = request.getParameter("dateBook");
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        bookBean.updateBook(id, title, author, date);
+
+        Book book = bookBean.getBook(id);
+        request.setAttribute("book", book);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/updateBook.jsp");
         dispatcher.forward(request, response);
     }

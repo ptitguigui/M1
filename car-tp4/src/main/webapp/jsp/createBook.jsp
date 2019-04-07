@@ -23,7 +23,7 @@
 
 <body>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">CAR-TP4</a>
+    <a class="navbar-brand" href="/">CAR-TP4</a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">

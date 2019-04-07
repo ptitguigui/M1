@@ -24,7 +24,7 @@
         crossorigin="anonymous"></script>
 <body>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">CAR-TP4</a>
+    <a class="navbar-brand" href="/">CAR-TP4</a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -40,12 +40,17 @@
     </div>
 </nav>
 <div>
+    <br/>
     <h2>Liste des livres : </h2>
+    <br/>
+
     <table class="table" border="1">
         <thead class="thead-dark">
         <tr>
             <th>Auteur</th>
             <th>Titre</th>
+            <th>Date de parution</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -53,7 +58,9 @@
             Collection<Book> books = (Collection<Book>) request.getAttribute("books");
             for (Book book : books) {
                 out.print("<tr><td> " + book.getAuthor() + "</td>");
-                out.print("<td> " + book.getTitle() + "</td></tr>");
+                out.print("<td> " + book.getTitle() + "</td>");
+                out.print("<td> " + book.getDate() + "</td>");
+                out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
             }
         %>
         </tbody>

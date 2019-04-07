@@ -35,8 +35,12 @@ public class CreateBookServlet extends HttpServlet {
             throws ServletException, IOException {
         String title = request.getParameter("titleBook");
         String author = request.getParameter("authorBook");
-        bookBean.addBook(new Book(title, author));
+        String date = request.getParameter("dateBook");
 
+        Book book = new Book(title, author, date);
+        bookBean.addBook(book);
+
+        request.setAttribute("book", book);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/updateBook.jsp");
         dispatcher.forward(request, response);
     }

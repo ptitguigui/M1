@@ -1,11 +1,10 @@
 <%@page import="car.tp4.entity.Book" %>
-<%@page import="java.util.Collection" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Creer un livre</title>
+    <title>Détails</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -24,7 +23,7 @@
         crossorigin="anonymous"></script>
 <body>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">CAR-TP4</a>
+    <a class="navbar-brand" href="/">CAR-TP4</a>
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -33,14 +32,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="books">Lister</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="createBook">Creer</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="createBook">Détails</a>
             </li>
         </ul>
     </div>
 </nav>
 <div>
-    <form action="updateBook">
+    <form action="updateBook?id=${book.getId()}" method="POST">
         <div>
             <h1>Détails du livre :</h1>
         </div>
@@ -49,22 +51,22 @@
                 <label>Titre : </label> <input type="text"
                                                name="titleBook"
                                                id="titleBook"
-                                               value=<%=request.getParameter("titleBook") %>>
+                                               value="${book.getTitle()}">
             </div>
             <div>
                 <label>Auteur : </label> <input type="text"
                                                 name="authorBook"
                                                 id="authorBook"
-                                                value=<%=request.getParameter("authorBook") %>>
+                                                value="${book.getAuthor()}">
             </div>
             <div>
                 <label>Date de parution : </label> <input type="text"
                                                           name="dateBook"
                                                           id="dateBook"
-                                                          value=<%=request.getParameter("dateBook") %>>
+                                                          value="${book.getDate()}">
             </div>
             <div>
-                <button type="button" class="btn btn-primary">Modifier</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
             </div>
         </div>
     </form>

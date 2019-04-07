@@ -1,7 +1,6 @@
 package car.tp4.servlet;
 
-import car.tp4.entity.Book;
-import car.tp4.entity.BookBean;
+import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -10,10 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
-@WebServlet("/createBook")
-public class CreateBookServlet extends HttpServlet {
+import car.tp4.entity.BookBean;
+
+@WebServlet("/updateBook")
+public class updateBookServlet extends HttpServlet {
 
     @EJB
     private BookBean bookBean;
@@ -26,17 +26,9 @@ public class CreateBookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/createBook.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String title = request.getParameter("titleBook");
-        String author = request.getParameter("authorBook");
-        bookBean.addBook(new Book(title, author));
-
+        request.setAttribute("titleBook", request.getParameter("titleBook"));
+        request.setAttribute("authorBook", request.getParameter("authorBook"));
+        request.setAttribute("dateBook", request.getParameter("dateBook"));
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/updateBook.jsp");
         dispatcher.forward(request, response);
     }

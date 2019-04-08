@@ -1,0 +1,130 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://www.labd.org/2015/sport/schema#>.
+
+
+
+s:sport
+  a rdfs:Class ;
+  rdfs:comment "La classe sport" .
+  s:nomSport
+    a rdf:Property;
+    rdfs:domain s:sport;
+    rdfs:range rdfs:Literal.
+  s:attribut
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdf:Alt.
+  s:oppose
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdfs:Literal.
+  s:seJoue
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdf:Alt.
+
+
+s:sportCollectif
+  a rdfs:Class ;
+  rdfs:comment "La classe sportCollectif" .
+  rdfs:subClassOf s:sport .
+
+s:sportDeEquipe
+  a rdfs:Class ;
+  rdfs:comment "La classe sportDeEquipe" .
+  rdfs:subClassOf s:sport .
+
+s:sportIndividuel
+  a rdfs:Class ;
+  rdfs:comment "La classe individuel" .
+  rdfs:subClassOf s:sportDeEquipe .
+
+s:equipe
+  a rdfs:Class ;
+  rdfs:comment "La classe equipe" .
+
+  s:nombreDeJoueurs
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+  s:objectif
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+s:terrain
+  a rdfs:Class ;
+  rdfs:comment "La classe terrain" .
+
+  s:nbEquipe
+    a rdf:Property;
+    rdfs:domain s:terrain;
+    rdfs:range rdfs:Literal.
+
+  s:formeTerrain
+    a rdf:Property;
+    rdfs:domain s:terrain;
+    rdfs:range rdf:Alt.
+
+  s:taille
+    a rdf:Property;
+    rdfs:domain s:terrain;
+    rdfs:range rdfs:Literal.
+
+s:match
+  a rdfs:Class ;
+  rdfs:comment "La classe match" .
+
+  s:dure
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal.
+
+  s:parties
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:list.
+
+  s:type
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal.
+
+s:partie
+  a rdfs:Class ;
+  rdfs:comment "La classe partie" .
+
+  s:dure
+    a rdf:Property;
+    rdfs:domain s:partie;
+    rdfs:range rdfs:Literal.
+
+
+
+
+s:ballon
+  a rdfs:Class ;
+  rdfs:comment "La classe ballon".
+
+  s:forme
+    a rdf:property;
+    rdfs:domain s:ballon;
+    rdfs:range rdf:Alt.
+
+s:avec [
+  a rdf:Alt;
+  rdf:_1 "la mains";
+  rdf:_2 "sans les bras"
+] .
+
+s:titre [
+  rdf:_1 "individuel";
+  rdf:_2 "collectifs"
+].
+
+s:forme [
+  rdf:_1 "rectangulaire";
+  rdf:_2 "sphérique"
+].

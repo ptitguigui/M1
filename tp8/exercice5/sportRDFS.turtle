@@ -11,10 +11,14 @@ s:sport
     a rdf:Property;
     rdfs:domain s:sport;
     rdfs:range rdfs:Literal.
+  s:de
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range s:ballon.
   s:attribut
     a rdf:property;
     rdfs:domain s:sport;
-    rdfs:range rdf:Alt.
+    rdfs:range s:titre.
   s:oppose
     a rdf:property;
     rdfs:domain s:sport;
@@ -22,8 +26,11 @@ s:sport
   s:seJoue
     a rdf:property;
     rdfs:domain s:sport;
-    rdfs:range rdf:Alt.
-
+    rdfs:range s:avec.
+  s:sur
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range s:terrain.
 
 s:sportCollectif
   a rdfs:Class ;
@@ -54,6 +61,12 @@ s:equipe
     rdfs:domain s:equipe;
     rdfs:range rdfs:Literal.
 
+  s:nbRemplacants
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+
 s:terrain
   a rdfs:Class ;
   rdfs:comment "La classe terrain" .
@@ -66,7 +79,7 @@ s:terrain
   s:formeTerrain
     a rdf:Property;
     rdfs:domain s:terrain;
-    rdfs:range rdf:Alt.
+    rdfs:range s:forme.
 
   s:taille
     a rdf:Property;
@@ -92,6 +105,18 @@ s:match
     rdfs:domain s:match;
     rdfs:range rdfs:Literal.
 
+  s:vainqueur
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range s:equipe .
+
+  s:aTempMort
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal .
+
+
+
 s:partie
   a rdfs:Class ;
   rdfs:comment "La classe partie" .
@@ -101,6 +126,10 @@ s:partie
     rdfs:domain s:partie;
     rdfs:range rdfs:Literal.
 
+s:prolongation
+  a rdfs:Class ;
+  rdfs:comment "La classe prolongation" .
+  rdfs:subClassOf s:match .
 
 
 
@@ -108,23 +137,25 @@ s:ballon
   a rdfs:Class ;
   rdfs:comment "La classe ballon".
 
-  s:forme
+  s:formeBallon
     a rdf:property;
     rdfs:domain s:ballon;
-    rdfs:range rdf:Alt.
+    rdfs:range s:forme.
 
-s:avec [
+<http://www.labd.org/2015/sport/schema#> s:avec [
   a rdf:Alt;
   rdf:_1 "la mains";
   rdf:_2 "sans les bras"
 ] .
 
-s:titre [
+<http://www.labd.org/2015/sport/schema#> s:titre [
+  a rdf:Alt;
   rdf:_1 "individuel";
   rdf:_2 "collectifs"
 ].
 
-s:forme [
+<http://www.labd.org/2015/sport/schema#> s:forme [
+  a rdf:Alt;
   rdf:_1 "rectangulaire";
   rdf:_2 "sphérique"
 ].

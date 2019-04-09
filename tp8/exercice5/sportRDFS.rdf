@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:ns0="http://www.labd.org/2015/sport/schema#">
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#sport">
+    <rdfs:comment>La classe sport</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#nomSport">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#de">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#ballon"/>
+  </rdf:property>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#attribut">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#titre"/>
+  </rdf:property>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#oppose">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:property>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#seJoue">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#avec"/>
+  </rdf:property>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#sur">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#sport"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#terrain"/>
+  </rdf:property>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#sportCollectif">
+    <rdfs:comment>La classe sportCollectif</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#subClassOf">
+    <ns0:sport rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"></ns0:sport>
+    <ns0:sportDeEquipe rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"></ns0:sportDeEquipe>
+    <ns0:match rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"></ns0:match>
+  </rdf:Description>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#sportDeEquipe">
+    <rdfs:comment>La classe sportDeEquipe</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#sportIndividuel">
+    <rdfs:comment>La classe individuel</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#equipe">
+    <rdfs:comment>La classe equipe</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#nombreDeJoueurs">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#equipe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#objectif">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#equipe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#nbRemplacants">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#equipe"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#terrain">
+    <rdfs:comment>La classe terrain</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#nbEquipe">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#terrain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#formeTerrain">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#terrain"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#forme"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#taille">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#terrain"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#match">
+    <rdfs:comment>La classe match</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#dure">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#match"/>
+    <rdfs:domain>
+      <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#partie">
+        <rdfs:comment>La classe partie</rdfs:comment>
+      </rdfs:Class>
+    </rdfs:domain>
+
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#parties">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#match"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#list"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#type">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#match"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#vainqueur">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#match"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#equipe"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://www.labd.org/2015/sport/schema#aTempMort">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#match"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+  </rdf:Property>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#prolongation">
+    <rdfs:comment>La classe prolongation</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://www.labd.org/2015/sport/schema#ballon">
+    <rdfs:comment>La classe ballon</rdfs:comment>
+  </rdfs:Class>
+
+  <rdf:property rdf:about="http://www.labd.org/2015/sport/schema#formeBallon">
+    <rdfs:domain rdf:resource="http://www.labd.org/2015/sport/schema#ballon"/>
+    <rdfs:range rdf:resource="http://www.labd.org/2015/sport/schema#forme"/>
+  </rdf:property>
+
+  <rdf:Description rdf:about="http://www.labd.org/2015/sport/schema#">
+    <ns0:avec>
+      <rdf:Alt>
+        <rdf:li>la mains</rdf:li>
+        <rdf:li>sans les bras</rdf:li>
+      </rdf:Alt>
+    </ns0:avec>
+
+    <ns0:titre>
+      <rdf:Alt>
+        <rdf:li>individuel</rdf:li>
+        <rdf:li>collectifs</rdf:li>
+      </rdf:Alt>
+    </ns0:titre>
+
+    <ns0:forme>
+      <rdf:Alt>
+        <rdf:li>rectangulaire</rdf:li>
+        <rdf:li>sphérique</rdf:li>
+      </rdf:Alt>
+    </ns0:forme>
+
+  </rdf:Description>
+
+</rdf:RDF>

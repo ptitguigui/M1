@@ -1,0 +1,38 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://www.labd.org/2015/sport/schema#>.
+
+
+
+s:football
+  a s:sportCollectif;
+  s:nomsport "Football";
+  s:de s:b0;
+  s:attribut s:titre;
+  s:oppose [rdf:first s:eq0;
+            rdf:rest [s:eq1;
+                      rdf:rest rdf:nil]
+            ];
+  s:sur t0;
+
+s:eq0
+  a s:equipe ;
+  s:nombreDeJoueurs "11";
+  s:objectif "marquer plus de but que l'adversaire"
+  s:nbRemplacants "".
+
+s:eq1
+  a s:equipe ;
+  s:nombreDeJoueurs "11";
+  s:objectif "marquer plus de but que l'adversaire"
+  s:nbRemplacants "".
+
+s:b0
+  a s:ballon;
+  s:formeBallon s:forme .
+
+s:t0
+  a s:terrain
+  s:nbEquipe "2";
+  s:formeTerrain s:forme;
+  s:taille "90 sur 120 mètres de long sur 45 à 90 mètres de large"

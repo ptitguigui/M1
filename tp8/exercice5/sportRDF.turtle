@@ -8,31 +8,50 @@ s:football
   a s:sportCollectif;
   s:nomsport "Football";
   s:de s:b0;
-  s:attribut s:titre;
-  s:oppose [rdf:first s:eq0;
-            rdf:rest [s:eq1;
-                      rdf:rest rdf:nil]
-            ];
-  s:sur t0;
+  s:attributTitre "collectif";
+  s:oppose s:eqs;
+  s:seJoue "sans les bras";
+  s:sur s:t0 .
+
 
 s:eq0
   a s:equipe ;
   s:nombreDeJoueurs "11";
-  s:objectif "marquer plus de but que l'adversaire"
-  s:nbRemplacants "".
+  s:objectif "marquer plus de but que l'adversaire";
+  s:nbRemplacants "" .
 
 s:eq1
   a s:equipe ;
   s:nombreDeJoueurs "11";
-  s:objectif "marquer plus de but que l'adversaire"
-  s:nbRemplacants "".
+  s:objectif "marquer plus de but que l'adversaire";
+  s:nbRemplacants "" .
 
 s:b0
   a s:ballon;
-  s:formeBallon s:forme .
+  s:formeBallon "sphérique".
 
 s:t0
-  a s:terrain
+  a s:terrain;
   s:nbEquipe "2";
   s:formeTerrain s:forme;
-  s:taille "90 sur 120 mètres de long sur 45 à 90 mètres de large"
+  s:taille s:t0_taille .
+
+s:t0_taille
+  a s:taille;
+  s:largeur "45 à 90 mètres";
+  s:longueur "90 à 120 mètres".
+
+
+s:eqs
+  a s:equipes;
+  s:nbEquipe "2";
+  s:premièreEquipe s:eq0;
+  s:deuxièmeEquipe s:eq1 .
+
+
+s:m0
+  a s:match;
+  s:dure "90 min";
+  s:seJoueEn2Parties s:P;
+  s:peutEtre "aller ou retour"
+  s:vainqueur s:eq0

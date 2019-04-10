@@ -42,4 +42,10 @@ public class BookBean {
         Query query = entityManager.createQuery("SELECT m from Book as m");
         return query.getResultList();
     }
+
+
+    public List<String> getAllAuthor() {
+        Query query = entityManager.createQuery("SELECT distinct m.author from Book as m");
+        return query.getResultList();
+    }
 }

@@ -21,13 +21,15 @@ public class BookServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        bookBean.addBook(new Book("The Lord of the Rings", "J. R. R. Tolkien", "29/07/1954"));
+        String authorName = "J. R. R. Tolkien";
+        bookBean.addBook(new Book("The Lord of the Rings", authorName, "29/07/1954"));
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setAttribute("authors", bookBean.getAllAuthor());
         request.setAttribute("books", bookBean.getAllBooks());
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
         dispatcher.forward(request, response);

@@ -1,5 +1,6 @@
 <%@page import="car.tp4.entity.Book" %>
-<%@page import="java.util.Collection" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,17 @@
     <table class="table" border="1">
         <thead class="thead-dark">
         <tr>
-            <th>Auteur</th>
+            <th>
+                <select id="author" name="author" class="browser-default custom-select">
+                    <option selected>Auteur</option>
+                    <%
+                        List<String> authors = (List<String>) request.getAttribute("authors");
+                        for (String author : authors) {
+                            out.print("<option  value= \"" + author + "\"> " + author + "</option>");
+                        }
+                    %>
+                </select>
+            </th>
             <th>Titre</th>
             <th>Date de parution</th>
             <th></th>
@@ -57,10 +68,13 @@
         <%
             Collection<Book> books = (Collection<Book>) request.getAttribute("books");
             for (Book book : books) {
-                out.print("<tr><td> " + book.getAuthor() + "</td>");
-                out.print("<td> " + book.getTitle() + "</td>");
-                out.print("<td> " + book.getDate() + "</td>");
-                out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+
+                //if (request.getAttribute("author").equals("Auteur") || request.getAttribute("author").equals(book.getAuthor())) {
+                    out.print("<tr><td> " + book.getAuthor() + "</td>");
+                    out.print("<td> " + book.getTitle() + "</td>");
+                    out.print("<td> " + book.getDate() + "</td>");
+                    out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+                //}
             }
         %>
         </tbody>

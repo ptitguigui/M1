@@ -19,10 +19,7 @@ s:sport
     a rdf:property;
     rdfs:domain s:sport;
     rdfs:range rdfs:Literal.
-  s:oppose
-    a rdf:property;
-    rdfs:domain s:sport;
-    rdfs:range s:equipes.
+
   s:seJoue
     a rdf:property;
     rdfs:domain s:sport;
@@ -36,6 +33,11 @@ s:sportCollectif
   a rdfs:Class ;
   rdfs:comment "La classe sportCollectif" .
   rdfs:subClassOf s:sport .
+
+  s:oppose
+    a rdf:property;
+    rdfs:domain s:sportCollectif;
+    rdfs:range s:equipes.
 
 s:sportDeEquipe
   a rdfs:Class ;
@@ -66,6 +68,12 @@ s:equipe
     rdfs:domain s:equipe;
     rdfs:range rdfs:Literal.
 
+  s:peutRemplacer
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+
 s:equipes
   a rdfs:Class ;
   rdfs:comment "La classe equipes" .
@@ -75,15 +83,12 @@ s:equipes
     rdfs:domain s:equipes;
     rdfs:range rdfs:Literal.
 
-  s:premièreEquipe
+  s:chaqueEquipe
     a rdf:Property;
     rdfs:domain s:equipes;
     rdfs:range s:equipe.
 
-  s:deuxièmeEquipe
-    a rdf:Property;
-    rdfs:domain s:equipes;
-    rdfs:range s:equipe.
+
 
 s:terrain
   a rdfs:Class ;
@@ -92,7 +97,7 @@ s:terrain
   s:formeTerrain
     a rdf:Property;
     rdfs:domain s:terrain;
-    rdfs:range rdf:Alt.
+    rdfs:range rdfs:Literal.
 
   s:tailleTerrain
     a rdf:Property;
@@ -108,12 +113,12 @@ s:match
     rdfs:domain s:match;
     rdfs:range rdfs:Literal.
 
-  s:seJoueEn2Parties
+  s:seJoueEnParties
     a rdf:Property;
     rdfs:domain s:match;
-    rdfs:range s:partiesFootball.
+    rdfs:range s:parties.
 
-  s:peutEtre
+  s:type
     a rdf:Property;
     rdfs:domain s:match;
     rdfs:range rdfs:Literal.
@@ -121,53 +126,45 @@ s:match
   s:vainqueur
     a rdf:Property;
     rdfs:domain s:match;
-    rdfs:range s:equipe .
+    rdfs:range rdfs:Literal.
 
-  s:aTempMort
+  s:miTemps
     a rdf:Property;
     rdfs:domain s:match;
     rdfs:range rdfs:Literal .
 
-  s:peutAvoir
+  s:enCasEgalité
     a rdf:Property;
     rdfs:domain s:match;
     rdfs:range s:prolongation.
 
 
-s:partiesFootball
+
+
+
+s:parties
   a rdfs:Class ;
-  rdfs:comment "La classe partiesFootball" .
+  rdfs:comment "La classe parties" .
 
-  s:parti1
+  s:nombreDePartie
     a rdf:Property;
-    rdfs:domain s:partiesFootball;
-    rdfs:range rdfs:partie.
-  s:parti2
-    a rdf:Property;
-    rdfs:domain s:partiesFootball;
-    rdfs:range rdfs:partie.
-
-
-s:partie
-  a rdfs:Class ;
-  rdfs:comment "La classe partie" .
-
-  s:dure
-    a rdf:Property;
-    rdfs:domain s:partie;
+    rdfs:domain s:parties;
     rdfs:range rdfs:Literal.
+
+  s:dureChacune
+    a rdf:Property;
+    rdfs:domain s:parties;
+    rdfs:range rdfs:Literal.
+
+
+
 
 s:prolongation
   a rdfs:Class ;
   rdfs:comment "La classe prolongation" .
   rdfs:subClassOf s:match .
 
-  s:si
-    a rdf:Property;
-    rdfs:domain s:prolongation;
-    rdfs:range rdfs:Literal.
-
-  s:auTermeProlongation
+  s:siEgalité
     a rdf:Property;
     rdfs:domain s:prolongation;
     rdfs:range s:tireAuBut.
@@ -176,11 +173,9 @@ s:tireAuBut
   a rdfs:Class ;
   rdfs:comment "La classe tireAuBut" .
 
-  s:si
-    a rdf:Property;
+  s:departagent
     rdfs:domain s:tireAuBut;
     rdfs:range rdfs:Literal.
-
 
 s:ballon
   a rdfs:Class ;

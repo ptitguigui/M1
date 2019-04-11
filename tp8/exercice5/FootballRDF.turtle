@@ -1,0 +1,75 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://www.labd.org/2015/sport/schema#>.
+
+
+
+s:football
+  a s:sportCollectif;
+  s:nomsport "Football";
+  s:de s:b0;
+  s:attributTitre "collectif";
+  s:oppose s:eqs;
+  s:seJoue "sans les bras";
+  s:sur s:t0 .
+
+s:b0
+  a s:ballon;
+  s:formeBallon "sphérique".
+
+s:t0
+  a s:terrain;
+  s:formeTerrain "rectangulaire";
+  s:tailleTerrain s:t0_taille .
+
+s:t0_taille
+  a s:taille;
+  s:largeur "45 à 90 mètres";
+  s:longueur "90 à 120 mètres".
+
+
+s:eq
+  a s:equipe ;
+  s:nombreDeJoueurs "11";
+  s:objectif "marquer plus de but que l'adversaire";
+  s:nbRemplacants "" ;
+  s:peutRemplacer "".
+
+s:eqs
+  a s:equipes;
+  s:nbEquipe "2";
+  s:chaqueEquipe s:eq.
+
+
+
+s:m0
+  a s:match;
+  s:dure "90 min";
+  s:seJoueEnParties s:P;
+  s:type "aller ou retour";
+  s:vainqueur "une des deux equipes";
+  s:miTemps "15min";
+  s:enCasEgalité s:Pr .
+
+
+s:P
+  a s:parties;
+  s:nombreDePartie "2";
+  s:dureChacune "45min" .
+
+
+s:Pr
+  a s:prolongation;
+  s:dure "30 min";
+  s:seJoueEn2Parties s:PP;
+  s:siEgalité s:TB .
+
+s:PP
+  a s:parties;
+  s:nombreDePartie "2";
+  s:dureChacune "15min".
+
+
+s:TB
+  a s:tireAuBut;
+  s:departagent "les deux equipes".

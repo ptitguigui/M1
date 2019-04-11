@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://www.labd.org/2015/sport/schema#">
+
+  <rdf:Description rdf:about="http://www.labd.org/2015/sport/schema#basketball">
+    <rdf:type rdf:resource="http://www.labd.org/2015/sport/schema#sportCollectif"/>
+    <ns0:nomsport>basketball</ns0:nomsport>
+    <ns0:de>
+      <ns0:ballon rdf:about="http://www.labd.org/2015/sport/schema#b0">
+        <ns0:formeBallon></ns0:formeBallon>
+      </ns0:ballon>
+    </ns0:de>
+
+    <ns0:attributTitre>collectif</ns0:attributTitre>
+    <ns0:oppose>
+      <ns0:equipes rdf:about="http://www.labd.org/2015/sport/schema#eqs">
+        <ns0:nbEquipe>2</ns0:nbEquipe>
+        <ns0:chaqueEquipe>
+          <ns0:equipe rdf:about="http://www.labd.org/2015/sport/schema#eq">
+            <ns0:nombreDeJoueurs>5</ns0:nombreDeJoueurs>
+            <ns0:objectif>marquer plus depoints que son adversaire en marquant despanierset en empêchant l’équipe adverse d’en faire demême</ns0:objectif>
+            <ns0:nbRemplacants>max 5 à 7 remplaçants</ns0:nbRemplacants>
+            <ns0:peutRemplacer>un plusieurs joueur pendant les temps morts</ns0:peutRemplacer>
+          </ns0:equipe>
+        </ns0:chaqueEquipe>
+
+      </ns0:equipes>
+    </ns0:oppose>
+
+    <ns0:seJoue>à la main</ns0:seJoue>
+    <ns0:sur>
+      <ns0:terrain rdf:about="http://www.labd.org/2015/sport/schema#t0">
+        <ns0:formeTerrain></ns0:formeTerrain>
+        <ns0:tailleTerrain rdf:resource="http://www.labd.org/2015/sport/schema#t0_taille"/>
+      </ns0:terrain>
+    </ns0:sur>
+
+  </rdf:Description>
+
+  <ns0:match rdf:about="http://www.labd.org/2015/sport/schema#m0">
+    <ns0:dure>90 min</ns0:dure>
+    <ns0:seJoueEnParties>
+      <ns0:parties rdf:about="http://www.labd.org/2015/sport/schema#P">
+        <ns0:nombreDePartie>4</ns0:nombreDePartie>
+        <ns0:dureChacune>10 ou 12 min</ns0:dureChacune>
+      </ns0:parties>
+    </ns0:seJoueEnParties>
+
+    <ns0:type>aller ou retour</ns0:type>
+    <ns0:vainqueur>une des deux equipes</ns0:vainqueur>
+    <ns0:miTemps>15min</ns0:miTemps>
+  </ns0:match>
+
+</rdf:RDF>

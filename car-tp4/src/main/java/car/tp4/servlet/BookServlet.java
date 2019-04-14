@@ -2,6 +2,7 @@ package car.tp4.servlet;
 
 import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
+import car.tp4.entity.CommandBean;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,10 @@ public class BookServlet extends HttpServlet {
 
     @EJB
     private BookBean bookBean;
+
+    @EJB
+    private CommandBean commandBean;
+
 
     @Override
     public void init() {

@@ -70,12 +70,16 @@
                 for (Command command : commands) {
                     Collection<Book> books = command.getBooks();
                     out.print("<tr><td> " + i + "</td>");
-                    for (Book book : books) {
-                        out.print("<td> " + book.getAuthor() + "</td>");
-                        out.print("<td> " + book.getTitle() + "</td>");
-                        out.print("<td> " + book.getDate() + "</td>");
-                        out.print("<td> " + book.getQuantity() + " </td>");
+                    System.out.println(command.getBooks());
+                    if(books != null) {
+                        for (Book book : books) {
+                            out.print("<td> " + book.getAuthor() + "</td>");
+                            out.print("<td> " + book.getTitle() + "</td>");
+                            out.print("<td> " + book.getDate() + "</td>");
+                            out.print("<td> " + book.getQuantity() + " </td>");
+                        }
                     }
+                    i++;
                     out.print("<tr>");
                 }
             %>

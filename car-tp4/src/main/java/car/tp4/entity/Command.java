@@ -9,18 +9,37 @@ public class Command {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany
     private List<Book> books;
 
     public Command() {
+        books = new ArrayList<Book>();
     }
 
-    public Command(List<Book> books) {
-        this.books = books;
+    public void addBook(Book book) {
+        if (isExist(this.getBooks(), (int) book.getId())) {
+            System.out.println("existe");
+            books.remove(book);
+            Book addBook = new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), book.getQuantity() + 1);
+            addBook.setId(book.getId());
+            books.add(addBook);
+        } else {
+            System.out.println("existe pas");
+            Book addBook = new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), 1);
+            addBook.setId(book.getId());
+            books.add(addBook);
+        }
+    }
+
+    private boolean isExist(List<Book> books, int id) {
+        System.out.println("vrai ID = " + id);
+        for (Book book : books) {
+            System.out.println(book.getId());
+            if (book.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -40,4 +59,5 @@ public class Command {
     public List<Book> getBooks() {
         return books;
     }
+
 }

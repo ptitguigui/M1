@@ -2,6 +2,7 @@ package car.tp4.servlet;
 
 import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
+import car.tp4.entity.Command;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/command")
 public class CommandBookServlet extends HttpServlet {
@@ -41,41 +40,17 @@ public class CommandBookServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             Book book = bookBean.getBook(id);
             HttpSession session = request.getSession(true);
-            List<Book> books;
-            if (session.getAttribute("books") != null) {
-                books = (List<Book>) session.getAttribute("books");
-                bookBean.updateBook(id, book.getTitle(), book.getAuthor(), book.getDataDate(), book.getQuantity() - 1);
-                
-                if (isExist(books, id)) {
-                    System.out.println("vrai");
-                    books.remove(book);
-                    //Book addBook = new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), book.getQuantity() + 1);
-                    //addBook.setId(id);
-                    books.add(book);
-                } else {
-                    System.out.println("faux");
-                    //Book addBook =new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), 1);
-                    //addBook.setId(id);
-                    books.add(book);
-                }
+            Command command;
+            if (session.getAttribute("command") != null) {
+                command = (Command) session.getAttribute("command");
             } else {
-                books = new ArrayList<Book>();
-                //Book addBook = new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), 1);
-                //addBook.setId(id);
-                books.add(book);
+                command = new Command();
+                //command.addBook(new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), 1));
             }
-            session.setAttribute("books", books);
+            command.addBook(book);
+            bookBean.updateBook(id, book.getTitle(), book.getAuthor(), book.getDataDate(), book.getQuantity() - 1);
+            session.setAttribute("command", command);
         }
     }
 
-    private boolean isExist(List<Book> books, int id) {
-        System.out.println("vrai ID = "+id);
-        for (Book book : books) {
-            System.out.println(book.getId());
-            if (book.getId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

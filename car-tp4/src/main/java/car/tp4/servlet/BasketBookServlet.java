@@ -31,8 +31,10 @@ public class BasketBookServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
-
-        request.setAttribute("books", session.getAttribute("books"));
+        Command command = (Command) session.getAttribute("command");
+        if (command != null) {
+            request.setAttribute("books", command.getBooks());
+        }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/basketBook.jsp");
         dispatcher.forward(request, response);
     }
@@ -44,12 +46,11 @@ public class BasketBookServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
 
-        List<Book> books = (List<Book>) session.getAttribute("books");
-        if (books != null) {
-            Command command = new Command(books);
+        Command command = (Command) session.getAttribute("command");
+        if (command != null) {
             commandBean.addCommand(command);
         }
-        session.removeAttribute("books");
+        session.removeAttribute("command");
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/basketBook.jsp");
         dispatcher.forward(request, response);
     }

@@ -11,6 +11,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -41,16 +42,16 @@
     </div>
 </nav>
 <div>
-    <br/>
-    <h2>Liste des livres : </h2>
-    <br/>
-    <table class="table" border="1">
-        <thead class="thead-dark">
-        <tr>
-            <th>
-                <form name="form" method="post" action="books">
+    <form id="form" name="form" method="post" action="books">
+        <br/>
+        <h2>Liste des livres : </h2>
+        <br/>
+        <table class="table" border="1">
+            <thead class="thead-dark">
+            <tr>
+                <th>
                     <select id="author" name="author" class="browser-default custom-select"
-                            onChange="this.parentNode.submit()">
+                            onChange="document.getElementById('form').submit()">
                         <option>Auteur</option>
                         <option></option>
                         <%
@@ -60,28 +61,37 @@
                             }
                         %>
                     </select>
-                </form>
-            </th>
-            <th>Titre</th>
-            <th>Date de parution</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            Collection<Book> books = (Collection<Book>) request.getAttribute("books");
-            System.out.println(request.getParameter("author"));
-            for (Book book : books) {
-                if ((request.getParameter("author") == null || request.getParameter("author").equals("")) || (request.getParameter("author").equals(book.getAuthor()))) {
-                    out.print("<tr><td> " + book.getAuthor() + "</td>");
-                    out.print("<td> " + book.getTitle() + "</td>");
-                    out.print("<td> " + book.getDate() + "</td>");
-                    out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+                </th>
+                <th>Titre <input type="text" name="title">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </th>
+                <th>Date de parution</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                Collection<Book> books = (Collection<Book>) request.getAttribute("books");
+                for (Book book : books) {
+                    if ((request.getParameter("author") == null || request.getParameter("author").equals("Auteur") || request.getParameter("author").equals(""))
+                            || (request.getParameter("author").equals(book.getAuthor()))) {
+                        out.print("<tr><td> " + book.getAuthor() + "</td>");
+                        out.print("<td> " + book.getTitle() + "</td>");
+                        out.print("<td> " + book.getDate() + "</td>");
+                        out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+                    }
                 }
-            }
-        %>
-        </tbody>
-    </table>
+            %>
+            </tbody>
+        </table>
+
+    </form>
 </div>
 </body>
+
+<style>
+    .table {
+        text-align: center;
+    }
+</style>
 </html>

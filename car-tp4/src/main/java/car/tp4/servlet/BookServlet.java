@@ -1,7 +1,7 @@
 package car.tp4.servlet;
 
-import java.io.IOException;
-import java.util.Date;
+import car.tp4.entity.Book;
+import car.tp4.entity.BookBean;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -10,9 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import car.tp4.entity.Book;
-import car.tp4.entity.BookBean;
+import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/books")
 public class BookServlet extends HttpServlet {
@@ -32,8 +31,8 @@ public class BookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("authors", bookBean.getAllAuthor());
-        request.setAttribute("books", bookBean.getAllBooks());
+        request.setAttribute("authors", bookBean.getAllAuthor(""));
+        request.setAttribute("books", bookBean.getAllBooks(""));
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
         dispatcher.forward(request, response);
     }
@@ -44,8 +43,8 @@ public class BookServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setAttribute("author", request.getParameter("author"));
-        request.setAttribute("authors", bookBean.getAllAuthor());
-        request.setAttribute("books", bookBean.getAllBooks());
+        request.setAttribute("authors", bookBean.getAllAuthor(request.getParameter("title")));
+        request.setAttribute("books", bookBean.getAllBooks(request.getParameter("title")));
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
         dispatcher.forward(request, response);
     }

@@ -41,14 +41,19 @@ public class BookBean {
         return entityManager.find(Book.class, id);
     }
 
-    public List<Book> getAllBooks() {
-        Query query = entityManager.createQuery("SELECT m from Book as m order by m.date");
+    public List<Book> getAllBooks(String title) {
+        Query query = !title.equals("") ?
+                entityManager.createQuery("SELECT m from Book as m where m.title like '" + title + "%' order by m.date") :
+                entityManager.createQuery("SELECT m from Book as m order by m.date");
         return query.getResultList();
     }
 
 
-    public List<String> getAllAuthor() {
-        Query query = entityManager.createQuery("SELECT distinct m.author from Book as m");
+    public List<String> getAllAuthor(String title) {
+        Query query = !title.equals("") ?
+                entityManager.createQuery("SELECT distinct m.author from Book as m where m.title like '" + title + "%'") :
+                entityManager.createQuery("SELECT distinct m.author from Book as m");
+
         return query.getResultList();
     }
 

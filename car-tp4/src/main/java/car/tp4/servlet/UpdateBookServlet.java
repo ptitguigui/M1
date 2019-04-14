@@ -15,7 +15,7 @@ import car.tp4.entity.Book;
 import car.tp4.entity.BookBean;
 
 @WebServlet("/updateBook")
-public class updateBookServlet extends HttpServlet {
+public class UpdateBookServlet extends HttpServlet {
 
     @EJB
     private BookBean bookBean;
@@ -43,10 +43,11 @@ public class updateBookServlet extends HttpServlet {
         String title = request.getParameter("titleBook");
         String author = request.getParameter("authorBook");
         String dateInString = request.getParameter("dateBook");
-
+        String quantity = request.getParameter("quantityBook");
         int id = Integer.parseInt(request.getParameter("id"));
         Date date = bookBean.convertDate(dateInString);
-        bookBean.updateBook(id, title, author, date);
+
+        bookBean.updateBook(id, title, author, date, Integer.parseInt(quantity));
 
         Book book = bookBean.getBook(id);
         request.setAttribute("book", book);

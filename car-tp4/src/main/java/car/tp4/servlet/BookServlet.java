@@ -24,7 +24,7 @@ public class BookServlet extends HttpServlet {
         String authorName = "J. R. R. Tolkien";
         String dateInString = "1954-07-29";
         Date date = bookBean.convertDate(dateInString);
-        bookBean.addBook(new Book("The Lord of the Rings", authorName, date));
+        bookBean.addBook(new Book("The Lord of the Rings", authorName, date, 1));
     }
 
     @Override

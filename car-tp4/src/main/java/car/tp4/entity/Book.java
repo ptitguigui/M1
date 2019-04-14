@@ -16,14 +16,16 @@ public class Book {
     private String author;
     private String title;
     private Date date;
+    private int quantity;
 
     public Book() {
     }
 
-    public Book(String title, String author, Date date) {
+    public Book(String title, String author, Date date, int quantity) {
         this.author = author;
         this.title = title;
         this.date = date;
+        this.quantity = quantity;
     }
 
     /**
@@ -33,6 +35,10 @@ public class Book {
      */
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**
@@ -72,12 +78,31 @@ public class Book {
     }
 
     /**
-     * Getter of attribute date
+     * Getter of attribute date in format dd/MM/yyyy
+     *
+     * @return date
+     */
+    public Date getDataDate() {
+        return this.date;
+    }
+
+    /**
+     * Getter of attribute date in format dd/MM/yyyy
      *
      * @return date
      */
     public String getDate() {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(date);
+    }
+
+    /**
+     * Getter of attribute date in format yyyy-MM-dd
+     *
+     * @return date
+     */
+    public String getDateValue() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(date);
     }
 
@@ -88,6 +113,24 @@ public class Book {
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * Getter of attribute quantity
+     *
+     * @return quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Setter of attribute date
+     *
+     * @param quantity
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /**

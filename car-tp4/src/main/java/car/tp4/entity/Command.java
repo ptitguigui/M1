@@ -10,11 +10,17 @@ public class Command {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Book> books;
 
     public Command() {
-        this.books = new ArrayList<Book>();
+    }
+
+    public Command(List<Book> books) {
+        this.books = books;
     }
 
     /**

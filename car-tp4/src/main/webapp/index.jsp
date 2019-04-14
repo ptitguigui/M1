@@ -26,8 +26,11 @@
     </br> </br>
     <h3>Que voulez-vous faire ? </h3>
     <ul>
-        <li><a href="books">Lister les livres</a></li>
         <li><a href="createBook">Creer un livre</a></li>
+        <li><a href="books">Gestion des livres</a></li>
+        <li><a href="command">Commander des livres</a></li>
+        <li><a href="commands">Voir mes commandes</a></li>
+        <li><a href="basket">Voir le panier</a></li>
     </ul>
 </div>
 </body>

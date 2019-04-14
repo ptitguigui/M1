@@ -21,17 +21,13 @@ public class BookBean {
         entityManager.persist(book);
     }
 
-    public void updateBook(int id, String title, String author, Date date) {
+    public void updateBook(int id, String title, String author, Date date, int quantity) {
         try {
-            Query query = entityManager.createQuery(
-                    "UPDATE Book SET title = :myTitle, author = :myAuthor, date = :myDate"
-                            + " WHERE id = :myID");
-            query.setParameter("myTitle", title);
-            query.setParameter("myAuthor", author);
-            query.setParameter("myDate", date);
-            query.setParameter("myID", id);
-
-            query.executeUpdate();
+            Book book = getBook(id);
+            book.setAuthor(author);
+            book.setTitle(title);
+            book.setDate(date);
+            book.setQuantity(quantity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,6 +41,11 @@ public class BookBean {
         Query query = !title.equals("") ?
                 entityManager.createQuery("SELECT m from Book as m where m.title like '" + title + "%' order by m.date") :
                 entityManager.createQuery("SELECT m from Book as m order by m.date");
+        return query.getResultList();
+    }
+
+    public List<Book> getAllBooksAvalaible() {
+        Query query = entityManager.createQuery("SELECT m from Book as m where m.quantity > 0 order by m.date");
         return query.getResultList();
     }
 

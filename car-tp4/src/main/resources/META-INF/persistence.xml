@@ -9,4 +9,11 @@
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
         </properties>
     </persistence-unit>
+    <persistence-unit name="command-pu" transaction-type="JTA">
+        <jta-data-source>command</jta-data-source>
+        <class>car.tp4.entity.Command</class>
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+        </properties>
+    </persistence-unit>
 </persistence>

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Liste des livres</title>
+    <title>Panier</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -35,7 +35,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="createBook">Creer</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="books">Gestion</a>
             </li>
             <li class="nav-item">
@@ -45,64 +45,47 @@
                 <a class="nav-link" href="commands">Mes commandes</a>
             </li>
         </ul>
-        <span class="navbar-text">
+        <span class="navbar-text active">
             <a class="nav-link" href="basket">Panier</a>
         </span>
     </div>
 </nav>
 <div>
-    <form id="form" name="form" method="post" action="books">
+    <form id="form" name="form" method="post" action="basket">
         <br/>
-        <h2>Liste des livres : </h2>
+        <h2>Panier de l'utilisateur : </h2>
         <br/>
         <table class="table" border="1">
             <thead class="thead-dark">
             <tr>
-                <th>
-                    <select id="author" name="author" class="browser-default custom-select"
-                            onChange="document.getElementById('form').submit()">
-                        <option>Auteur</option>
-                        <option></option>
-                        <%
-                            List<String> authors = (List<String>) request.getAttribute("authors");
-                            for (String author : authors) {
-                                out.print("<option  value= \"" + author + "\"> " + author + "</option>");
-                            }
-                        %>
-                    </select>
-                </th>
-                <th>Titre <input type="text" name="title">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </th>
+                <th>Auteur</th>
+                <th>Titre</th>
                 <th>Date de parution</th>
-                <th></th>
+                <th>Quantité</th>
             </tr>
             </thead>
             <tbody>
             <%
                 Collection<Book> books = (Collection<Book>) request.getAttribute("books");
-                for (Book book : books) {
-                    if ((request.getParameter("author") == null || request.getParameter("author").equals("Auteur") || request.getParameter("author").equals(""))
-                            || (request.getParameter("author").equals(book.getAuthor()))) {
+                if (books != null) {
+                    for (Book book : books) {
                         out.print("<tr><td> " + book.getAuthor() + "</td>");
                         out.print("<td> " + book.getTitle() + "</td>");
                         out.print("<td> " + book.getDate() + "</td>");
-                        out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+                        out.print("<td> " + book.getQuantity() + "</td></tr>");
                     }
                 }
             %>
             </tbody>
         </table>
-
+        <div>
+            <button type="submit" class="btn btn-primary">Commander</button>
+        </div>
     </form>
 </div>
 </body>
 
 <style>
-    h2{
-        padding-left: 10px;
-        margin: auto;
-    }
     .table {
         text-align: center;
     }

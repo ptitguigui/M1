@@ -39,10 +39,11 @@ public class CreateBookServlet extends HttpServlet {
         String title = request.getParameter("titleBook");
         String author = request.getParameter("authorBook");
         String dateInString = request.getParameter("dateBook");
+        int quantity = Integer.parseInt(request.getParameter("quantityBook"));
 
         Date date = bookBean.convertDate(dateInString);
 
-        Book book = new Book(title, author, date);
+        Book book = new Book(title, author, date, quantity);
         bookBean.addBook(book);
 
         request.setAttribute("book", book);

@@ -1,12 +1,13 @@
 <%@page import="car.tp4.entity.Book" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.List" %>
+<%@ page import="car.tp4.entity.Command" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Liste des livres</title>
+    <title>Mes commandes</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -35,13 +36,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="createBook">Creer</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="books">Gestion</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="command">Commander</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="commands">Mes commandes</a>
             </li>
         </ul>
@@ -53,42 +54,29 @@
 <div>
     <form id="form" name="form" method="post" action="books">
         <br/>
-        <h2>Liste des livres : </h2>
+        <h2>Mes commandes : </h2>
         <br/>
         <table class="table" border="1">
             <thead class="thead-dark">
             <tr>
-                <th>
-                    <select id="author" name="author" class="browser-default custom-select"
-                            onChange="document.getElementById('form').submit()">
-                        <option>Auteur</option>
-                        <option></option>
-                        <%
-                            List<String> authors = (List<String>) request.getAttribute("authors");
-                            for (String author : authors) {
-                                out.print("<option  value= \"" + author + "\"> " + author + "</option>");
-                            }
-                        %>
-                    </select>
-                </th>
-                <th>Titre <input type="text" name="title">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </th>
-                <th>Date de parution</th>
-                <th></th>
+                <th>N° commande</th>
+                <th>Livre</th>
             </tr>
             </thead>
             <tbody>
             <%
-                Collection<Book> books = (Collection<Book>) request.getAttribute("books");
-                for (Book book : books) {
-                    if ((request.getParameter("author") == null || request.getParameter("author").equals("Auteur") || request.getParameter("author").equals(""))
-                            || (request.getParameter("author").equals(book.getAuthor()))) {
-                        out.print("<tr><td> " + book.getAuthor() + "</td>");
+                Collection<Command> commands = (Collection<Command>) request.getAttribute("commands");
+                int i = 1;
+                for (Command command : commands) {
+                    Collection<Book> books = command.getBooks();
+                    out.print("<tr><td> " + i + "</td>");
+                    for (Book book : books) {
+                        out.print("<td> " + book.getAuthor() + "</td>");
                         out.print("<td> " + book.getTitle() + "</td>");
                         out.print("<td> " + book.getDate() + "</td>");
-                        out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
+                        out.print("<td> " + book.getQuantity() + " </td>");
                     }
+                    out.print("<tr>");
                 }
             %>
             </tbody>
@@ -99,10 +87,6 @@
 </body>
 
 <style>
-    h2{
-        padding-left: 10px;
-        margin: auto;
-    }
     .table {
         text-align: center;
     }

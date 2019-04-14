@@ -29,19 +29,28 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Accueil</a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="books">Lister</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="createBook">Creer</a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="books">Gestion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="command">Commander</a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="createBook">Détails</a>
+                <a class="nav-link" href="updateBook">Détails</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="commands">Mes commandes</a>
             </li>
         </ul>
+        <span class="navbar-text">
+            <a class="nav-link" href="basket">Panier</a>
+        </span>
     </div>
 </nav>
-<div>
+<div class="content">
     <form action="updateBook?id=${book.getId()}" method="POST">
         <div>
             <h1>Détails du livre :</h1>
@@ -60,10 +69,17 @@
                                                 value="${book.getAuthor()}">
             </div>
             <div>
-                <label>Date de parution : </label> <input type="text"
+                <label>Date de parution : </label> <input type="date"
                                                           name="dateBook"
                                                           id="dateBook"
-                                                          value="${book.getDate()}">
+                                                          value="${book.getDateValue()}">
+            </div>
+
+            <div>
+                <label>Quantité : </label> <input type="number"
+                                                  name="quantityBook"
+                                                  id="quantityBook"
+                                                  value="${book.getQuantity()}">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Modifier</button>
@@ -72,4 +88,10 @@
     </form>
 </div>
 </body>
+
+<style>
+    .content {
+        margin: 10px;
+    }
+</style>
 </html>

@@ -44,20 +44,23 @@
     <br/>
     <h2>Liste des livres : </h2>
     <br/>
-
     <table class="table" border="1">
         <thead class="thead-dark">
         <tr>
             <th>
-                <select id="author" name="author" class="browser-default custom-select">
-                    <option selected>Auteur</option>
-                    <%
-                        List<String> authors = (List<String>) request.getAttribute("authors");
-                        for (String author : authors) {
-                            out.print("<option  value= \"" + author + "\"> " + author + "</option>");
-                        }
-                    %>
-                </select>
+                <form name="form" method="post" action="books">
+                    <select id="author" name="author" class="browser-default custom-select"
+                            onChange="this.parentNode.submit()">
+                        <option>Auteur</option>
+                        <option></option>
+                        <%
+                            List<String> authors = (List<String>) request.getAttribute("authors");
+                            for (String author : authors) {
+                                out.print("<option  value= \"" + author + "\"> " + author + "</option>");
+                            }
+                        %>
+                    </select>
+                </form>
             </th>
             <th>Titre</th>
             <th>Date de parution</th>
@@ -67,14 +70,14 @@
         <tbody>
         <%
             Collection<Book> books = (Collection<Book>) request.getAttribute("books");
+            System.out.println(request.getParameter("author"));
             for (Book book : books) {
-
-                //if (request.getAttribute("author").equals("Auteur") || request.getAttribute("author").equals(book.getAuthor())) {
+                if ((request.getParameter("author") == null || request.getParameter("author").equals("")) || (request.getParameter("author").equals(book.getAuthor()))) {
                     out.print("<tr><td> " + book.getAuthor() + "</td>");
                     out.print("<td> " + book.getTitle() + "</td>");
                     out.print("<td> " + book.getDate() + "</td>");
                     out.print("<td> <a href=\"updateBook?id=" + book.getId() + "\">Détails</a> </td></tr>");
-                //}
+                }
             }
         %>
         </tbody>

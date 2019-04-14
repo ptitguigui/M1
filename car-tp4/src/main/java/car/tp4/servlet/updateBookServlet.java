@@ -1,6 +1,7 @@
 package car.tp4.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -41,9 +42,10 @@ public class updateBookServlet extends HttpServlet {
 
         String title = request.getParameter("titleBook");
         String author = request.getParameter("authorBook");
-        String date = request.getParameter("dateBook");
+        String dateInString = request.getParameter("dateBook");
 
         int id = Integer.parseInt(request.getParameter("id"));
+        Date date = bookBean.convertDate(dateInString);
         bookBean.updateBook(id, title, author, date);
 
         Book book = bookBean.getBook(id);

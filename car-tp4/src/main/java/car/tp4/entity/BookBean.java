@@ -5,6 +5,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -18,7 +21,7 @@ public class BookBean {
         entityManager.persist(book);
     }
 
-    public void updateBook(int id, String title, String author, String date) {
+    public void updateBook(int id, String title, String author, Date date) {
         try {
             Query query = entityManager.createQuery(
                     "UPDATE Book SET title = :myTitle, author = :myAuthor, date = :myDate"
@@ -39,7 +42,7 @@ public class BookBean {
     }
 
     public List<Book> getAllBooks() {
-        Query query = entityManager.createQuery("SELECT m from Book as m");
+        Query query = entityManager.createQuery("SELECT m from Book as m order by m.date");
         return query.getResultList();
     }
 
@@ -47,5 +50,17 @@ public class BookBean {
     public List<String> getAllAuthor() {
         Query query = entityManager.createQuery("SELECT distinct m.author from Book as m");
         return query.getResultList();
+    }
+
+
+    public static Date convertDate(String dateInString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

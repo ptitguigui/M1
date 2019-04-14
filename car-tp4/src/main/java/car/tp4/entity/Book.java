@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Book {
@@ -12,12 +15,12 @@ public class Book {
     private long id;
     private String author;
     private String title;
-    private String date;
+    private Date date;
 
     public Book() {
     }
 
-    public Book( String title, String author, String date) {
+    public Book(String title, String author, Date date) {
         this.author = author;
         this.title = title;
         this.date = date;
@@ -74,7 +77,8 @@ public class Book {
      * @return date
      */
     public String getDate() {
-        return date;
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(date);
     }
 
     /**
@@ -82,7 +86,7 @@ public class Book {
      *
      * @param date
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

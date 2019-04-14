@@ -1,6 +1,7 @@
 package car.tp4.servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -20,15 +21,29 @@ public class BookServlet extends HttpServlet {
     private BookBean bookBean;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         String authorName = "J. R. R. Tolkien";
-        bookBean.addBook(new Book("The Lord of the Rings", authorName, "29/07/1954"));
+        String dateInString = "1954-07-29";
+        Date date = bookBean.convertDate(dateInString);
+        bookBean.addBook(new Book("The Lord of the Rings", authorName, date));
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setAttribute("authors", bookBean.getAllAuthor());
+        request.setAttribute("books", bookBean.getAllBooks());
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");
+        dispatcher.forward(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setAttribute("author", request.getParameter("author"));
         request.setAttribute("authors", bookBean.getAllAuthor());
         request.setAttribute("books", bookBean.getAllBooks());
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/book.jsp");

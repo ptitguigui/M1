@@ -52,7 +52,7 @@
                                             id="authorBook">
         </div>
         <div>
-            <label>Date de parution : </label> <input type="text"
+            <label>Date de parution : </label> <input type="date"
                                                       name="dateBook" id="dateBook">
         </div>
         <div>

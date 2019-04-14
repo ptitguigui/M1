@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/createBook")
 public class CreateBookServlet extends HttpServlet {
@@ -35,7 +38,9 @@ public class CreateBookServlet extends HttpServlet {
             throws ServletException, IOException {
         String title = request.getParameter("titleBook");
         String author = request.getParameter("authorBook");
-        String date = request.getParameter("dateBook");
+        String dateInString = request.getParameter("dateBook");
+
+        Date date = bookBean.convertDate(dateInString);
 
         Book book = new Book(title, author, date);
         bookBean.addBook(book);

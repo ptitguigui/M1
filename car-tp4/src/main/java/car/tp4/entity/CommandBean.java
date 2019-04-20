@@ -17,10 +17,18 @@ public class CommandBean {
     @PersistenceContext(unitName = "command-pu")
     private EntityManager entityManager;
 
+    /**
+     * Add a command in persitence
+     * @param command
+     */
     public void addCommand(Command command) {
         entityManager.persist(command);
     }
 
+    /**
+     * Query to get all commands
+     * @return
+     */
     public List<Command> getAllCommands() {
         Query query = entityManager.createQuery("SELECT m from Command as m");
         return query.getResultList();

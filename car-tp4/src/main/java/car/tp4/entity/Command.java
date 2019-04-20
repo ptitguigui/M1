@@ -16,6 +16,10 @@ public class Command {
         books = new ArrayList<Book>();
     }
 
+    /**
+     * Add Book into list
+     * @param book
+     */
     public void addBook(Book book) {
         int index;
         if ((index = isExist(this.getBooks(), (int) book.getId())) >= 0) {
@@ -27,6 +31,12 @@ public class Command {
         }
     }
 
+    /**
+     * Verify if book exist from the list
+     * @param books
+     * @param id
+     * @return
+     */
     private int isExist(List<Book> books, int id) {
         int cpt = 0;
         for (Book book : books) {

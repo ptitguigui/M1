@@ -60,7 +60,7 @@
             <thead class="thead-dark">
             <tr>
                 <th>N° commande</th>
-                <th>Livre</th>
+                <!--<th>Livre</th>-->
             </tr>
             </thead>
             <tbody>

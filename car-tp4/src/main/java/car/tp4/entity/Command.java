@@ -18,7 +18,7 @@ public class Command {
 
     public void addBook(Book book) {
         int index;
-        if ((index = isExist(this.getBooks(), (int) book.getId())) > 0) {
+        if ((index = isExist(this.getBooks(), (int) book.getId())) >= 0) {
             this.getBooks().get(index).setQuantity(this.getBooks().get(index).getQuantity() + 1);
         } else {
             Book addBook = new Book(book.getTitle(), book.getAuthor(), book.getDataDate(), 1);
@@ -30,7 +30,6 @@ public class Command {
     private int isExist(List<Book> books, int id) {
         int cpt = 0;
         for (Book book : books) {
-            System.out.println(book.getId());
             if (book.getId() == id) {
                 return cpt;
             }

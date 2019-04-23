@@ -17,8 +17,9 @@ class ClientWindow(QtGui.QMainWindow):
         self.setCentralWidget(self._control)
 
         l = QtGui.QVBoxLayout(self._control)
-        for i in range(5):
-            name = 'test %d' % i
+        tab = ['Play/Pause', 'Next', 'Previous', 'Like/Unlike']
+        for i in tab:
+            name = i
             b = QtGui.QPushButton(name)
             l.addWidget(b)
             b.pressed.connect(functools.partial(self.onButtonClick, name))

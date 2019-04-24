@@ -1,0 +1,201 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://www.labd.org/2015/sport/schema#>.
+
+
+
+s:sport
+  a rdfs:Class ;
+  rdfs:comment "La classe sport" .
+  s:nomSport
+    a rdf:Property;
+    rdfs:domain s:sport;
+    rdfs:range rdfs:Literal.
+  s:de
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdf:Alt.
+  s:attributTitre
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdfs:Literal.
+
+  s:seJoue
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range rdfs:Literal.
+  s:sur
+    a rdf:property;
+    rdfs:domain s:sport;
+    rdfs:range s:terrain.
+
+s:sportCollectif
+  a rdfs:Class ;
+  rdfs:comment "La classe sportCollectif" .
+  rdfs:subClassOf s:sport .
+
+  s:oppose
+    a rdf:property;
+    rdfs:domain s:sportCollectif;
+    rdfs:range s:equipes.
+
+s:sportDeEquipe
+  a rdfs:Class ;
+  rdfs:comment "La classe sportDeEquipe" .
+  rdfs:subClassOf s:sport .
+
+s:sportIndividuel
+  a rdfs:Class ;
+  rdfs:comment "La classe individuel" .
+  rdfs:subClassOf s:sportDeEquipe .
+
+s:equipe
+  a rdfs:Class ;
+  rdfs:comment "La classe equipe" .
+
+  s:nombreDeJoueurs
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+  s:objectif
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+  s:nbRemplacants
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+  s:peutRemplacer
+    a rdf:Property;
+    rdfs:domain s:equipe;
+    rdfs:range rdfs:Literal.
+
+
+s:equipes
+  a rdfs:Class ;
+  rdfs:comment "La classe equipes" .
+
+  s:nbEquipe
+    a rdf:Property;
+    rdfs:domain s:equipes;
+    rdfs:range rdfs:Literal.
+
+  s:chaqueEquipe
+    a rdf:Property;
+    rdfs:domain s:equipes;
+    rdfs:range s:equipe.
+
+
+
+s:terrain
+  a rdfs:Class ;
+  rdfs:comment "La classe terrain" .
+
+  s:formeTerrain
+    a rdf:Property;
+    rdfs:domain s:terrain;
+    rdfs:range rdfs:Literal.
+
+  s:tailleTerrain
+    a rdf:Property;
+    rdfs:domain s:terrain;
+    rdfs:range s:taille.
+
+s:match
+  a rdfs:Class ;
+  rdfs:comment "La classe match" .
+
+  s:dure
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal.
+
+  s:seJoueEnParties
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range s:parties.
+
+  s:type
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal.
+
+  s:vainqueur
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal.
+
+  s:miTemps
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range rdfs:Literal .
+
+  s:enCasEgalité
+    a rdf:Property;
+    rdfs:domain s:match;
+    rdfs:range s:prolongation.
+
+
+
+
+
+s:parties
+  a rdfs:Class ;
+  rdfs:comment "La classe parties" .
+
+  s:nombreDePartie
+    a rdf:Property;
+    rdfs:domain s:parties;
+    rdfs:range rdfs:Literal.
+
+  s:dureChacune
+    a rdf:Property;
+    rdfs:domain s:parties;
+    rdfs:range rdfs:Literal.
+
+
+
+
+s:prolongation
+  a rdfs:Class ;
+  rdfs:comment "La classe prolongation" .
+  rdfs:subClassOf s:match .
+
+  s:siEgalité
+    a rdf:Property;
+    rdfs:domain s:prolongation;
+    rdfs:range s:tireAuBut.
+
+s:tireAuBut
+  a rdfs:Class ;
+  rdfs:comment "La classe tireAuBut" .
+
+  s:departagent
+    rdfs:domain s:tireAuBut;
+    rdfs:range rdfs:Literal.
+
+s:ballon
+  a rdfs:Class ;
+  rdfs:comment "La classe ballon".
+
+  s:formeBallon
+    a rdf:property;
+    rdfs:domain s:ballon;
+    rdfs:range rdfs:Literal.
+
+s:taille
+  a rdfs:class ;
+  rdfs:comment "La classe taille avec une longueur et une largeur".
+
+  s:longueur
+    a rdf:property;
+    rdfs:domain s:taille;
+    rdfs:range rdfs:Literal .
+
+  s:largeur
+    a rdf:property;
+    rdfs:domain s:taille;
+    rdfs:range rdfs:Literal .

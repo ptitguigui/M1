@@ -4,14 +4,14 @@
 
 1. Cette requête affiche tous les types déclarer dans le RDF : l'instance x et son type t.
    Il y a 33 résultats en tout :
-   
+
    ```
    SELECT  (count(?x) as ?nb) WHERE
     {
          ?x rdf:type ?t
     }   
-    ``` 
-    John est à le type Person : 
+    ```
+    John est à le type Person :
     ```
     SELECT ?x ?t WHERE
     {
@@ -19,7 +19,7 @@
         FILTER regex (?x, "John")
     }
     ```
-2. La requête donne les couples mariés. Il y a 6 résultats : 
+2. La requête donne les couples mariés. Il y a 6 résultats :
 
 ```
     PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
@@ -27,7 +27,7 @@
         ?x humans:hasSpouse ?y
     }
 ```
-3. La propriété est l'âge, voici la requête : 
+3. La propriété est l'âge, voici la requête :
 
 ```
     PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
@@ -38,7 +38,7 @@
 ```
 
 4. La propriété est shoesize.  
-4.1 
+4.1
 
 ```
     PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
@@ -46,7 +46,7 @@
         ?x  humans:shoesize ?y
     }
 ```
-4.2 
+4.2
 ```
         PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
         SELECT ?x ?y WHERE {
@@ -54,7 +54,7 @@
         OPTIONAL {?x humans:shoesize ?y}
         }
 ```
-4.3 
+4.3
 
 ```
     PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
@@ -66,14 +66,14 @@
     }
     }
 ```
-4.4 
+4.4
 ```
     PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
     SELECT ?x ?y ?z WHERE {
         ?x  humans:shoesize ?y
         ?x  humans:shirtsize ?z
-        FILTER (xsd:integer(?y) > 8 || xsd:integer(?z) > 12)	
-    
+        FILTER (xsd:integer(?y) > 8 || xsd:integer(?z) > 12)
+
     }
 ```
 
@@ -89,7 +89,7 @@ SELECT ?x ?y ?z WHERE {
 }
 ```
 
-5.1 
+5.1
 
 ```
 PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
@@ -107,7 +107,7 @@ SELECT ?t ?y WHERE {
     {
     ?x humans:hasParent ?y
     } UNION {
-    ?x humans:hasChild ?y	
+    ?x humans:hasChild ?y
     }
     }
 ```
@@ -121,7 +121,7 @@ SELECT ?t ?y WHERE {
     {
     ?x humans:hasParent ?y
     } UNION {
-    ?y humans:hasChild ?t	
+    ?y humans:hasChild ?t
     }
     }
 ```
@@ -130,5 +130,44 @@ SELECT ?t ?y WHERE {
 
 ## Exercice 2
 
+1.
 
+L'espace de nom associé à l'antologie décrite est :
+
+```
+   xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+```
+Property -> domain
+
+- hasAncestor, hasPerent, hasChild, hasFather, hasMother, hasBrother, hasSister, name, age ont comme domaine Animal
+
+- shoesize, shirtsize, trouserssize, hasSpouse ont comme domaine Person
+
+
+La propriété "age" a comme domain Animal
+
+2.
+
+```
+SELECT ?x WHERE
+{
+ ?x rdf:type ?t
+ FILTER regex (?t, "Class")
+}
+```
+3.
+
+```
+SELECT ?x ?t WHERE
+{
+ ?x ?y ?t
+ FILTER regex (?y, "subClassOf")
+}
+```
+
+4.
+
+```
+
+```
 ## Exercice 3

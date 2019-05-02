@@ -117,7 +117,7 @@ SELECT ?t ?y WHERE {
 
 ```
    PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
-    SELECT distinct ?y WHERE {
+    SELECT ?y WHERE {
     {
     ?x humans:hasParent ?y
     } UNION {
@@ -126,7 +126,89 @@ SELECT ?t ?y WHERE {
     }
 ```
 
+
 6.3
+
+Nous optenons 6 réponses dont un doublon.
+
+6.4
+
+```
+    PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+        SELECT distinct ?y WHERE {
+        {
+        ?x humans:hasParent ?y
+        } UNION {
+        ?y humans:hasChild ?t	
+        }
+        }
+```
+Nous optenons 5 réponses.
+
+6.5
+
+```
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+    SELECT ?x WHERE {
+        ?x  a humans:Man
+         OPTIONAL { ?x humans:hasChild ?y } .
+        FILTER ( !bound(?y))
+    }
+```
+
+6.6
+
+```
+ PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+    SELECT ?x ?y WHERE {
+        ?x a humans:Woman
+        ?x humans:hasSpouse ?t
+    OPTIONAL {
+	    ?x humans:hasChild ?y
+    }
+    }
+```
+
+7.
+
+```
+   PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+    SELECT distinct ?x ?y WHERE {
+    ?x humans:hasSpouse ?y
+	?x humans:shirtsize ?z
+	?y humans:shirtsize ?t
+	FILTER (?z =?t )
+    }
+```
+
+8.
+
+```
+   PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+    SELECT distinct ?x ?y WHERE {
+    ?x humans:hasFriend ?y
+    }
+```
+9.
+
+```
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+    SELECT distinct ?y WHERE {
+    {
+     ?x a humans:Man
+     ?x humans:hasSpouse ?y}
+UNION {
+     ?d humans:hasMother ?y}
+ UNION {
+     ?y a humans:Woman
+    }
+UNION {
+     ?x a humans:Man
+     ?y humans:hasSpouse ?x
+}
+}
+```
+
 
 ## Exercice 2
 

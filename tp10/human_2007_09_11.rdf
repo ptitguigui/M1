@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
-   <!ENTITY humans   "http://www.inria.fr/2007/09/11/humans.rdfs"> 
+   <!ENTITY humans   "http://www.inria.fr/2007/09/11/humans.rdfs">
    <!ENTITY xsd      "http://www.w3.org/2001/XMLSchema#"> ]>
- 
-<rdf:RDF  
+
+<rdf:RDF
    xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-   xmlns:xsd ="&xsd;" 
-   xmlns     ="&humans;#" 
+   xmlns:xsd ="&xsd;"
+   xmlns     ="&humans;#"
    xml:base  ="&humans;-instances" >
-   
+
 <Man rdf:ID="Harry">
   <name>Harry</name>
   <hasChild rdf:resource="#John"/>
   <hasSpouse rdf:resource="#Sophie"/>
 </Man>
- 
-   
+
+
 <Person rdf:ID="John">
   <name>John</name>
 	<shoesize>14</shoesize>
@@ -80,6 +80,7 @@
 	<shirtsize>8</shirtsize>
 	<name>Lucas</name>
 	<hasMother rdf:resource="#Catherine"/>
+  <hasFather rdf:resource="#Karl"/>
 </Man>
 
 <Man rdf:ID="Gaston">

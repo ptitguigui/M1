@@ -55,7 +55,7 @@ class BubbleCursor():
         self.size = (dstMin * 2) 
 
     def selectTarget(self):
-        random = randint(0, 99)
+        random = randint(0, len(self.targets)-1)
         target = self.targets[random]
         target.toSelect = True
         self.currentSelect = target

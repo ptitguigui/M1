@@ -19,12 +19,11 @@ class RopeWidget(QWidget):
 
         with open(file, 'r') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=',')
-            for row in file:
+            for row in spamreader:
                 self.targets.append(
                     Target(int(row[0]), int(row[1]), int(row[2])))
         
         self.cursor.selectTarget()
-
 
     def paintEvent(self, event):
         painter = QPainter(self)

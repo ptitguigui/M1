@@ -1,14 +1,15 @@
+import csv
 import sys
 from random import randint
+
+from BubbleWidget import *
 from ExpSetup import *
+from NormalWidget import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
-from NormalWidget import *
-from BubbleWidget import *
 from RopeWidget import *
-import csv
+
 
 class XPManager():
 

@@ -14,14 +14,14 @@ class Trace(QMainWindow):
                 self.width = width
                 self.color = color
 
-def main(args):
-        app = QApplication(args)
-        dessin = Dessin()
-        dessin.show()
-        app.exec_()
+# def main(args):
+#         app = QApplication(args)
+#         dessin = Dessin()
+#         dessin.show()
+#         app.exec_()
 
         
-if __name__ == "__main__":
-	print("execution du programme")
-	main(sys.argv)
+# if __name__ == "__main__":
+# 	print("execution du programme")
+# 	main(sys.argv)
         

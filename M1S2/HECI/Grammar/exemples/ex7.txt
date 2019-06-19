@@ -1,0 +1,4 @@
+# le langage des mots de longueur paire sur {a, b}
+# Ce langage est en fait rÃ©gulier (reconnu par un automate fini)
+# il ne contient pas la chaine "a"
+<S> ::= "" | "aa" <S> | "ab" <S> | "ba" <S> | "bb" <S>

@@ -1,0 +1,9 @@
+# le langage composÃ© des mots en {a, b} qui n'ont pas le mÃªme nombre de a et de b
+# il ne peut pas produire la chaine "ab"
+# <T> engendre les mots qui ont autant de a que de b
+# <U> engendre les mots qui ont strictement plus de a
+# <V> engendre les mots qui ont strictement plus de b
+<S> ::= <U> | <V>
+<U> ::= <T> "a" <U> | <T> "a" <T>
+<V> ::= <T> "b" <V> | <T> "b" <T>
+<T> ::= "a" <T> "b" <T> | "b" <T> "a" <T> | ""

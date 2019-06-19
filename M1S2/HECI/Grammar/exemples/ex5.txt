@@ -1,0 +1,7 @@
+# le langage composÃ© des nombres en binaire avec un nombre pair de 0
+# il ne peut pas produire la chaine "0"
+# Le terminal <A> accepte le langage 1*
+# Soit Ã§a commence par un 1, et derriÃ¨re il y a un nombre pair de zÃ©ros
+
+<S> ::= "" | "1" <S> | "0" <T>
+<T> ::= 1" <T> | "0" <S>

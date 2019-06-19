@@ -1,0 +1,3 @@
+# le langage composÃ© des mots bien parenthÃ©sÃ©s
+# il ne peut pas produire la chaine ")"
+<S> ::= "" | "(" <S> ")" | <S> <S>

@@ -1,0 +1,10 @@
+@prefix ns0: <http://www.liste/alphabet>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.liste/alphabet> ns0:liste [
+ a rdf:Seq ;
+ rdf:_1 "a" ;
+ rdf:_2 "b" ;
+ rdf:_3 "c" ;
+ rdf:_4 "d"
+ ] .

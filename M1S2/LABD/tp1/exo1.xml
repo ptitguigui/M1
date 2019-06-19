@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- New document created with EditiX at Wed Jan 16 15:52:42 CET 2019 -->
+<pays>
+	<france capitale="Paris">
+		<population  annee="2007">64 102 000</population>
+	</france>
+	<italie capitale="Rome">
+		<population  annee="2006">58 133 509</population>
+	</italie>
+	<espagne capitale="Madrid" >
+		<population  annee="2006">44 708 964</population>
+	</espagne>
+</pays>

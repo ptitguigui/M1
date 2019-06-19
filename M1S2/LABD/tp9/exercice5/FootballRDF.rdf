@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://www.labd.org/2015/sport/schema#">
+
+  <rdf:Description rdf:about="http://www.labd.org/2015/sport/schema#football">
+    <rdf:type rdf:resource="http://www.labd.org/2015/sport/schema#sportCollectif"/>
+    <ns0:nomsport>Football</ns0:nomsport>
+    <ns0:de>
+      <ns0:ballon rdf:about="http://www.labd.org/2015/sport/schema#b0">
+        <ns0:formeBallon>sphérique</ns0:formeBallon>
+      </ns0:ballon>
+    </ns0:de>
+
+    <ns0:attributTitre>collectif</ns0:attributTitre>
+    <ns0:oppose>
+      <ns0:equipes rdf:about="http://www.labd.org/2015/sport/schema#eqs">
+        <ns0:nbEquipe>2</ns0:nbEquipe>
+        <ns0:chaqueEquipe>
+          <ns0:equipe rdf:about="http://www.labd.org/2015/sport/schema#eq">
+            <ns0:nombreDeJoueurs>11</ns0:nombreDeJoueurs>
+            <ns0:objectif>marquer plus de but que l'adversaire</ns0:objectif>
+            <ns0:nbRemplacants></ns0:nbRemplacants>
+            <ns0:peutRemplacer></ns0:peutRemplacer>
+          </ns0:equipe>
+        </ns0:chaqueEquipe>
+
+      </ns0:equipes>
+    </ns0:oppose>
+
+    <ns0:seJoue>sans les bras</ns0:seJoue>
+    <ns0:sur>
+      <ns0:terrain rdf:about="http://www.labd.org/2015/sport/schema#t0">
+        <ns0:formeTerrain>rectangulaire</ns0:formeTerrain>
+        <ns0:tailleTerrain>
+          <ns0:taille rdf:about="http://www.labd.org/2015/sport/schema#t0_taille">
+            <ns0:largeur>45 à 90 mètres</ns0:largeur>
+            <ns0:longueur>90 à 120 mètres</ns0:longueur>
+          </ns0:taille>
+        </ns0:tailleTerrain>
+
+      </ns0:terrain>
+    </ns0:sur>
+
+  </rdf:Description>
+
+  <ns0:match rdf:about="http://www.labd.org/2015/sport/schema#m0">
+    <ns0:dure>90 min</ns0:dure>
+    <ns0:seJoueEnParties>
+      <ns0:parties rdf:about="http://www.labd.org/2015/sport/schema#P">
+        <ns0:nombreDePartie>2</ns0:nombreDePartie>
+        <ns0:dureChacune>45min</ns0:dureChacune>
+      </ns0:parties>
+    </ns0:seJoueEnParties>
+
+    <ns0:type>aller ou retour</ns0:type>
+    <ns0:vainqueur>une des deux equipes</ns0:vainqueur>
+    <ns0:miTemps>15min</ns0:miTemps>
+    <ns0:enCasEgalité>
+      <ns0:prolongation rdf:about="http://www.labd.org/2015/sport/schema#Pr">
+        <ns0:dure>30 min</ns0:dure>
+        <ns0:seJoueEn2Parties>
+          <ns0:parties rdf:about="http://www.labd.org/2015/sport/schema#PP">
+            <ns0:nombreDePartie>2</ns0:nombreDePartie>
+            <ns0:dureChacune>15min</ns0:dureChacune>
+          </ns0:parties>
+        </ns0:seJoueEn2Parties>
+
+        <ns0:siEgalité>
+          <ns0:tireAuBut rdf:about="http://www.labd.org/2015/sport/schema#TB">
+            <ns0:departagent>les deux equipes</ns0:departagent>
+          </ns0:tireAuBut>
+        </ns0:siEgalité>
+
+      </ns0:prolongation>
+    </ns0:enCasEgalité>
+
+  </ns0:match>
+
+</rdf:RDF>

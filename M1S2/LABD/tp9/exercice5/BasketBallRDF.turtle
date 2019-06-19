@@ -1,0 +1,48 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix s: <http://www.labd.org/2015/sport/schema#>.
+
+
+s:basketball
+  a s:sportCollectif;
+  s:nomsport "basketball";
+  s:de s:b0;
+  s:attributTitre "collectif";
+  s:oppose s:eqs;
+  s:seJoue "à la main";
+  s:sur s:t0 .
+
+
+s:eq
+  a s:equipe ;
+  s:nombreDeJoueurs "5";
+  s:objectif "marquer plus depoints que son adversaire en marquant despanierset en empêchant l’équipe adverse d’en faire demême";
+  s:nbRemplacants "max 5 à 7 remplaçants" ;
+  s:peutRemplacer "un plusieurs joueur pendant les temps morts".
+
+s:eqs
+  a s:equipes;
+  s:nbEquipe "2";
+  s:chaqueEquipe s:eq.
+
+s:b0
+  a s:ballon;
+  s:formeBallon "".
+
+s:t0
+  a s:terrain;
+  s:formeTerrain "";
+  s:tailleTerrain s:t0_taille .
+
+s:m0
+  a s:match;
+  s:dure "90 min";
+  s:seJoueEnParties s:P;
+  s:type "aller ou retour";
+  s:vainqueur "une des deux equipes";
+  s:miTemps "15min".
+
+s:P
+  a s:parties;
+  s:nombreDePartie "4";
+  s:dureChacune "10 ou 12 min".

@@ -1,0 +1,14 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix v: <http://www.labd.org/2015/voitures/schema#>.
+
+
+v:v001
+  a v:Voiture;
+  v:marque v:s001;
+  v:nomVoiture "C4" .
+
+v:s001
+    a v:Societe;
+    v:nomSociete "Citroën";
+    v:fondeEn "1919".

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="heure">
+
+ 	<xs:restriction base="xs:time">
+
+ 		<xs:minInclusive value="02:30:00"/>
+
+ 		<xs:maxInclusive value="16:50:00"/>
+
+ 	</xs:restriction>
+
+</xs:simpleType>
+
+<xs:simpleType name="nombreReel">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="-3476.4"/>
+		<xs:maxExclusive value="5"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="chaine">
+	<xs:restriction base="xs:string">
+		<xs:length value="4"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="formatImage">
+ 	<xs:restriction base="xs:string">
+ 		<xs:enumeration value="jpg"/>
+ 		<xs:enumeration value="gif"/>
+ 		<xs:enumeration value="png"/>
+ 	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="numeroISBN">
+	<xs:restriction base="xs:integer">
+		<xs:totalDigits value="13"/>
+	</xs:restriction>
+</xs:simpleType>
+</xs:schema>

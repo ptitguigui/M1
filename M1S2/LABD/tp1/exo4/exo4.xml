@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itineraire SYSTEM "exo4.dtd">
+
+<itineraire date="Mardi 22 Janvier 2019 - 12h35" de="Seclin - Centre hospitalier"  vers="Roubaix - Avenue Motte">
+	<modes>
+		<mode>Métro</mode>
+		<mode>Tramway</mode>
+		<mode>Bus</mode>
+		<mode>Car</mode>
+	</modes>
+	<preference>Arriver le plus rapidement</preference>
+	<vitesse>Normale</vitesse>
+	<parcours duree = "1h27">
+		<etapes>
+			<etape duree ="0h13">
+				<temps_depart>14h38</temps_depart>
+				<temps_arrivee>14h51</temps_arrivee>
+				<mode>Marche</mode>
+				<de>Seclin - Centre hospitalier</de>
+				<vers>Seclin - Hôtel de Ville</vers>
+			</etape>
+			<etape duree="0h23">
+				<temps_depart>14h51</temps_depart>
+				<temps_arrivee>15h14</temps_arrivee>
+				<mode ligne="1" direction="Villeneuve d’Ascq - 4 Canton">Bus Transpole</mode>
+				<de>Seclin - Hôtel de Ville</de>
+				<vers>Lille - CHR B Calmette</vers>
+			</etape>
+			<etape duree="0h03">
+			<temps_depart>15h18</temps_depart>
+			<temps_arrivee>15h21</temps_arrivee>
+				<mode ligne="1" direction="Villeneuve d’Ascq - 4 Canton">Metro Transpole</mode>
+				<de>Lille - CHR B Calmette</de>
+				<vers>Lille - Porte des Postes</vers>
+			</etape>
+			<etape duree="0h25">
+				<temps_depart>15h27</temps_depart>
+				<temps_arrivee>15h52</temps_arrivee>
+				<mode ligne="2" direction="Tourcoing - CH Dron">Metro Transpole</mode>
+				<de>Lille - Porte des Postes</de>
+				<vers>Roubaix - Epeule Montesquieu</vers>
+			</etape>
+			<etape duree="0h09">
+				<temps_depart>15h56</temps_depart>
+				<temps_arrivee>16h05</temps_arrivee>
+				<mode ligne="25" direction="Roubaix - fraternité">Bus Transpole</mode>
+				<de>Roubaix - Epeule Montesquieu</de>
+				<vers>Roubaix - Avenue Motte</vers>
+			</etape>
+		</etapes>
+	</parcours>
+</itineraire>

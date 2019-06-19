@@ -1,0 +1,33 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix v: <http://www.labd.org/2015/voitures/schema#>.
+
+
+
+
+v:Societe
+  a rdfs:Class ;
+  rdfs:comment "La classe societe".
+
+  v:nomSociete
+    a rdf:Property;
+    rdfs:domain v:Societe;
+    rdfs:range rdfs:Literal.
+  v:fondeEn
+    a rdf:Property;
+    rdfs:domain v:Societe;
+    rdfs:range rdfs:Literal.
+
+v:Voiture
+  a rdfs:Class ;
+  rdfs:comment "La classe voiture".
+    
+  v:nomVoiture
+    a rdf:Property;
+    rdfs:domain v:Voiture;
+    rdfs:range rdfs:Literal.
+    
+  v:marque
+    a rdf:Property;
+    rdfs:domain v:Voiture;
+    rdfs:range rdfs:Literal.

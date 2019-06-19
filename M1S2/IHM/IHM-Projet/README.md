@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## IHM
 
 ### Binome
@@ -24,17 +23,3 @@ Ainsi, nous allons créer :
 ### Lancement
 
 Pour lancer notre projet, il faut les deux fichier `anneau.py` et `lunette.py` avec python 2. Ainsi vous pourrez réaliser les interractions.
-=======
-# TP IHM
-
-Ici vous trouverez l'ensemble d'IHM dans le cadre du master Informatique.
-
-## Binome
-
-Groupe composé de Franco Davy Irakoze et Guillaume Leprêtre
-
-
-## Plateforme experimentale
-
-Celle-ci se trouve dans le tp4 
->>>>>>> 5ebb52009f223d924012313e0cd312abbb628e1d
